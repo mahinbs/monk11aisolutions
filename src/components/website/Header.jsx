@@ -4,7 +4,7 @@ import Drawer from "react-modern-drawer";
 import { Divide as Hamburger } from "hamburger-react";
 import "react-modern-drawer/dist/index.css";
 import { X } from "lucide-react";
-import { companyDetails, logo } from "../../data/constant";
+import { getWhatsAppLink, logo } from "../../data/constant";
 
 const links = [
   {
@@ -39,7 +39,7 @@ const Header = () => {
           <img
             loading="lazy"
             src={logo}
-            alt="logo"
+            alt="Monk11 AI Solutions"
             width="75"
             height="75"
             className="w-[7rem] md:w-[9rem] object-contain"
@@ -58,11 +58,12 @@ const Header = () => {
             </Link>
           ))}
           <Link
-            to={`https://wa.me/${companyDetails.phone}`}
+            to={getWhatsAppLink()}
             target="_blank"
+            rel="noopener noreferrer"
             className="primary-btn"
           >
-            Let's Chat <i class="fa fa-whatsapp text-xl"></i>
+            Let's Chat <i className="fa fa-whatsapp text-xl"></i>
           </Link>
         </div>
         <div
@@ -89,7 +90,7 @@ const Header = () => {
             src={logo}
             width="auto"
             height="auto"
-            alt="logo"
+            alt="Monk11 AI Solutions"
             className="h-[2.5rem] object-contain"
           />
           <button onClick={() => setIsOpen(false)}>

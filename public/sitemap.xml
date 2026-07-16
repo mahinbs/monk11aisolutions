@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.monk11ai.com/</loc>
+    <loc>https://monk11.ai/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.monk11ai.com/about-us</loc>
+    <loc>https://monk11.ai/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.monk11ai.com/services</loc>
+    <loc>https://monk11.ai/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.monk11ai.com/blogs</loc>
+    <loc>https://monk11.ai/services/AI%20Automation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://monk11.ai/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.monk11ai.com/contact</loc>
+    <loc>https://monk11.ai/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

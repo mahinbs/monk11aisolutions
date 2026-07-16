@@ -9,7 +9,6 @@ import { ArrowLinkButton } from "../components/ArrowButtons";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const WorkProcess = lazy(() => import("../components/WorkProcess"));
-const Testimonials = lazy(() => import("../components/Testimonials"));
 const ServicesWeProvide = lazy(() =>
   import("../components/website/ServicesWeProvide")
 );
@@ -28,26 +27,21 @@ const AboutUs = () => {
             className="pt-[10rem] pb-[3rem] h-full wrapper text-white z-10 flex flex-col gap-3 justify-center items-center"
           >
             <h1 className="heading-2 max-w-5xl text-center">
-              We are expert professionals. We can turn your business idea into a
-              real software solution.
+              Building intelligent systems that help businesses work smarter.
             </h1>
-            <p className="max-w-5xl text-center text-[1.1rem]">
-              We are a team of dedicated professionals passionate about
-              transforming business ideas into cutting-edge software solutions.
-              With decades of combined experience, we specialize in custom web
-              and app development, UI/UX design, blockchain technology, and game
-              development. Our approach is rooted in understanding the unique
-              needs of our clients, offering tailored solutions that drive
-              growth and innovation.
+            <p className="max-w-5xl text-center text-[1.1rem] text-white/90">
+              Monk11 AI is a team of strategists, designers, and engineers
+              focused on AI automation, custom software, and mobile products. We
+              partner with organizations across Real Estate, Healthcare,
+              Manufacturing, Restaurant Management, Renewable Energy, FinTech,
+              and other enterprise sectors to turn operational complexity into
+              scalable digital advantage.
             </p>
             <ArrowLinkButton to="/contact">Contact Us</ArrowLinkButton>
           </div>
         </div>
       </section>
       <ServicesWeProvide />
-      <section className="bg-[#F7F7F9]">
-        <Testimonials />
-      </section>
       <section
         className="py-[7rem]"
         style={{ backgroundImage: `url(${ourValuesBg})` }}
@@ -107,7 +101,7 @@ const AboutUs = () => {
             />
             <div className="aspect-square w-[14rem] sm:w-[16rem] flex flex-col justify-between bg-gradient-to-tr p-7 from-[#CD21E9] via-[#E03D3D] to-[#FFBD12] absolute right-0 bottom-0">
               <h4 className="text-xl font-semibold text-white">
-                Hire Developers for Your Next Project
+                Ready to Automate Your Next Workflow?
               </h4>
               <Link
                 to="/contact"
@@ -126,26 +120,25 @@ const AboutUs = () => {
               />
               <div className="py-[3rem] px-7 sm:aspect-square flex flex-col justify-between bg-gradient-to-tr sm:p-7 from-[#992FED] to-[#2F80ED]">
                 <h4 className="text-xl font-semibold text-white">
-                  Monk 11 AI Solutions Partners with Optimizely for Enhanced Digital
-                  Experiences
+                  AI Automation for Industries That Demand Precision
                 </h4>
                 <Link
-                  to="/contact"
+                  to="/services/AI Automation"
                   className="font-medium text-[.9rem] flex items-center gap-2 mt-5 w-fit text-white hover:text-primary transition-colors duration-200"
                 >
-                  Contact Us <ArrowRight className="w-5 h-5" />
+                  Explore Services <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
             <div className="p-7 h-full text-white bg-[#131426] flex flex-col gap-3">
               <p className="border-b border-dotted border-white/20 pb-3">
-                The Importance of a Strong Digital Presence in 2024
+                Why AI Automation Is Becoming Essential for Mid-Market Teams
               </p>
               <p className="border-b border-dotted border-white/20 pb-3">
-                Web Development Trends to Watch This Year
+                Building Reliable Workflows Across CRM, ERP, and Support Tools
               </p>
               <p className="border-b border-dotted border-white/20 pb-3">
-                The Role of UX-UI Design in Business Success
+                How Industry-Specific Agents Improve Speed and Accuracy
               </p>
               <div className="mt-7 self-end">
                 <Link

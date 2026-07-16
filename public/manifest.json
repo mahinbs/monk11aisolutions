@@ -1,11 +1,11 @@
 {
-  "short_name": "Monk 11 AI Solutions",
-  "name": "Monk 11 AI Solutions",
+  "short_name": "Monk11 AI",
+  "name": "Monk11 AI Solutions",
   "icons": [
     {
       "src": "logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "logo.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#7821A6",
   "background_color": "#ffffff"
 }

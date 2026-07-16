@@ -38,9 +38,9 @@ const ContactForm = ({ headline, id }) => {
     // Construct the request payload
     var payload = {
       to: companyDetails.email,
-      subject: "Contact Form Submission - Monk 11 AI Solutions",
+      subject: `Contact Form Submission - ${companyDetails.name}`,
       body: emailBody,
-      name:"Monk 11 AI Solutions"
+      name: companyDetails.name,
     };
 
     await fetch("https://send-mail-redirect-boostmysites.vercel.app/send-email", {

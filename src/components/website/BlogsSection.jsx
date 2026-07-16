@@ -1,8 +1,6 @@
 import { useKeenSlider } from "keen-slider/react";
 import { useState } from "react";
-import blog1 from "../../assets/images/blogs/1.png";
-import blog2 from "../../assets/images/blogs/2.png";
-import blog3 from "../../assets/images/blogs/3.png";
+import { blogs } from "../../data/constant";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -68,24 +66,25 @@ const BlogsSection = () => {
   return (
     <section className="pt-[4rem] wrapper">
       <h2 data-aos="fade-up" className="section-heading text-center capitalize">
-        Browse our latest blog articles
+        Browse our latest insights
       </h2>
       <div data-aos="fade-up" ref={sliderRef} className="keen-slider mt-7">
-        {[blog1, blog2, blog3].map((item, i) => (
+        {blogs.map((item) => (
           <Link
-            to="/blogs/1"
-            key={item}
-            className="keen-slider__slide space-y-2 p-5 rounded-xl border border-black/20"
+            to={`/blogs/${item.id}`}
+            key={item.id}
+            className="keen-slider__slide space-y-2 p-5 rounded-xl border border-black/20 bg-white"
           >
-            <img src={item} alt="" className="w-full rounded-xl" />
-            <h6 className="text-lg font-semibold line-clamp-2">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            </h6>
-            <p className="line-clamp-3">
-              Boluptatum dolores porro ex laborum officiis magnam deleniti ea
-              velit dolore inventore consequuntur voluptas sit doloribus vero?
-              Eos dolorum deleniti provident!
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full rounded-xl"
+            />
+            <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+              {item.category}
             </p>
+            <h6 className="text-lg font-semibold line-clamp-2">{item.title}</h6>
+            <p className="line-clamp-3 text-gray-600">{item.excerpt}</p>
           </Link>
         ))}
       </div>
@@ -97,12 +96,14 @@ const BlogsSection = () => {
           <button
             onClick={() => instanceRef.current?.prev()}
             className="bg-black/5 p-3 rounded-full hover:bg-black/10 transition-colors"
+            aria-label="Previous blog"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => instanceRef.current?.next()}
             className="bg-black/5 p-3 rounded-full hover:bg-black/10 transition-colors"
+            aria-label="Next blog"
           >
             <ArrowRight className="w-5 h-5" />
           </button>

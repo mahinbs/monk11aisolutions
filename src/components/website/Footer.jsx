@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Link as Scroll } from "react-scroll";
 import { services } from "../../data/services";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { companyDetails, logo } from "../../data/constant";
 
 const Footer = () => {
   return (
@@ -12,7 +12,18 @@ const Footer = () => {
       <div className="wrapper space-y-6">
         <div className="max-w-6xl mx-auto grid sm:grid-cols-3 items-start gap-10">
           <div className="space-y-3 grid justify-start">
-            <h5 className="text-lg font-semibold">Our Services</h5>
+            <Link to="/">
+              <img
+                src={logo}
+                alt={companyDetails.name}
+                className="h-12 object-contain"
+              />
+            </Link>
+            <p className="text-sm text-gray-600 max-w-xs">
+              AI automation and digital products for modern enterprises at{" "}
+              {companyDetails.domain}.
+            </p>
+            <h5 className="text-lg font-semibold pt-2">Our Services</h5>
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
@@ -37,16 +48,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Scroll
-                  to="services"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={1000}
-                  className="link"
-                >
+                <Link to="/services" className="link">
                   Services
-                </Scroll>
+                </Link>
               </li>
               <li>
                 <Link to="/blogs" className="link">
@@ -60,22 +64,37 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="flex gap-4 items-center sm:justify-end">
-            <Link to="/" className="link">
-              <Linkedin className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
-            <Link to="/" className="link">
-              <Instagram className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
-            <Link to="/" className="link">
-              <Facebook className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
+          <div className="space-y-4 sm:justify-end sm:text-right">
+            <div className="space-y-1 text-sm">
+              <p>
+                <a className="link" href={`mailto:${companyDetails.email}`}>
+                  {companyDetails.email}
+                </a>
+              </p>
+              <p>
+                <a className="link" href={`tel:+${companyDetails.phone}`}>
+                  +{companyDetails.phone}
+                </a>
+              </p>
+            </div>
+            <div className="flex gap-4 items-center sm:justify-end">
+              <Link to="/" className="link" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6 link" strokeWidth={1.5} />
+              </Link>
+              <Link to="/" className="link" aria-label="Instagram">
+                <Instagram className="w-6 h-6 link" strokeWidth={1.5} />
+              </Link>
+              <Link to="/" className="link" aria-label="Facebook">
+                <Facebook className="w-6 h-6 link" strokeWidth={1.5} />
+              </Link>
+            </div>
           </div>
         </div>
         <hr className="border-secondary/50" />
         <div className="text-center">
-          <p className="">
-            Copyright &copy; {new Date().getFullYear()} All rights reserved.
+          <p>
+            Copyright &copy; {new Date().getFullYear()} {companyDetails.name}.
+            All rights reserved.
           </p>
         </div>
       </div>

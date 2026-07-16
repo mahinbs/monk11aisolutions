@@ -42,7 +42,7 @@ const ContactUs = () => {
       to: companyDetails.email,
       subject: values.subject,
       body: emailBody,
-      name:"Monk 11 AI Solutions"
+      name: companyDetails.name,
     };
 
     await fetch("https://send-mail-redirect-boostmysites.vercel.app/send-email", {
@@ -117,12 +117,11 @@ const ContactUs = () => {
               Let's Connect With Us!
             </h2>
             <p data-aos="fade-up" className="max-w-5xl mt-3">
-              We’re excited to collaborate with you on your next big idea!
-              Whether you need a cutting-edge website, a dynamic mobile app, or
-              innovative blockchain solutions, our team is here to help. Let’s
-              discuss your unique goals and create a strategy that drives real
-              results. Reach out to us today and take the first step toward
-              digital success!
+              We’re excited to collaborate on your next initiative—whether that’s
+              AI automation for your industry, a high-performing web platform, a
+              mobile product, or an intelligent calling system. Share your goals
+              and we’ll help you build a practical roadmap with measurable
+              results.
             </p>
             <form
               onSubmit={handleSubmit(handleFormSubmit)}

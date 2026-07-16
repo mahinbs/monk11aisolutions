@@ -1,142 +1,93 @@
 import React, { lazy } from "react";
-import img from "../assets/images/services/uiux1.jpg";
+import { useParams } from "react-router-dom";
+import { blogs } from "../data/constant";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
 
+const articleBodies = {
+  1: [
+    {
+      heading: "Why automation now matters more than headcount",
+      body: "Growing teams often hit a ceiling when everyday tasks—data entry, follow-ups, status updates—consume hours that should go to strategy and customer relationships. AI automation closes that gap by handling repetitive processes with consistent accuracy.",
+    },
+    {
+      heading: "Start with high-ROI workflows",
+      body: "The strongest results usually come from automating lead qualification, appointment scheduling, reporting, and cross-system sync. These workflows touch revenue and operations directly, so improvements show up quickly in speed, cost, and quality.",
+    },
+    {
+      heading: "Design for reliability, not just novelty",
+      body: "Effective automation is measurable and maintainable. Monk11 AI builds workflows with clear ownership, monitoring, and fallbacks—so your systems keep performing as volume grows.",
+    },
+  ],
+  2: [
+    {
+      heading: "Industry context changes everything",
+      body: "A real estate lead nurture sequence looks very different from a healthcare appointment reminder or a manufacturing inventory alert. Industry-aware automation respects compliance, timing, and the language your customers expect.",
+    },
+    {
+      heading: "Agents that fit the job",
+      body: "We design AI agents and workflows for Real Estate, Healthcare, Manufacturing, Restaurant Management, Renewable Energy, and FinTech—connecting CRM, calendars, messaging, and reporting tools into one coherent system.",
+    },
+    {
+      heading: "From pilot to production",
+      body: "Successful programs start with a focused pilot, prove ROI, then expand. That approach reduces risk while building internal confidence in automation as a core operating capability.",
+    },
+  ],
+  3: [
+    {
+      heading: "Products and automation belong together",
+      body: "Web and mobile applications deliver the customer experience; automation keeps the backend humming. When both are designed as one ecosystem, businesses avoid brittle integrations and manual workarounds.",
+    },
+    {
+      heading: "Build for scale from day one",
+      body: "Whether you need a SaaS platform, customer portal, or mobile app, architecture choices early on determine how easily AI workflows can plug in later—without costly rewrites.",
+    },
+    {
+      heading: "A partner across the stack",
+      body: "Monk11 AI helps you ship digital products and the intelligent workflows around them, so technology investment compounds instead of fragmenting across tools and vendors.",
+    },
+  ],
+};
+
 const BlogDetails = () => {
+  const { title } = useParams();
+  const blogId = Number(title) || 1;
+  const blog = blogs.find((b) => b.id === blogId) || blogs[0];
+  const sections = articleBodies[blog.id] || articleBodies[1];
+
   return (
     <div className="pt-[10rem] pb-[4rem] bg-gradient-to-b from-[#f8e4de] to-[#f5f5f5]">
       <div className="wrapper">
         <img
           data-aos="fade-up"
-          src={img}
+          src={blog.image}
           className="rounded-xl w-full aspect-video md:aspect-[16/7] object-cover"
-          alt=""
+          alt={blog.title}
         />
-        <h1 data-aos="fade-up" className="section-heading mt-7">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-          voluptatem vero aut earum molestias recusandae.
+        <p
+          data-aos="fade-up"
+          className="mt-6 text-xs font-semibold uppercase tracking-wide text-primary"
+        >
+          {blog.category}
+        </p>
+        <h1 data-aos="fade-up" className="section-heading mt-2">
+          {blog.title}
         </h1>
+        <p data-aos="fade-up" className="mt-3 text-gray-600 max-w-3xl">
+          {blog.excerpt}
+        </p>
         <hr data-aos="fade-up" className="border-secondary my-7" />
-        <div data-aos="fade-up" className="">
-          <h2 class="text-xl font-semibold mb-4">
-            1. The Digital-First Consumer Mindset
-          </h2>
-          <p class="mb-6">
-            In 2024, more than ever, consumers are turning to digital platforms
-            to research products and services before making decisions. Whether
-            they’re searching for reviews, comparing prices, or exploring
-            options, your online presence is often their first impression of
-            your business. A strong digital presence ensures you’re visible,
-            credible, and accessible when potential customers are looking for
-            solutions you provide.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Key Insight:</span> Businesses with
-            optimized websites, active social media profiles, and engaging
-            content are more likely to attract and retain customers than those
-            without a robust online strategy.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            2. Increased Competition in the Digital Space
-          </h2>
-          <p class="mb-6">
-            As more businesses recognize the importance of going digital,
-            competition in online markets has become fiercer. Having a
-            professional, user-friendly website and an active presence on
-            platforms where your target audience spends their time is vital to
-            standing out.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Actionable Tip:</span> Leverage search
-            engine optimization (SEO) strategies, high-quality content, and
-            targeted online advertising to ensure your brand remains competitive
-            and easily discoverable.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            3. Mobile-First Indexing and User Behavior
-          </h2>
-          <p class="mb-6">
-            With the majority of internet traffic coming from mobile devices,
-            it’s crucial to have a mobile-optimized website. Mobile-first
-            indexing by search engines like Google prioritizes sites that
-            deliver excellent experiences on mobile devices, directly impacting
-            your visibility and rankings.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Why It Matters:</span> A seamless mobile
-            experience not only boosts your search engine rankings but also
-            enhances user satisfaction, leading to higher conversion rates.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            4. The Role of Social Media and Engagement
-          </h2>
-          <p class="mb-6">
-            Social media continues to be a powerful tool for connecting with
-            audiences, building brand loyalty, and driving traffic to your
-            website. Platforms like Instagram, LinkedIn, and TikTok offer unique
-            opportunities to showcase your products, share your story, and
-            engage with customers in meaningful ways.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Pro Tip:</span> Use analytics to
-            understand what content resonates most with your audience and tailor
-            your social media strategy accordingly. Consistent posting and
-            genuine engagement can significantly enhance your brand’s
-            visibility.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            5. The Rise of AI and Personalization
-          </h2>
-          <p class="mb-6">
-            Artificial Intelligence (AI) has transformed how businesses approach
-            customer interactions. Personalized experiences, powered by
-            AI-driven insights, can significantly enhance customer satisfaction
-            and loyalty. From chatbots that provide instant assistance to
-            tailored product recommendations, personalization is key in 2024.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Example:</span> Use AI tools to analyze
-            user behavior on your website and deliver personalized offers or
-            content that meets their specific needs.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            6. Building Trust Through Authenticity
-          </h2>
-          <p class="mb-6">
-            Consumers today value authenticity more than ever. A strong digital
-            presence isn’t just about being visible—it’s about being relatable
-            and trustworthy. Transparent communication, user-generated content,
-            and responsive customer service can help build lasting relationships
-            with your audience.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Tip for Success:</span> Showcase
-            testimonials, case studies, and behind-the-scenes content to
-            humanize your brand and connect with your audience on a deeper
-            level.
-          </p>
-
-          <h2 class="text-xl font-semibold mb-4">
-            7. Future-Proofing Your Business
-          </h2>
-          <p class="mb-6">
-            A robust digital presence equips your business to adapt to changing
-            trends and technologies. By investing in your online presence now,
-            you’re setting the stage for long-term success and resilience in a
-            constantly shifting market.
-          </p>
-          <p class="mb-6">
-            <span class="font-semibold">Forward-Thinking Strategy:</span> Stay
-            updated on emerging technologies like blockchain, the metaverse, and
-            voice search to ensure your business remains relevant and
-            competitive.
-          </p>
+        <div data-aos="fade-up" className="space-y-6 max-w-4xl">
+          {sections.map((section, index) => (
+            <div key={section.heading}>
+              <h2 className="text-xl font-semibold mb-3">
+                {index + 1}. {section.heading}
+              </h2>
+              <p className="mb-2 text-gray-700 leading-relaxed">
+                {section.body}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
       <BlogsSection />

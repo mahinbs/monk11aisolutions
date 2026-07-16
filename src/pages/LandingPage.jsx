@@ -2,13 +2,6 @@ import React, { lazy } from "react";
 import ReactPlayer from "react-player";
 import bannerVid from "../assets/vids/banner.mp4";
 import {
-  Activity,
-  BarChart3,
-  BrainCircuit,
-  CodeXml,
-  Globe,
-  Layers,
-  Smartphone,
   Zap,
 } from "lucide-react";
 import howWeBuildCover from "../assets/images/how-we-build.jpeg";
@@ -19,20 +12,11 @@ import whyWorkWithUs4 from "../assets/images/whyworkwithus4.png";
 import LandingServices from "../components/landingPage/LandingServices";
 import { ArrowScrollButton } from "../components/ArrowButtons";
 import Portfolio from "../components/Portfolio";
+import { industries as targetIndustries } from "../data/constant";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
-const Testimonials = lazy(() => import("../components/Testimonials"));
 
-const industries = [
-  { icon: BrainCircuit, title: "Artificial\nIntelligence" },
-  { icon: Activity, title: "Healthcare\nTech" },
-  { icon: Layers, title: "SaaS\nPlatforms" },
-  { icon: Smartphone, title: "Mobile\nEcosystems" },
-  { icon: Globe, title: "Global\nConnect" },
-  { icon: Zap, title: "Automation\nSystems" },
-  { icon: BarChart3, title: "FinTech\nSolutions" },
-  { icon: CodeXml, title: "Developer\nTools" },
-];
+const industries = targetIndustries;
 
 const LandingPage = ({ page }) => {
   const isWeb = page === "web";
@@ -117,7 +101,7 @@ const LandingPage = ({ page }) => {
             Using powerful, industry-specific software solutions, our team can
             help you achieve your business goals.
           </p>
-          <div className="pt-5 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="pt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {industries.map((item) => {
               const IconComponent = item.icon;
               return (
@@ -127,7 +111,7 @@ const LandingPage = ({ page }) => {
                   className="text-center p-5 bg-white rounded-xl space-y-3"
                 >
                   <IconComponent className="w-8 h-8 mx-auto text-primary" />
-                  <p className="font-medium text-[.9rem] whitespace-pre-line">
+                  <p className="font-medium text-[.9rem]">
                     {item.title}
                   </p>
                 </div>
@@ -139,7 +123,7 @@ const LandingPage = ({ page }) => {
 
       <section className="pt-[4rem]">
         <h2 data-aos="fade-up" className="wrapper section-heading text-center">
-          How Monk 11 AI Solutions helps you deliver the best results
+          How Monk11 AI helps you deliver the best results
         </h2>
         <div
           data-aos="fade-up"
@@ -256,10 +240,9 @@ const LandingPage = ({ page }) => {
             <div className="flex flex-col md:w-8/12 lg:w-9/12">
               <div className="md:px-[2.5rem]">
                 <p className="md:text-lg text-white font-semibold">
-                  At Monk 11 AI Solutions, we deliver excellence across web and app
-                  development, UI/UX design, game development, and blockchain
-                  solutions. Our expertise ensures innovative, scalable results
-                  tailored to your goals.
+                  At Monk11 AI, we deliver excellence across AI automation, web
+                  and app development, and SaaS platforms. Our expertise ensures
+                  innovative, scalable results tailored to your goals.
                 </p>
                 <Quote
                   className="size-10 fill-white/20 self-end mt-3"
@@ -306,10 +289,9 @@ const LandingPage = ({ page }) => {
             <div className="flex flex-col md:w-8/12 lg:w-9/12">
               <div className="md:px-[2.5rem]">
                 <p className="md:text-lg text-white font-semibold">
-                  At Monk 11 AI Solutions, we deliver tailored solutions across industries.
-                  From enhancing patient care in Healthcare to empowering
-                  E-commerce and driving innovation in Technology, we cater to
-                  diverse business needs with precision.
+                  At Monk11 AI, we deliver tailored solutions across industries—
+                  from Healthcare and Real Estate to FinTech, Manufacturing, and
+                  Renewable Energy—with precision and measurable impact.
                 </p>
                 <Quote
                   className="size-10 fill-white/20 self-end mt-3"
@@ -324,10 +306,6 @@ const LandingPage = ({ page }) => {
             />
           </div>
         </div>
-      </section>
-
-      <section className="bg-white py-10">
-        <Testimonials />
       </section>
 
       <Portfolio page={page} />

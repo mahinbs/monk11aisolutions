@@ -1,39 +1,96 @@
+import {
+  Building2,
+  Briefcase,
+  Factory,
+  HeartPulse,
+  Leaf,
+  UtensilsCrossed,
+  Wallet,
+} from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
-import logo from "../assets/logo/logo.jpeg";
+import logo from "../assets/logo/logo.png";
 
 export { logo };
 
 // company
 export const companyDetails = {
-  name: "Monk 11 AI Solutions",
-  address:
-    "India",
+  name: "Monk11 AI Solutions",
+  shortName: "Monk11 AI",
+  website: "https://monk11.ai",
+  domain: "monk11.ai",
+  address: "India",
   phone: "919004537313",
-  email: "support@monk11ai.com",
+  email: "support@monk11.ai",
+  whatsappMessage:
+    "Hi Monk11 AI, I'd like to discuss AI automation for my business.",
 };
+
+export const getWhatsAppLink = () =>
+  `https://wa.me/${companyDetails.phone}?text=${encodeURIComponent(
+    companyDetails.whatsappMessage
+  )}`;
 
 // working process
 export const workingProcess = [
   {
     step: 1,
-    title: "Requirement Gathering & Analysis",
+    title: "Discovery & Strategy",
     description:
-      "In this phase, we work closely with clients to thoroughly understand their needs and objectives. Our team engages in detailed discussions to define the project's goals and scope, ensuring that all technical and business requirements are clearly documented and analyzed for feasibility.",
+      "We map your workflows, pain points, and growth goals. Together we define a clear automation and product roadmap aligned to measurable business outcomes.",
     icon: NotebookPen,
   },
   {
     step: 2,
-    title: "Design & Development",
+    title: "Design & Build",
     description:
-      "Our expert designers create intuitive, user-friendly interfaces while ensuring that the overall user experience remains seamless. The development team then builds robust, scalable, and efficient solutions, adhering to industry best practices and using cutting-edge technologies to meet client expectations.",
+      "Our team designs intuitive experiences and engineers reliable web, mobile, and AI automation systems using modern, scalable technologies.",
     icon: CodeXml,
   },
   {
     step: 3,
-    title: "Testing & Deployment",
+    title: "Launch & Optimize",
     description:
-      "This phase involves rigorous testing of the software to identify and fix any bugs or performance issues. We conduct various quality assurance checks to ensure the product meets the highest standards. Once finalized, we deploy the solution and provide continuous support to ensure smooth operations.",
+      "We rigorously test, deploy, and monitor every solution—then continuously refine performance so your operations stay efficient as you scale.",
     icon: Rocket,
+  },
+];
+
+// target industries for AI automation
+export const industries = [
+  {
+    icon: Building2,
+    title: "Real Estate",
+    desc: "Lead qualification, listing ops, and client follow-ups—automated.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Healthcare",
+    desc: "Appointment workflows, patient outreach, and admin automation.",
+  },
+  {
+    icon: Factory,
+    title: "Manufacturing",
+    desc: "Supply-chain alerts, reporting, and production process automation.",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Restaurant Management",
+    desc: "Orders, inventory sync, and customer engagement on autopilot.",
+  },
+  {
+    icon: Leaf,
+    title: "Renewable Energy",
+    desc: "Asset monitoring, compliance reporting, and ops intelligence.",
+  },
+  {
+    icon: Wallet,
+    title: "FinTech",
+    desc: "KYC flows, risk alerts, and customer support automation.",
+  },
+  {
+    icon: Briefcase,
+    title: "Enterprise & Other Sectors",
+    desc: "Custom automation for operations, sales, and support at scale.",
   },
 ];
 
@@ -44,28 +101,28 @@ export const webDevelopmentServices = [
     title: "E-commerce Websites",
     image: require("../assets/images/landingpage/ecommerce.webp"),
     description:
-      "Empowering your online business with tailored ecommerce solutions. Our platforms boost customer engagement, streamline operations, and drive revenue growth. ",
+      "Conversion-focused storefronts with secure payments, inventory sync, and analytics built for growth.",
   },
   {
     id: 2,
-    title: "Social Media Websites",
+    title: "Business Portals",
     image: require("../assets/images/landingpage/socialmedia.webp"),
     description:
-      "Get custom social media websites that captivate and engage your audience, driving growth and brand loyalty effortlessly",
+      "Secure client and partner portals that streamline collaboration, data access, and workflows.",
   },
   {
     id: 3,
-    title: "Landing Websites",
+    title: "Landing Pages",
     image: require("../assets/images/landingpage/landing.webp"),
     description:
-      " Creating high-converting landing pages that capture attention and drive action. Tailored designs that showcase your brand’s message and maximize conversions.",
+      "High-converting campaign pages designed to capture attention and turn visitors into qualified leads.",
   },
   {
     id: 4,
-    title: "Custom Websites",
+    title: "Custom Web Applications",
     image: require("../assets/images/landingpage/customweb.webp"),
     description:
-      "Delivering tailor-made websites designed to meet your unique business needs. Our solutions blend creativity and functionality for an exceptional online experience.",
+      "Tailored web platforms engineered around your unique processes, integrations, and scale requirements.",
   },
 ];
 
@@ -76,72 +133,56 @@ export const appDevelopmentServices = [
     title: "iOS App Development",
     image: require("../assets/images/landingpage/ios.webp"),
     description:
-      "Our skilled developers work with both Swift and Objective-C to build robust and efficient apps. We optimize your app for performance, speed, and responsiveness.",
+      "Native iOS apps built with Swift for performance, polish, and App Store excellence.",
   },
   {
     id: 2,
     title: "Android App Development",
     image: require("../assets/images/landingpage/android.webp"),
     description:
-      "We design and develop tailor-made Android apps that align with your vision and business goals.Proficient in both Java and Kotlin, we build robust and efficient apps.",
+      "Robust Android applications engineered in Kotlin/Java for reliability across devices.",
   },
   {
     id: 3,
     title: "Flutter App Development",
     image: require("../assets/images/landingpage/flutter.webp"),
     description:
-      "Flutter allows you to build apps for both iOS and Android using a single codebase. While Flutter's default web app architecture presents challenges, we can overcome them with smart strategies. ",
+      "Cross-platform Flutter apps that deliver a native feel from a single, maintainable codebase.",
   },
   {
     id: 4,
     title: "Hybrid App Development",
     image: require("../assets/images/landingpage/hybrid.webp"),
     description:
-      "We build feature-rich hybrid apps tailored to your business needs. We create mobile-friendly apps that work seamlessly across iOS and Android devices.",
+      "Feature-rich hybrid apps that work seamlessly across iOS and Android with shared logic.",
   },
 ];
 
-// testimonials
-export const testimonials = [
+// blog articles
+export const blogs = [
   {
-    name: "Sarah M",
-    position: "Marketing Director, SecureChain Innovations",
-    desc: `Our experience with Monk 11 AI Solutions was excellent. They completely 
-understood our vision and delivered a beautifully designed website that truly 
-represents our brand. The team was efficient, responsive, and made the entire 
-process easy. Since launching, we've seen a noticeable increase in website traffic 
-and user engagement. We’re thrilled with the outcome!`,
-    img: require("../assets/images/testimonials/1.jpg"),
+    id: 1,
+    image: require("../assets/images/blogs/1.png"),
+    title: "How AI Automation Cuts Operating Costs Without Cutting Quality",
+    excerpt:
+      "Discover practical automation plays that free your team from repetitive work while improving accuracy and customer response times.",
+    category: "AI Automation",
   },
   {
-    name: "Mark T.",
-    position: "Product Manager, FinTech Group",
-    desc: `The UX/UI design team at Monk 11 AI Solutions did an outstanding job on our 
-project. They took the time to understand our users’ needs and delivered a design 
-that is both functional and visually appealing. Our users find the interface intuitive 
-and easy to navigate, and as a result, our engagement rates have improved 
-significantly.`,
-    img: require("../assets/images/testimonials/2.jpg"),
+    id: 2,
+    image: require("../assets/images/blogs/2.png"),
+    title: "Building Industry-Ready AI Workflows for Real Estate & Healthcare",
+    excerpt:
+      "From lead nurturing to appointment scheduling—see how sector-specific AI agents create measurable ROI in weeks, not months.",
+    category: "Industries",
   },
   {
-    name: "Jason K",
-    position: "Creative Director, PlayX Studios",
-    desc: `We worked with Monk 11 AI Solutions to develop a mobile and console game, 
-and the results were fantastic. From the initial concept to the final product, their 
-team was incredibly creative and professional. The game is fun, engaging, and has 
-received great reviews from players. We couldn’t be more pleased with the 
-outcome and look forward to future collaborations.`,
-    img: require("../assets/images/testimonials/3.jpg"),
-  },
-  {
-    name: "Thomas P",
-    position: "Managing Director, TechFlow Solutions",
-    desc: `From the very beginning, we knew we found the right team at Monk 11 AI Solutions.
-    They worked closely with us to develop a mobile app that was user-friendly 
-and fully aligned with our business objectives. Their expertise in blockchain also 
-helped streamline our operations, and the results speak for themselves. We’ve seen 
-substantial growth in our business thanks to their tailored solutions`,
-    img: require("../assets/images/testimonials/4.jpg"),
+    id: 3,
+    image: require("../assets/images/blogs/3.png"),
+    title: "Web & Mobile Products That Scale with Your Automation Stack",
+    excerpt:
+      "Why modern SaaS and mobile platforms should be designed as part of an intelligent operations ecosystem—not as isolated tools.",
+    category: "Product Engineering",
   },
 ];
 
