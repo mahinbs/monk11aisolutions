@@ -30,8 +30,8 @@ const Services = () => {
           >
             AI automation, intelligent calling, web applications, mobile apps,
             and SaaS platforms—engineered for Real Estate, Healthcare,
-            Manufacturing, Restaurants, Renewable Energy, FinTech, and
-            enterprise teams.
+            Manufacturing, Restaurants, Renewable Energy, FinTech, Ecommerce,
+            CRM & Sales, and enterprise teams.
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@ const Services = () => {
               {featured.shortDesc}
             </p>
             <div className="flex flex-wrap gap-2">
-              {industries.slice(0, 6).map((item) => (
+              {industries.slice(0, 8).map((item) => (
                 <span
                   key={item.title}
                   className="text-xs md:text-sm bg-white/10 px-3 py-1.5 rounded-full"

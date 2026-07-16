@@ -1,6 +1,5 @@
 import React, { lazy } from "react";
-import ReactPlayer from "react-player";
-import bannerVid from "../assets/vids/banner.mp4";
+import BannerVideo from "../components/BannerVideo";
 import { ArrowRight, Bot, Sparkles, Workflow } from "lucide-react";
 import { ReactComponent as icon1 } from "../assets/svg/services/Web Development.svg";
 import { ReactComponent as icon2 } from "../assets/svg/services/App Development.svg";
@@ -25,7 +24,7 @@ const bannerServices = [
     title: "AI Automation",
     icon: Workflow,
     isLucide: true,
-    desc: "Automate sales, operations, and customer journeys across Real Estate, Healthcare, Manufacturing, Restaurants, Energy, and FinTech.",
+    desc: "Automate sales, operations, and customer journeys across Real Estate, Healthcare, Manufacturing, Restaurants, Ecommerce, CRM & Sales, and FinTech.",
     landingPageLink: "/services/AI Automation",
     featured: true,
   },
@@ -123,38 +122,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="">
-          <ReactPlayer
-            url={bannerVid}
-            playing
-            muted
-            loop
-            playsinline
-            width="100%"
-            height="100%"
-            className="react-player"
-            style={{
-              objectFit: "cover",
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              zIndex: -1,
-            }}
-            config={{
-              file: {
-                attributes: {
-                  style: {
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                  },
-                },
-              },
-            }}
-          />
-        </div>
+        <BannerVideo />
       </section>
 
       {/* AI Automation highlight */}
@@ -226,7 +194,7 @@ const Home = () => {
           <p data-aos="fade-up" className="text-center max-w-3xl mx-auto text-gray-600">
             Purpose-built AI automation and software solutions for Real Estate,
             Healthcare, Manufacturing, Restaurant Management, Renewable Energy,
-            FinTech, and other enterprise sectors.
+            FinTech, Ecommerce, CRM & Sales, and other enterprise sectors.
           </p>
           <div className="pt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {industries.map((item) => {

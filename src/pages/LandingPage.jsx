@@ -1,6 +1,5 @@
 import React, { lazy } from "react";
-import ReactPlayer from "react-player";
-import bannerVid from "../assets/vids/banner.mp4";
+import BannerVideo from "../components/BannerVideo";
 import {
   Zap,
 } from "lucide-react";
@@ -56,26 +55,7 @@ const LandingPage = ({ page }) => {
           </div>
         </div>
 
-        <div className="absolute inset-0 z-0">
-          <ReactPlayer
-            url={bannerVid}
-            playing
-            muted
-            loop
-            playsinline
-            width="100%"
-            height="100%"
-            className="react-player"
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            config={{
-              file: {
-                attributes: {
-                  style: { objectFit: "cover", width: "100%", height: "100%" },
-                },
-              },
-            }}
-          />
-        </div>
+        <BannerVideo className="z-0" />
 
         {/* Animated scrolling indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">

@@ -4,11 +4,13 @@ import {
   Factory,
   HeartPulse,
   Leaf,
+  ShoppingCart,
+  TrendingUp,
   UtensilsCrossed,
   Wallet,
 } from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
-import logo from "../assets/logo/logo.png";
+import logo from "../assets/logo/monkAi-logo.jpeg";
 
 export { logo };
 
@@ -86,6 +88,16 @@ export const industries = [
     icon: Wallet,
     title: "FinTech",
     desc: "KYC flows, risk alerts, and customer support automation.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "Ecommerce",
+    desc: "Order flows, inventory sync, cart recovery, and customer follow-ups.",
+  },
+  {
+    icon: TrendingUp,
+    title: "CRM & Sales",
+    desc: "Lead scoring, pipeline updates, outreach sequences, and deal automation.",
   },
   {
     icon: Briefcase,

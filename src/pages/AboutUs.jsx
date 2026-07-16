@@ -34,7 +34,7 @@ const AboutUs = () => {
               focused on AI automation, custom software, and mobile products. We
               partner with organizations across Real Estate, Healthcare,
               Manufacturing, Restaurant Management, Renewable Energy, FinTech,
-              and other enterprise sectors to turn operational complexity into
+              Ecommerce, CRM & Sales, and other enterprise sectors to turn operational complexity into
               scalable digital advantage.
             </p>
             <ArrowLinkButton to="/contact">Contact Us</ArrowLinkButton>

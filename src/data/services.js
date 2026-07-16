@@ -6,7 +6,7 @@ export const services = [
     featured: true,
     image: require("../assets/images/ai-automation-vector.png"),
     shortDesc:
-      "Intelligent workflows that eliminate repetitive work across Real Estate, Healthcare, Manufacturing, Restaurants, Renewable Energy, FinTech, and enterprise operations.",
+      "Intelligent workflows that eliminate repetitive work across Real Estate, Healthcare, Manufacturing, Restaurants, Renewable Energy, FinTech, Ecommerce, CRM & Sales, and enterprise operations.",
     technologies: ["Zapier", "Make.com", "Python", "LangChain", "n8n"],
     detailsPageImages: {
       first: require("../assets/images/services/ai automation-1.png"),
@@ -31,6 +31,8 @@ export const services = [
     <div class="p-4 bg-primary/5 rounded-xl"><h4 class="font-bold text-gray-800 mb-1">Restaurant Management</h4><p class="text-gray-600 text-sm">Order routing, stock sync, reservation follow-ups, and review response workflows.</p></div>
     <div class="p-4 bg-primary/5 rounded-xl"><h4 class="font-bold text-gray-800 mb-1">Renewable Energy</h4><p class="text-gray-600 text-sm">Asset monitoring alerts, compliance reporting, and field-ops coordination.</p></div>
     <div class="p-4 bg-primary/5 rounded-xl"><h4 class="font-bold text-gray-800 mb-1">FinTech</h4><p class="text-gray-600 text-sm">KYC support flows, risk alerts, onboarding sequences, and customer service automation.</p></div>
+    <div class="p-4 bg-primary/5 rounded-xl"><h4 class="font-bold text-gray-800 mb-1">Ecommerce</h4><p class="text-gray-600 text-sm">Order processing, inventory sync, abandoned cart recovery, and post-purchase customer journeys.</p></div>
+    <div class="p-4 bg-primary/5 rounded-xl"><h4 class="font-bold text-gray-800 mb-1">CRM & Sales</h4><p class="text-gray-600 text-sm">Lead enrichment, pipeline updates, follow-up sequences, and sales activity automation across your CRM.</p></div>
   </div>
 
   <h2 class="text-2xl font-bold mb-4 text-gray-800">What We Automate:</h2>
@@ -47,6 +49,20 @@ export const services = [
         <div>
             <h4 class="font-bold text-lg">Customer Experience</h4>
             <p class="text-gray-600">Support triage, appointment setting, status updates, and multi-channel follow-ups.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-1 bg-primary rounded-full"></div>
+        <div>
+            <h4 class="font-bold text-lg">Ecommerce Operations</h4>
+            <p class="text-gray-600">Automate order routing, stock alerts, customer notifications, and retention campaigns across your store stack.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-1 bg-primary rounded-full"></div>
+        <div>
+            <h4 class="font-bold text-lg">CRM & Sales</h4>
+            <p class="text-gray-600">Keep pipelines current with automated lead capture, scoring, follow-ups, and handoffs between marketing and sales teams.</p>
         </div>
       </div>
       <div class="flex gap-4">

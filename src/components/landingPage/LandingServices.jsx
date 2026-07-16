@@ -34,7 +34,8 @@ const LandingServices = ({ isWeb }) => {
         <p data-aos="fade-up" data-aos-delay="100" className="text-gray-600">
           We build intelligent systems—not just screens. Explore capabilities
           designed for modern enterprises across Real Estate, Healthcare,
-          Manufacturing, Restaurants, Energy, and FinTech.
+          Manufacturing, Restaurants, Energy, FinTech, Ecommerce, and CRM &
+          Sales.
         </p>
       </div>
 
