@@ -122,7 +122,7 @@ export const services = [
   },
 {
     title: "AI Calling Agency",
-    image: require("../assets/images/ai-calling-vector.png"),
+    image: require("../assets/images/ai-calling.png"),
     shortDesc:
       "Revolutionize customer support and sales with hyper-realistic AI voice agents.",
     technologies: ["OpenAI Whisper", "Twilio", "Python", "ElevenLabs"],
