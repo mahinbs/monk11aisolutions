@@ -10,7 +10,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
-import logo from "../assets/logo/monkAi-logo.jpeg";
+import logo from "../assets/logo/monk11-logo.jpeg";
 
 export { logo };
 
