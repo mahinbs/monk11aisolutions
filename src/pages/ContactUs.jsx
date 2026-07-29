@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { SpinnerContext } from "../components/SpinnerContext";
+import { sendContactEmail } from "../utils/sendContactEmail";
 
 const MapComponent = lazy(() => import("../components/website/MapComponent"));
 
@@ -38,34 +39,20 @@ const ContactUs = () => {
     emailBody += "Message:\n" + values.message;
 
     // Construct the request payload
-    var payload = {
-      to: companyDetails.email,
-      subject: values.subject,
-      body: emailBody,
-      name: companyDetails.name,
-    };
-
-    await fetch("https://send-mail-redirect-boostmysites.vercel.app/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.error) {
-          toast.error(res.error);
-        } else {
-          toast.success("Email sent successfully");
-          reset();
-          navigate("/thank-you");
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => setSpinner(false));
+    try {
+      await sendContactEmail({
+        subject: values.subject,
+        body: emailBody,
+        replyTo: values.email,
+      });
+      toast.success("Email sent successfully");
+      reset();
+      navigate("/thank-you");
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setSpinner(false);
+    }
   };
   return (
     <div className="pt-[4rem]">
@@ -95,8 +82,8 @@ const ContactUs = () => {
               </div>
               <div className="space-y-2">
                 <p className="font-semibold">Phone Number</p>
-                <Link to={`tel:${companyDetails.phone}`}>
-                  {companyDetails.phone}
+                <Link to={`tel:+${companyDetails.phone}`}>
+                  +{companyDetails.phone}
                 </Link>
               </div>
             </div>

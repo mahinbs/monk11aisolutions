@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SpinnerContext } from "./SpinnerContext";
 import { companyDetails } from "../data/constant";
+import { sendContactEmail } from "../utils/sendContactEmail";
 
 const ContactForm = ({ headline, id }) => {
   const { setSpinner } = useContext(SpinnerContext);
@@ -36,34 +37,20 @@ const ContactForm = ({ headline, id }) => {
     emailBody += "Message:\n" + values.message;
 
     // Construct the request payload
-    var payload = {
-      to: companyDetails.email,
-      subject: `Contact Form Submission - ${companyDetails.name}`,
-      body: emailBody,
-      name: companyDetails.name,
-    };
-
-    await fetch("https://send-mail-redirect-boostmysites.vercel.app/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.error) {
-          toast.error(res.error);
-        } else {
-          toast.success("Email sent successfully");
-          reset();
-          navigate("/thank-you");
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => setSpinner(false));
+    try {
+      await sendContactEmail({
+        subject: `Contact Form Submission - ${companyDetails.name}`,
+        body: emailBody,
+        replyTo: values.email,
+      });
+      toast.success("Email sent successfully");
+      reset();
+      navigate("/thank-you");
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setSpinner(false);
+    }
   };
   return (
     <div

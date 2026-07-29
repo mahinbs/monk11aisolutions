@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { logo } from "../data/constant";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import SocialLinks from "../components/SocialLinks";
 
 const Thankyou = () => {
   return (
@@ -39,15 +39,7 @@ const Thankyou = () => {
             Copyright &copy; {new Date().getFullYear()} All rights reserved.
           </p>
           <div className="flex gap-4 items-center sm:justify-end">
-            <Link to="/" className="link">
-              <Linkedin className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
-            <Link to="/" className="link">
-              <Instagram className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
-            <Link to="/" className="link">
-              <Facebook className="w-6 h-6 link" strokeWidth={1.5} />
-            </Link>
+            <SocialLinks />
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { services } from "../../data/services";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { companyDetails, logo } from "../../data/constant";
+import SocialLinks from "../SocialLinks";
 
 const Footer = () => {
   return (
@@ -77,17 +77,7 @@ const Footer = () => {
                 </a>
               </p>
             </div>
-            <div className="flex gap-4 items-center sm:justify-end">
-              <Link to="/" className="link" aria-label="LinkedIn">
-                <Linkedin className="w-6 h-6 link" strokeWidth={1.5} />
-              </Link>
-              <Link to="/" className="link" aria-label="Instagram">
-                <Instagram className="w-6 h-6 link" strokeWidth={1.5} />
-              </Link>
-              <Link to="/" className="link" aria-label="Facebook">
-                <Facebook className="w-6 h-6 link" strokeWidth={1.5} />
-              </Link>
-            </div>
+            <SocialLinks className="sm:justify-end" />
           </div>
         </div>
         <hr className="border-secondary/50" />

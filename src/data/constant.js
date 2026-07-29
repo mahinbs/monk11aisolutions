@@ -21,11 +21,34 @@ export const companyDetails = {
   website: "https://monk11.ai",
   domain: "monk11.ai",
   address: "India",
-  phone: "919004537313",
+  phone: "919284968091",
   email: "support@monk11.ai",
   whatsappMessage:
     "Hi Monk11 AI, I'd like to discuss AI automation for my business.",
 };
+
+export const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/monk-11-ai-solutions-pvt-ltd/",
+    icon: "linkedin",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/monk11.ai?igsh=MWh3M2lrMXFpcWhnaw==",
+    icon: "instagram",
+  },
+  {
+    label: "X",
+    href: "https://x.com/monk11ai",
+    icon: "x",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1BaxoMTUyG/",
+    icon: "facebook",
+  },
+];
 
 export const getWhatsAppLink = () =>
   `https://wa.me/${companyDetails.phone}?text=${encodeURIComponent(
