@@ -32,7 +32,7 @@ const LandingServices = ({ isWeb }) => {
           {isWeb ? "Web, SaaS & AI Solutions" : "Mobile, Voice & AI Solutions"}
         </h2>
         <p data-aos="fade-up" data-aos-delay="100" className="text-gray-600">
-          We build intelligent systems—not just screens. Explore capabilities
+          We build intelligent systems, not just screens. Explore capabilities
           designed for modern enterprises across Real Estate, Healthcare,
           Manufacturing, Restaurants, Energy, FinTech, Ecommerce, and CRM &
           Sales.

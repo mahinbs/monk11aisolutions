@@ -27,17 +27,15 @@ const ContactForm = ({ headline, id, variant = "default" }) => {
     },
   });
 
-  // handle form submit click
   const handleFormSubmit = async (values) => {
     setSpinner(true);
 
-    var emailBody = "Name: " + values.name + "\n\n";
+    let emailBody = "Name: " + values.name + "\n\n";
     emailBody += "Email: " + values.email + "\n\n";
     values.company && (emailBody += "Company: " + values.company + "\n\n");
-    emailBody += "Phone: " + values.phone + "\n\n";
+    values.phone && (emailBody += "Phone: " + values.phone + "\n\n");
     emailBody += "Message:\n" + values.message;
 
-    // Construct the request payload
     try {
       await sendContactEmail({
         subject: `Contact Form Submission - ${companyDetails.name}`,
@@ -73,41 +71,26 @@ const ContactForm = ({ headline, id, variant = "default" }) => {
         } text-white p-8 sm:p-10 rounded-2xl`}
       >
         <h3 className={`section-heading ${isDark ? "text-white" : "!text-white"}`}>
-          {headline ? headline : "Let’s build something great together."}
+          {headline ? headline : "Tell us what you need to ship."}
         </h3>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
           className="grid grid-cols-1 gap-4 mt-7"
         >
-          <div className="grid lg:grid-cols-2 gap-5">
-            <div className="">
-              <input
-                type="text"
-                className={fieldClass}
-                placeholder="Full Name"
-                {...register("name", {
-                  required: "Full name is required",
-                  validate: (val) => {
-                    if (val.trim() !== "") {
-                      return true;
-                    } else {
-                      return "Full name is required";
-                    }
-                  },
-                })}
-              />
-              <small className="text-white/80">{errors.name?.message}</small>
-            </div>
-            <div className="">
-              <input
-                type="text"
-                className={fieldClass}
-                placeholder="Company Name (Optional)"
-                {...register("company")}
-              />
-            </div>
+          <div>
+            <input
+              type="text"
+              className={fieldClass}
+              placeholder="Full Name"
+              {...register("name", {
+                required: "Full name is required",
+                validate: (val) =>
+                  val.trim() !== "" || "Full name is required",
+              })}
+            />
+            <small className="text-white/80">{errors.name?.message}</small>
           </div>
-          <div className="">
+          <div>
             <input
               type="email"
               className={fieldClass}
@@ -122,68 +105,72 @@ const ContactForm = ({ headline, id, variant = "default" }) => {
             />
             <small className="text-primary">{errors.email?.message}</small>
           </div>
-          <div className="">
-            <input
-              type="tel"
-              className={fieldClass}
-              placeholder="Phone Number"
-              {...register("phone", {
-                required: "Phone number is required",
-                pattern: {
-                  value: /^\+?[0-9]{10,15}$/,
-                  message: "Entered phone number is invalid",
-                },
-              })}
-            />
-            <small className="text-primary">{errors.phone?.message}</small>
-          </div>
-          <div className="">
+          <div>
             <textarea
-              type="tel"
               className={fieldClass}
               placeholder="Message"
+              rows={4}
               {...register("message", {
                 required: "Message is required",
-                validate: (val) => {
-                  if (val.trim() !== "") {
-                    return true;
-                  } else {
-                    return "Message is required";
-                  }
-                },
+                validate: (val) =>
+                  val.trim() !== "" || "Message is required",
               })}
             />
             <small className="text-primary">{errors.message?.message}</small>
           </div>
           <div className="grid lg:grid-cols-2 gap-5">
+            <div>
+              <input
+                type="text"
+                className={fieldClass}
+                placeholder="Company (optional)"
+                {...register("company")}
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                className={fieldClass}
+                placeholder="Phone (optional)"
+                {...register("phone", {
+                  validate: (val) =>
+                    !val ||
+                    /^\+?[0-9]{10,15}$/.test(val) ||
+                    "Entered phone number is invalid",
+                })}
+              />
+              <small className="text-primary">{errors.phone?.message}</small>
+            </div>
+          </div>
+          <div>
             <button
+              type="submit"
               disabled={isSubmitting}
               className={
                 isDark
-                  ? "agency-btn w-fit"
+                  ? "agency-btn-fill w-fit"
                   : "btn rounded bg-white text-black w-full hover:bg-primary hover:text-white hover:shadow-primary/20"
               }
             >
               {isDark ? (
                 <>
-                  Send Message
+                  Send briefing
                   <span className="agency-btn-icon">
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.25">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.25"
+                    >
                       <path d="M7 17L17 7M7 7h10v10" />
                     </svg>
                   </span>
                 </>
               ) : (
-                "Send Message"
+                "Send briefing"
               )}
             </button>
-            {/* <small className="">
-              By sending this form, I confirm that I have read and accepted the
-              <Link className="font-semibold" to="/">
-                {" "}
-                Privacy Policy.
-              </Link>
-            </small> */}
           </div>
         </form>
       </div>

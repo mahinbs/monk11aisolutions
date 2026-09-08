@@ -2,6 +2,7 @@ import React, { lazy, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { blogs } from "../data/constant";
 import AgencyButton from "../components/ui/AgencyButton";
+import Seo from "../components/Seo";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
 
@@ -10,7 +11,7 @@ const articleBodies = {
     {
       heading: "Why automation now matters more than headcount",
       accent: "than headcount",
-      body: "Growing teams hit a ceiling when data entry, follow-ups, and status updates eat the hours that should go to closing and customer work. Automation closes that gap when it is wired to the tools you already run — CRM, calendar, inbox — with a human fallback when the flow hits an edge.",
+      body: "Growing teams hit a ceiling when data entry, follow-ups and status updates eat the hours that should go to closing and customer work. Automation closes that gap when it is wired to the tools you already run: CRM, calendar and inbox, with a human fallback when the flow hits an edge.",
     },
     {
       heading: "Start with the jobs that move revenue",
@@ -20,7 +21,7 @@ const articleBodies = {
     {
       heading: "Design for production, not a demo",
       accent: "not a demo",
-      body: "Effective automation is logged, measurable, and maintainable. Monk11 builds workflows with ownership, monitoring, and a fallback to a person — so the system still holds when volume grows.",
+      body: "Effective automation is logged, measurable and maintainable. Monk11 builds workflows with ownership, monitoring and a fallback to a person, so the system still holds when volume grows.",
     },
   ],
   2: [
@@ -32,7 +33,7 @@ const articleBodies = {
     {
       heading: "Agents that fit the job",
       accent: "fit the job",
-      body: "We design workflows for real estate, healthcare, manufacturing, restaurants, renewable energy, and fintech — connecting CRM, calendars, messaging, and reporting into one system your team can run.",
+      body: "We design workflows for real estate, healthcare, manufacturing, restaurants, renewable energy and fintech. CRM, calendars, messaging and reporting become one system your team can run.",
     },
     {
       heading: "From a focused first release to production",
@@ -49,12 +50,12 @@ const articleBodies = {
     {
       heading: "Build for the team that logs in every day",
       accent: "logs in every day",
-      body: "Whether you need a multi-user dashboard, a functional web app, or a SaaS platform, admin, roles, and analytics have to be in the product — not a brochure site anyone can generate in an afternoon.",
+      body: "Whether you need a multi-user dashboard, a functional web app or a SaaS platform, admin, roles and analytics have to be in the product. Not a brochure site anyone can generate in an afternoon.",
     },
     {
       heading: "One partner across the stack",
       accent: "across the stack",
-      body: "Monk11 ships the product and the workflows around it — cloud, stores, handover — so the investment compounds instead of fragmenting across vendors.",
+      body: "Monk11 ships the product and the workflows around it: cloud, stores and handover, so the investment compounds instead of fragmenting across vendors.",
     },
   ],
 };
@@ -81,7 +82,6 @@ const BlogDetails = () => {
     const prev = document.documentElement.style.backgroundColor;
     document.documentElement.style.backgroundColor = "#0A0612";
     document.body.style.backgroundColor = "#0A0612";
-    if (blog) document.title = `${blog.title} | Monk11 AI`;
     return () => {
       document.documentElement.style.backgroundColor = prev;
       document.body.style.backgroundColor = "";
@@ -92,7 +92,12 @@ const BlogDetails = () => {
 
   return (
     <div className="bg-ink text-white overflow-x-hidden">
-      <article className="relative pt-[7.25rem] pb-[4rem]">
+      <Seo
+        title={`${blog.title} | Monk11`}
+        description={blog.seoDescription || blog.excerpt}
+        path={`/blogs/${blog.id}`}
+      />
+      <article className="relative pt-[8.5rem] pb-[4rem]">
         <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[36rem] h-[36rem] rounded-full bg-primary/35 blur-[140px]" />
         <div className="wrapper relative z-10 max-w-4xl">
           <p className="section-kicker">{blog.category}</p>
@@ -123,11 +128,13 @@ const BlogDetails = () => {
             <div className="space-y-2 max-w-xl">
               <p className="section-kicker">Next step</p>
               <h2 className="text-2xl md:text-3xl font-bold">
-                Map what to automate —{" "}
+                Map what to automate{" "}
                 <span className="text-lavender">and what to build</span>
               </h2>
             </div>
-            <AgencyButton to="/contact">Book a Call</AgencyButton>
+            <AgencyButton to="/contact" variant="fill">
+              Book a scoping call
+            </AgencyButton>
           </div>
         </div>
       </article>

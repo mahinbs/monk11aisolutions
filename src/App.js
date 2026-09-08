@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 import SpinnerContextProvider, {
   LoadingSpinnerContext,
 } from "./components/SpinnerContext";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { LoadingSpinner } from "./components/LoadingSpinner";
 import Header from "./components/website/Header";
 import Footer from "./components/website/Footer";
@@ -30,14 +30,20 @@ const ContactUs = lazy(() => import("./pages/ContactUs"));
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const Thankyou = lazy(() => import("./pages/Thankyou"));
 
-AOS.init({
-  once: true,
-  duration: 500,
-  easing: "ease-in-out-quart",
-  offset: -150,
-});
-
 function App() {
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: "ease-out-cubic",
+      offset: 72,
+      delay: 0,
+      disable: reduce,
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <Router>
       <Suspense fallback={<LoadingSpinner />}>

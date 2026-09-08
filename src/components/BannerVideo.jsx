@@ -3,7 +3,7 @@ import React from "react";
 const BANNER_VIDEO_SRC = `${process.env.PUBLIC_URL}/videos/banner.mp4`;
 
 /**
- * Native HTML5 background video — more reliable on Vercel/CDN than ReactPlayer.
+ * Native HTML5 background video. More reliable on Vercel/CDN than ReactPlayer.
  */
 const BannerVideo = ({ className = "" }) => {
   return (

@@ -29,7 +29,7 @@ const BlogsSection = () => {
             to="/blogs"
             className="text-sm text-white/60 hover:text-white transition-colors"
           >
-            See all articles →
+            See all articles
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-4">

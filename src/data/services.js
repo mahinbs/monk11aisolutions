@@ -20,8 +20,8 @@ export const services = [
   </h2>
   <p class="mb-10 text-lg text-gray-600 leading-relaxed">
     Stop wasting thousands of hours on data entry, manual reporting, and copy-pasting between apps.
-    Monk11 AI designs intelligent automation systems that connect your tools into a cohesive, self-driving ecosystem—
-    so your teams focus on growth while routine work runs reliably in the background.
+    Monk11 AI designs intelligent automation systems that connect your tools into a cohesive, self-driving ecosystem.
+    Your teams focus on growth while routine work runs reliably in the background.
   </p>
   
   <h2 class="text-2xl font-bold mb-4 text-gray-800">Industries We Automate:</h2>

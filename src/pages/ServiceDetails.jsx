@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import AgencyButton from "../components/ui/AgencyButton";
 import ContactForm from "../components/ContactForm";
+import Seo from "../components/Seo";
 import { getServiceLanding } from "../data/serviceLandings";
 import { homeServices } from "../data/home";
 
@@ -33,21 +34,17 @@ const ServiceDetails = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!data) return;
-    const prevTitle = document.title;
-    document.title = `${data.navTitle} | Monk11 AI`;
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [data]);
-
   const related = homeServices.filter((item) => item.href !== `/services/${decoded}`);
 
   if (!data) return <Navigate to="/services" replace />;
 
   return (
     <div className="bg-ink text-white overflow-x-hidden">
+      <Seo
+        title={data.seoTitle}
+        description={data.seoDescription}
+        path={data.seoPath}
+      />
       <Hero data={data} />
       <Pain data={data} />
       <Capabilities data={data} />
@@ -64,7 +61,7 @@ const ServiceDetails = () => {
 };
 
 const Hero = ({ data }) => (
-  <section className="relative pt-[7.25rem] pb-16 overflow-hidden">
+  <section className="relative pt-[8.5rem] pb-16 overflow-hidden">
     <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
     <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
     <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
@@ -80,19 +77,31 @@ const Hero = ({ data }) => (
           {data.headlineBefore}{" "}
           <span className="text-lavender">{data.headlineAccent}</span>
         </h1>
-      </div>
-      <div className="space-y-5 lg:pt-10">
-        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
+        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
           {data.subhead}
         </p>
-        <AgencyButton href="#contact">{data.primaryCta}</AgencyButton>
+        <AgencyButton href="#contact" variant="fill">
+          {data.primaryCta}
+        </AgencyButton>
         <p className="text-sm text-white/55 max-w-sm">{data.differentiator}</p>
         <a
           href="#process"
           className="inline-block text-sm text-white/45 hover:text-white transition-colors"
         >
-          {data.secondaryCta} →
+          {data.secondaryCta}
         </a>
+      </div>
+      <div className="space-y-5 lg:pt-10 hidden lg:block">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 space-y-4">
+          <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+            What you get on the call
+          </p>
+          <ul className="space-y-3 text-white/70 text-sm leading-relaxed">
+            <li>A written plan after one session</li>
+            <li>What to automate first, and what should stay human</li>
+            <li>Honest scope for a dashboard, app or platform if you need one</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -269,7 +278,9 @@ const MidCta = ({ data }) => (
           </h2>
           <p className="text-white/85 max-w-xl text-lg">{data.midCtaBody}</p>
         </div>
-        <AgencyButton href="#contact">{data.primaryCta}</AgencyButton>
+        <AgencyButton href="#contact">
+          {data.primaryCta}
+        </AgencyButton>
       </div>
     </div>
   </section>
@@ -323,7 +334,9 @@ const Faq = ({ data }) => {
             Can't find what you're looking for? Book a scoping call and get
             straight answers.
           </p>
-          <AgencyButton href="#contact">Book a Call</AgencyButton>
+          <AgencyButton href="#contact" variant="fill">
+            Book a scoping call
+          </AgencyButton>
         </div>
         <div className="divide-y divide-white/10 border-y border-white/10">
           {data.faqs.map((item, i) => {

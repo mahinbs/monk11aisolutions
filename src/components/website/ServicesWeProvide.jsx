@@ -21,7 +21,7 @@ const ServicesWeProvide = () => {
           Services We Provide
         </h2>
         <p data-aos="fade-up" className="text-gray-600">
-          From AI automation to web, mobile, and SaaS—everything you need to
+          From AI automation to web, mobile and SaaS. Everything you need to
           modernize operations and grow with confidence.
         </p>
       </div>

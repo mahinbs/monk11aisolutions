@@ -52,8 +52,23 @@ html {
   .agency-btn {
     @apply inline-flex items-center gap-3 !bg-white !text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm tracking-wide hover:!bg-secondary transition-colors duration-300 no-underline;
   }
+  .agency-btn-fill {
+    @apply inline-flex items-center gap-3 !bg-primary !text-white rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm tracking-wide hover:!bg-purpleColor transition-colors duration-300 no-underline;
+  }
+  .agency-btn-fill .agency-btn-icon {
+    @apply bg-white text-primary;
+  }
   .agency-btn-icon {
     @apply w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shrink-0;
+  }
+  .site-logo {
+    @apply h-[5.25rem] md:h-[5.5rem] w-auto object-contain object-left;
+  }
+  .site-logo-on-light {
+    @apply h-[5.25rem] md:h-[5.5rem] w-auto object-contain object-left;
+  }
+  .site-logo-footer {
+    @apply h-14 w-auto object-contain object-left;
   }
   .section-kicker {
     @apply text-[0.7rem] tracking-[0.22em] uppercase text-lavender/80 font-medium;
@@ -84,6 +99,107 @@ html {
   }
 }
 
+
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 42s linear infinite;
+}
+
+.logo-marquee:hover .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+.logo-marquee-row {
+  display: flex;
+  align-items: center;
+  gap: 3.25rem;
+  padding: 0 1.625rem;
+}
+
+.logo-marquee {
+  padding: 0.35rem 0;
+}
+
+.logo-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.logo-marquee-item:hover {
+  color: #dcc6f5;
+}
+
+.logo-marquee-item svg {
+  width: 1.85rem;
+  height: 1.85rem;
+  flex-shrink: 0;
+}
+
+.logo-marquee-item span {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.logo-marquee-item:hover {
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .logo-marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .logo-marquee-row[aria-hidden="true"] {
+    display: none;
+  }
+  .logo-marquee-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.75rem 2.25rem;
+    padding: 0 1rem;
+  }
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
 /* loading spinner styles */
 .spinner-parent {

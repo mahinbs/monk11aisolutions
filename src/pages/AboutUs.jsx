@@ -10,8 +10,12 @@ import {
 } from "lucide-react";
 import AgencyButton from "../components/ui/AgencyButton";
 import ContactForm from "../components/ContactForm";
+import Seo from "../components/Seo";
+import TrustLogos from "../components/TrustLogos";
+import { pageSeo } from "../data/seo";
 import {
   differentiators,
+  guarantee,
   homeProcess,
   homeServices,
 } from "../data/home";
@@ -35,7 +39,7 @@ const beliefs = [
     kicker: "Judged by production",
     title: "Software is what it does for revenue",
     accent: "for revenue",
-    desc: "A demo isn't a product. We ship workflows, dashboards, apps, and SaaS your team can run — not a Figma file or a staging URL.",
+    desc: "A demo isn't a product. We ship workflows, dashboards, apps and SaaS your team can run. Not a Figma file or a staging URL.",
   },
   {
     kicker: "Vertical first",
@@ -62,7 +66,6 @@ const AboutUs = () => {
     const prev = document.documentElement.style.backgroundColor;
     document.documentElement.style.backgroundColor = "#0A0612";
     document.body.style.backgroundColor = "#0A0612";
-    document.title = "About | Monk11 AI";
     return () => {
       document.documentElement.style.backgroundColor = prev;
       document.body.style.backgroundColor = "";
@@ -71,7 +74,8 @@ const AboutUs = () => {
 
   return (
     <div className="bg-ink text-white overflow-x-hidden">
-      <section className="relative pt-[7.25rem] pb-16 overflow-hidden">
+      <Seo {...pageSeo.about} />
+      <section className="relative pt-[8.5rem] pb-16 overflow-hidden">
         <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
         <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
         <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
@@ -79,21 +83,28 @@ const AboutUs = () => {
           <div className="space-y-6">
             <p className="section-kicker">About Monk11</p>
             <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight max-w-3xl">
-              Built by people who'd rather automate{" "}
-              <span className="text-lavender">than repeat themselves.</span>
+              An AI automation studio that{" "}
+              <span className="text-lavender">ships to production.</span>
             </h1>
-          </div>
-          <div className="space-y-5 lg:pt-10">
-            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
-              Monk11 AI Solutions designs, builds, and deploys AI automation,
-              multi-user dashboards, functional web apps, native apps, and SaaS
-              — then puts them in production. One team from the first workflow
-              to cloud, App Store, and Play Store.
+            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+              Monk11 is based in India. We design, build and deploy AI
+              automation, dashboards, apps and SaaS for ops and sales teams in
+              real estate, healthcare, manufacturing and fintech.
             </p>
-            <AgencyButton href="#contact">Start a Project</AgencyButton>
+            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+              One team from the first workflow to cloud, App Store and Play
+              Store. Built by people who'd rather automate than repeat themselves.
+            </p>
+            <AgencyButton href="#contact" variant="fill">
+              Book a scoping call
+            </AgencyButton>
             <p className="text-sm text-white/55 max-w-sm">
-              No handoff gap. No generic chatbot with a new skin.
+              {guarantee}
             </p>
+          </div>
+          <div className="space-y-6 lg:pt-6">
+            <p className="section-kicker">The stack behind every build</p>
+            <TrustLogos marquee={false} />
           </div>
         </div>
       </section>
@@ -164,8 +175,8 @@ const AboutUs = () => {
               </h2>
             </div>
             <p className="text-white/65 text-lg max-w-xl lg:justify-self-end">
-              Automation is one line — not the brand. We also ship dashboards,
-              web apps, native apps, and SaaS, all with the same production
+              Automation is one line, not the brand. We also ship dashboards,
+              web apps, native apps and SaaS, all with the same production
               standard.
             </p>
           </div>
@@ -235,7 +246,9 @@ const AboutUs = () => {
                 talk to us.
               </h2>
             </div>
-            <AgencyButton href="#contact">Book a Call</AgencyButton>
+            <AgencyButton href="#contact">
+              Book a scoping call
+            </AgencyButton>
           </div>
         </div>
       </section>
@@ -245,11 +258,11 @@ const AboutUs = () => {
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
             <p className="section-kicker">Let's work together</p>
             <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
-              Let's map what to automate —{" "}
+              Let's map what to automate{" "}
               <span className="text-lavender">and what to build</span>
             </h2>
             <p className="text-white/65 text-lg max-w-2xl">
-              Book a short scoping call. You'll leave with a written plan — not
+              Book a short scoping call. You'll leave with a written plan, not
               a pitch deck.
             </p>
           </div>

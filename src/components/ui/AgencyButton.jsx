@@ -10,12 +10,24 @@ const inner = (children) => (
   </>
 );
 
-export const AgencyButton = ({ to, href, children, onClick, className = "" }) => {
-  const classes = `agency-btn ${className}`;
+export const AgencyButton = ({
+  to,
+  href,
+  children,
+  onClick,
+  className = "",
+  variant = "default",
+}) => {
+  const classes = `${variant === "fill" ? "agency-btn-fill" : "agency-btn"} ${className}`;
 
   if (href) {
     return (
-      <a href={href} className={classes} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+      <a
+        href={href}
+        className={classes}
+        target={href.startsWith("http") ? "_blank" : undefined}
+        rel="noopener noreferrer"
+      >
         {inner(children)}
       </a>
     );

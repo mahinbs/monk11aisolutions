@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { logo } from "../data/constant";
+import { logoOnLight } from "../data/constant";
 import SocialLinks from "../components/SocialLinks";
 
 const Thankyou = () => {
@@ -11,11 +11,11 @@ const Thankyou = () => {
           <Link to="/" className="cursor-pointer">
             <img
               loading="lazy"
-              src={logo}
+              src={logoOnLight}
               alt="Monk11 AI Solutions"
-              width="75"
-              height="75"
-              className="h-[3.5rem] lg:h-[5rem] object-contain"
+              width="180"
+              height="56"
+              className="site-logo-on-light h-[3.5rem] lg:h-[4.25rem]"
             />
           </Link>
         </div>

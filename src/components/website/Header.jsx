@@ -4,7 +4,7 @@ import Drawer from "react-modern-drawer";
 import { Divide as Hamburger } from "hamburger-react";
 import "react-modern-drawer/dist/index.css";
 import { X } from "lucide-react";
-import { logo, logoDark } from "../../data/constant";
+import { logoDark, logoOnLight } from "../../data/constant";
 import AgencyButton from "../ui/AgencyButton";
 
 const links = [
@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 py-3 z-50 w-full transition-colors duration-300 ${
+      className={`fixed top-0 left-0 py-0 z-50 w-full transition-colors duration-300 ${
         isDark
           ? "bg-ink/70 backdrop-blur-md border-b border-white/5"
           : "bg-white backdrop-blur-sm"
@@ -37,13 +37,11 @@ const Header = () => {
         <Link to="/" className="cursor-pointer shrink-0">
           <img
             loading="lazy"
-            src={isDark ? logoDark : logo}
+            src={isDark ? logoDark : logoOnLight}
             alt="Monk11 AI Solutions"
-            width="180"
-            height="56"
-            className={`h-11 md:h-12 w-auto object-contain ${
-              isDark ? "mix-blend-lighten" : ""
-            }`}
+            width="200"
+            height="88"
+            className={isDark ? "site-logo" : "site-logo-on-light"}
           />
         </Link>
         <div className="hidden lg:flex items-center gap-8">
@@ -69,7 +67,9 @@ const Header = () => {
               </Link>
             );
           })}
-          <AgencyButton to="/contact">Book a Call</AgencyButton>
+          <AgencyButton to="/contact" variant="fill">
+            Book a scoping call
+          </AgencyButton>
         </div>
         <div
           className="block lg:hidden justify-self-end"
@@ -92,11 +92,11 @@ const Header = () => {
       >
         <div className="mb-6 flex items-center justify-between px-[.7rem] py-[.4rem]">
           <img
-            src={isDark ? logoDark : logo}
+            src={logoOnLight}
             width="auto"
             height="auto"
             alt="Monk11 AI Solutions"
-            className="h-[2.5rem] object-contain"
+            className="site-logo-on-light h-12"
           />
           <button onClick={() => setIsOpen(false)}>
             <X size={28} />
@@ -113,8 +113,8 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-          <AgencyButton to="/contact" className="mt-4 w-fit">
-            Book a Call
+          <AgencyButton to="/contact" className="mt-4 w-fit" variant="fill">
+            Book a scoping call
           </AgencyButton>
         </div>
       </Drawer>

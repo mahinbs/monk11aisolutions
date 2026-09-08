@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AOS from "aos";
 import {
   ArrowUpRight,
   Boxes,
@@ -12,25 +13,36 @@ import {
 } from "lucide-react";
 import AgencyButton from "../components/ui/AgencyButton";
 import ContactForm from "../components/ContactForm";
+import Seo from "../components/Seo";
+import TrustLogos from "../components/TrustLogos";
 import { blogs } from "../data/constant";
+import { pageSeo } from "../data/seo";
 import {
   comparisonRows,
   differentiators,
+  guarantee,
   homeFaqs,
   homeHero,
   homeProcess,
   homeServices,
   outcomeStrip,
-  trustPills,
-  trustStack,
+  processBadges,
+  trustIntro,
+  trustKicker,
   verticalCards,
 } from "../data/home";
-import work1 from "../assets/images/aboutus-banner.webp";
-import work2 from "../assets/images/how-we-build.jpeg";
-import work3 from "../assets/images/our-values-bg.jpeg";
-import work4 from "../assets/images/contactus-banner.jpg";
+import workNeural from "../assets/images/hero/neural.webp";
+import workVoice from "../assets/images/hero/voice.webp";
+import workDash from "../assets/images/hero/dashboard.webp";
+import workApp from "../assets/images/hero/app.webp";
 
-const workImages = [work1, work2, work3, work4];
+const workImages = [workNeural, workVoice, workDash, workApp];
+const heroTiles = [
+  { src: workNeural, label: "Workflows" },
+  { src: workVoice, label: "Voice AI" },
+  { src: workDash, label: "Dashboards" },
+  { src: workApp, label: "Apps" },
+];
 
 const serviceIcons = [
   Workflow,
@@ -57,7 +69,9 @@ const Home = () => {
     const prev = document.documentElement.style.backgroundColor;
     document.documentElement.style.backgroundColor = "#0A0612";
     document.body.style.backgroundColor = "#0A0612";
+    const timer = window.setTimeout(() => AOS.refresh(), 50);
     return () => {
+      window.clearTimeout(timer);
       document.documentElement.style.backgroundColor = prev;
       document.body.style.backgroundColor = "";
     };
@@ -65,31 +79,32 @@ const Home = () => {
 
   return (
     <div className="bg-ink text-white overflow-x-hidden">
+      <Seo {...pageSeo.home} />
       <Hero />
-      <WorkPreview />
       <TrustBar />
       <Services />
+      <WorkPreview />
       <WhyMonk11 />
       <MidCta />
       <Process />
       <Outcomes />
       <Compare />
-      <Insights />
       <Faq />
       <FinalCta />
+      <Insights />
     </div>
   );
 };
 
 const Hero = () => (
-  <section className="relative pt-[7.25rem] pb-6 overflow-hidden">
+  <section className="relative pt-[8.5rem] pb-10 overflow-hidden">
     <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
     <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
     <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
     <div className="pointer-events-none absolute right-[8%] top-[22%] w-[22rem] h-[22rem] rounded-full border border-white/10" />
 
     <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[52vh]">
-      <div className="space-y-6">
+      <div className="space-y-6" data-aos="fade-up">
         <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/80">
           <span className="text-[#FFC200] tracking-tight">★★★★★</span>
           <span>{homeHero.kicker}</span>
@@ -98,12 +113,15 @@ const Hero = () => (
           {homeHero.headlineBefore}{" "}
           <span className="text-lavender">{homeHero.headlineAccent}</span>
         </h1>
-      </div>
-      <div className="space-y-5 lg:pt-10">
-        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
+        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
           {homeHero.subhead}
         </p>
-        <AgencyButton to="/contact">{homeHero.primaryCta}</AgencyButton>
+        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+          {homeHero.subheadWhy}
+        </p>
+        <AgencyButton to="/contact" variant="fill">
+          {homeHero.primaryCta}
+        </AgencyButton>
         <p className="text-sm text-white/55 max-w-sm">
           {homeHero.differentiator}
         </p>
@@ -111,20 +129,42 @@ const Hero = () => (
           href="#process"
           className="inline-block text-sm text-white/45 hover:text-white transition-colors"
         >
-          {homeHero.secondaryCta} →
+          {homeHero.secondaryCta}
         </a>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {heroTiles.map((tile, i) => (
+          <div
+            key={tile.label}
+            data-aos="fade-up"
+            data-aos-delay={80 + i * 80}
+            className="relative rounded-2xl overflow-hidden border border-white/10 min-h-[9rem] sm:min-h-[11rem]"
+          >
+            <img
+              src={tile.src}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
+            <span className="absolute bottom-3 left-3 text-[0.65rem] tracking-[0.16em] uppercase text-lavender">
+              {tile.label}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 );
 
 const WorkPreview = () => (
-  <section id="work" className="wrapper pb-8 scroll-mt-28">
+  <section id="work" className="wrapper py-[4rem] scroll-mt-28">
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {verticalCards.map((card, i) => (
         <Link
           key={card.title}
           to={card.href}
+          data-aos="fade-up"
+          data-aos-delay={Math.min(i * 80, 240)}
           className="group relative min-h-[18rem] lg:min-h-[22rem] rounded-2xl overflow-hidden"
         >
           <img
@@ -152,18 +192,23 @@ const WorkPreview = () => (
 );
 
 const TrustBar = () => (
-  <section className="section-band py-12">
-    <div className="wrapper space-y-8">
-      <p className="section-kicker text-center">Built on trusted infrastructure</p>
-      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-white/45 text-sm tracking-[0.18em] uppercase">
-        {trustStack.map((name) => (
-          <span key={name}>{name}</span>
-        ))}
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {trustPills.map((item) => (
+  <section className="section-band py-12 overflow-hidden">
+    <div className="wrapper space-y-3 mb-8" data-aos="fade-up">
+      <p className="section-kicker text-center">{trustKicker}</p>
+      <p className="text-center text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        {trustIntro}
+      </p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="80">
+      <TrustLogos />
+    </div>
+    <div className="wrapper space-y-8 mt-8">
+      <div className="grid sm:grid-cols-3 gap-3">
+        {processBadges.map((item, i) => (
           <div
             key={item}
+            data-aos="fade-up"
+            data-aos-delay={80 + i * 80}
             className="flex items-start gap-3 rounded-full border border-white/10 bg-white/[0.03] px-4 py-3"
           >
             <span className="mt-0.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0">
@@ -173,6 +218,12 @@ const TrustBar = () => (
           </div>
         ))}
       </div>
+      <p
+        data-aos="fade-up"
+        className="text-center text-sm md:text-base text-white/75 max-w-3xl mx-auto leading-relaxed"
+      >
+        {guarantee}
+      </p>
     </div>
   </section>
 );
@@ -180,18 +231,21 @@ const TrustBar = () => (
 const Services = () => (
   <section id="services" className="py-[5rem] scroll-mt-24">
     <div className="wrapper">
-      <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-12 items-end">
+      <div
+        className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-12 items-end"
+        data-aos="fade-up"
+      >
         <div className="space-y-3">
           <p className="section-kicker">What we do</p>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-            Automation, products, and platforms —{" "}
+            Automation, products and platforms,{" "}
             <span className="text-lavender">end to end</span>
           </h2>
         </div>
         <p className="text-white/65 text-lg max-w-xl lg:justify-self-end">
-          One partner for the full lifecycle — we design, build, and deploy AI
-          workflows, multi-user dashboards, functional web apps, mobile apps, and SaaS so your team
-          gets software that actually runs in production.
+          One partner for the full lifecycle. We design, build and deploy AI
+          workflows, dashboards, web apps, mobile apps and SaaS so your team
+          gets software that runs in production.
         </p>
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -201,6 +255,8 @@ const Services = () => (
             <Link
               key={item.title}
               to={item.href}
+              data-aos="fade-up"
+              data-aos-delay={Math.min(i * 80, 320)}
               className="group rounded-2xl border border-white/10 bg-white/[0.03] p-7 hover:bg-white/[0.06] hover:border-primary/40 transition-colors"
             >
               <div className="flex items-start justify-between gap-4">
@@ -236,21 +292,23 @@ const Services = () => (
 const WhyMonk11 = () => (
   <section className="section-band py-[4rem]">
     <div className="wrapper">
-      <div className="max-w-3xl space-y-3 mb-12">
+      <div className="max-w-3xl space-y-3 mb-12" data-aos="fade-up">
         <p className="section-kicker">The difference</p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight">
           Why teams choose <span className="text-lavender">Monk11</span>
         </h2>
         <p className="text-white/65 text-lg">
-          Generic tools don't survive contact with a real operation. We build
-          for the vertical, ship to production, and keep a human in the loop
-          where it still matters.
+          Generic tools do not survive a real operation. We build for the
+          vertical, ship to production, and keep a human in the loop where it
+          still matters.
         </p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {differentiators.map((item) => (
+        {differentiators.map((item, i) => (
           <div
             key={item.title}
+            data-aos="fade-up"
+            data-aos-delay={Math.min(i * 70, 280)}
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3"
           >
             <p className="text-xs tracking-[0.16em] uppercase text-lavender">
@@ -269,7 +327,10 @@ const WhyMonk11 = () => (
 
 const MidCta = () => (
   <section className="wrapper py-[3rem]">
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16">
+    <div
+      className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16"
+      data-aos="fade-up"
+    >
       <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] w-64 h-64 rounded-full bg-[#FFC200]/20 blur-3xl" />
       <div className="relative z-10 grid md:grid-cols-[1.4fr_auto] gap-8 items-center">
         <div className="space-y-3">
@@ -279,12 +340,14 @@ const MidCta = () => (
             <span className="text-lavender">Ship the product around it.</span>
           </h2>
           <p className="text-white/85 max-w-xl text-lg">
-            Workflows, dashboards, web apps, native apps, and SaaS — designed,
-            built, and deployed by one team so nothing stalls between a demo
-            and production.
+            Workflows, dashboards, web apps, native apps and SaaS. Designed,
+            built and deployed by one team so nothing stalls between a demo and
+            production.
           </p>
         </div>
-        <AgencyButton to="/contact">Start a Project</AgencyButton>
+        <AgencyButton to="/contact">
+          Book a scoping call
+        </AgencyButton>
       </div>
     </div>
   </section>
@@ -293,21 +356,23 @@ const MidCta = () => (
 const Process = () => (
   <section id="process" className="py-[5rem] scroll-mt-24">
     <div className="wrapper">
-      <div className="max-w-3xl space-y-3 mb-12">
+      <div className="max-w-3xl space-y-3 mb-12" data-aos="fade-up">
         <p className="section-kicker">Process</p>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-            How we design,{" "}
-            <span className="text-lavender">build, and deploy</span>
-          </h2>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          How we design,{" "}
+          <span className="text-lavender">build, and deploy</span>
+        </h2>
         <p className="text-white/65 text-lg">
           A clear process, honest timelines, and no surprises from kick-off to
           launch.
         </p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {homeProcess.map((item) => (
+        {homeProcess.map((item, i) => (
           <div
             key={item.step}
+            data-aos="fade-up"
+            data-aos-delay={i * 80}
             className="rounded-2xl border border-white/10 p-6 space-y-4"
           >
             <p className="text-3xl font-bold text-lavender">{item.step}</p>
@@ -325,7 +390,7 @@ const Process = () => (
 const Outcomes = () => (
   <section className="section-band py-[4rem]">
     <div className="wrapper">
-      <div className="max-w-3xl space-y-3 mb-12">
+      <div className="max-w-3xl space-y-3 mb-12" data-aos="fade-up">
         <p className="section-kicker">How we create results</p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight">
           Built around the jobs{" "}
@@ -333,8 +398,13 @@ const Outcomes = () => (
         </h2>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {outcomeStrip.map((item) => (
-          <div key={item.vertical} className="space-y-3 p-1">
+        {outcomeStrip.map((item, i) => (
+          <div
+            key={item.vertical}
+            data-aos="fade-up"
+            data-aos-delay={i * 80}
+            className="space-y-3 p-1"
+          >
             <p className="text-xs tracking-[0.16em] uppercase text-lavender">
               {item.vertical}
             </p>
@@ -352,13 +422,17 @@ const Outcomes = () => (
 const Compare = () => (
   <section className="py-[5rem]">
     <div className="wrapper">
-      <div className="max-w-3xl space-y-3 mb-10">
+      <div className="max-w-3xl space-y-3 mb-10" data-aos="fade-up">
         <p className="section-kicker">Compare</p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight">
           Monk11 vs <span className="text-lavender">other offerings</span>
         </h2>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-white/10">
+      <div
+        className="overflow-x-auto rounded-2xl border border-white/10"
+        data-aos="fade-up"
+        data-aos-delay="80"
+      >
         <table className="w-full min-w-[640px] text-left">
           <thead>
             <tr className="border-b border-white/10 bg-white/[0.04]">
@@ -387,7 +461,7 @@ const Compare = () => (
 const Insights = () => (
   <section className="section-band py-[4rem]">
     <div className="wrapper">
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div className="flex flex-wrap items-end justify-between gap-4 mb-10" data-aos="fade-up">
         <div className="space-y-3 max-w-2xl">
           <p className="section-kicker">From the blog</p>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">
@@ -398,14 +472,16 @@ const Insights = () => (
           to="/blogs"
           className="text-sm text-white/60 hover:text-white transition-colors"
         >
-          See all articles →
+          See all articles
         </Link>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
-        {blogs.map((item) => (
+        {blogs.map((item, i) => (
           <Link
             key={item.id}
             to={`/blogs/${item.id}`}
+            data-aos="fade-up"
+            data-aos-delay={i * 80}
             className="group rounded-2xl border border-white/10 overflow-hidden hover:border-primary/40 transition-colors"
           >
             <img
@@ -434,7 +510,7 @@ const Faq = () => {
   return (
     <section className="py-[5rem]">
       <div className="wrapper grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
-        <div className="space-y-5 lg:sticky lg:top-28">
+        <div className="space-y-5 lg:sticky lg:top-28" data-aos="fade-up">
           <p className="section-kicker">FAQ</p>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             Common questions about{" "}
@@ -444,9 +520,15 @@ const Faq = () => {
             Can't find what you're looking for? Book a scoping call and get
             straight answers.
           </p>
-          <AgencyButton to="/contact">Book a Call</AgencyButton>
+          <AgencyButton to="/contact" variant="fill">
+            Book a scoping call
+          </AgencyButton>
         </div>
-        <div className="divide-y divide-white/10 border-y border-white/10">
+        <div
+          className="divide-y divide-white/10 border-y border-white/10"
+          data-aos="fade-up"
+          data-aos-delay="80"
+        >
           {homeFaqs.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -483,19 +565,22 @@ const Faq = () => {
 const FinalCta = () => (
   <section className="pb-[5rem]">
     <div className="wrapper">
-      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
+      <div
+        className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8"
+        data-aos="fade-up"
+      >
         <p className="section-kicker">Let's work together</p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
-          Let's map what to automate —{" "}
+          Let's map what to automate{" "}
           <span className="text-lavender">and what to build</span>
         </h2>
         <p className="text-white/65 text-lg max-w-2xl">
           Book a short scoping call. We'll show you which workflows should run
-          on their own, and where a multi-user dashboard, web app, native app, or SaaS platform
-          is the better investment.
+          on their own, and where a dashboard, web app, native app or SaaS
+          platform is the better investment.
         </p>
       </div>
-      <div className="home-contact">
+      <div className="home-contact" data-aos="fade-up" data-aos-delay="80">
         <ContactForm
           headline={
             <>

@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import AgencyButton from "../components/ui/AgencyButton";
 import ContactForm from "../components/ContactForm";
+import Seo from "../components/Seo";
+import { pageSeo } from "../data/seo";
 import { homeServices } from "../data/home";
 
 const serviceIcons = [
@@ -37,7 +39,6 @@ const Services = () => {
     const prev = document.documentElement.style.backgroundColor;
     document.documentElement.style.backgroundColor = "#0A0612";
     document.body.style.backgroundColor = "#0A0612";
-    document.title = "Services | Monk11 AI";
     return () => {
       document.documentElement.style.backgroundColor = prev;
       document.body.style.backgroundColor = "";
@@ -46,26 +47,27 @@ const Services = () => {
 
   return (
     <div className="bg-ink text-white overflow-x-hidden">
-      <section className="relative pt-[7.25rem] pb-16 overflow-hidden">
+      <Seo {...pageSeo.services} />
+      <section className="relative pt-[8.5rem] pb-16 overflow-hidden">
         <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
         <div className="pointer-events-none absolute left-[-10%] bottom-[-20%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
-        <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[42vh]">
-          <div className="space-y-6">
-            <p className="section-kicker">Services</p>
-            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight max-w-3xl">
-              Five services.{" "}
-              <span className="text-lavender">One team that ships.</span>
-            </h1>
-          </div>
-          <div className="space-y-5 lg:pt-10">
-            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
-              AI automation, AI calling, multi-user dashboards, native apps, and
-              SaaS platforms — designed, built, and deployed for real estate,
-              healthcare, manufacturing, restaurants, renewable energy, and
-              fintech teams.
-            </p>
-            <AgencyButton href="#contact">Start a Project</AgencyButton>
-          </div>
+        <div className="wrapper relative z-10 max-w-3xl min-h-[42vh] space-y-6">
+          <p className="section-kicker">Services</p>
+          <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight">
+            Five services.{" "}
+            <span className="text-lavender">One team that ships.</span>
+          </h1>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+            AI automation, AI calling, dashboards, native apps and SaaS for
+            real estate, healthcare, manufacturing and fintech teams.
+          </p>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+            Designed, built and deployed by one team so nothing stalls between
+            a demo and production.
+          </p>
+          <AgencyButton href="#contact" variant="fill">
+            Book a scoping call
+          </AgencyButton>
         </div>
       </section>
 
@@ -111,8 +113,8 @@ const Services = () => {
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
           <p className="section-kicker">Let's work together</p>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
-            Pick the line —{" "}
-            <span className="text-lavender">we'll map the build</span>
+            Pick the line.{" "}
+            <span className="text-lavender">We'll map the build</span>
           </h2>
           <p className="text-white/65 text-lg max-w-2xl">
             Book a short scoping call. We'll tell you which of these five is

@@ -15,7 +15,7 @@ const Footer = () => {
               <img
                 src={logoDark}
                 alt={companyDetails.name}
-                className="h-12 w-auto object-contain mix-blend-lighten"
+                className="site-logo-footer"
               />
             </Link>
             <p className="text-sm text-white/65 max-w-xs leading-relaxed">
@@ -23,7 +23,9 @@ const Footer = () => {
               and production-ready native apps for real estate, healthcare,
               manufacturing, restaurants, renewable energy, and fintech teams.
             </p>
-            <AgencyButton to="/contact">Book a Call</AgencyButton>
+            <AgencyButton to="/contact" variant="fill">
+              Book a scoping call
+            </AgencyButton>
           </div>
           <div className="space-y-3">
             <h5 className="text-xs tracking-[0.18em] uppercase text-lavender/80">

@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
 import logo from "../assets/logo/monk11-logo.jpeg";
-import logoDark from "../assets/logo/logo-dark.png";
+import logoDark from "../assets/logo/monk11-mark-dark.png";
+import logoOnLight from "../assets/logo/monk11-mark-light.png";
 
-export { logo, logoDark };
+export { logo, logoDark, logoOnLight };
 
 // company
 export const companyDetails = {
@@ -76,7 +77,7 @@ export const workingProcess = [
     step: 3,
     title: "Launch & Optimize",
     description:
-      "We rigorously test, deploy, and monitor every solution—then continuously refine performance so your operations stay efficient as you scale.",
+      "We rigorously test, deploy and monitor every solution, then continuously refine performance so your operations stay efficient as you scale.",
     icon: Rocket,
   },
 ];
@@ -86,7 +87,7 @@ export const industries = [
   {
     icon: Building2,
     title: "Real Estate",
-    desc: "Lead qualification, listing ops, and client follow-ups—automated.",
+    desc: "Lead qualification, listing ops and client follow-ups, automated.",
   },
   {
     icon: HeartPulse,
@@ -202,7 +203,9 @@ export const blogs = [
     title: "How AI Automation Cuts Operating Costs Without Cutting Quality",
     accent: "Without Cutting Quality",
     excerpt:
-      "Discover practical automation plays that free your team from repetitive work while improving accuracy and customer response times.",
+      "Practical automation plays that free your team from repetitive work while improving accuracy and customer response times.",
+    seoDescription:
+      "How AI automation cuts operating costs for real estate, healthcare and ops teams without cutting quality. Practical first workflows from Monk11.",
     category: "AI Automation",
   },
   {
@@ -211,7 +214,9 @@ export const blogs = [
     title: "Building Industry-Ready AI Workflows for Real Estate & Healthcare",
     accent: "for Real Estate & Healthcare",
     excerpt:
-      "From lead nurturing to appointment scheduling—see how sector-specific AI agents create measurable ROI in weeks, not months.",
+      "From lead nurturing to appointment scheduling. See how sector-specific AI agents create measurable ROI in weeks, not months.",
+    seoDescription:
+      "Building industry-ready AI workflows for real estate and healthcare. Vertical-aware automation from Monk11, not a generic chatbot.",
     category: "Industries",
   },
   {
@@ -220,7 +225,9 @@ export const blogs = [
     title: "Web & Mobile Products That Scale with Your Automation Stack",
     accent: "That Scale with Your Automation Stack",
     excerpt:
-      "Why modern SaaS and mobile platforms should be designed as part of an intelligent operations ecosystem—not as isolated tools.",
+      "Why modern SaaS and mobile platforms should be designed as part of an intelligent operations ecosystem, not as isolated tools.",
+    seoDescription:
+      "Web and mobile products that scale with your automation stack. Admin, roles and analytics in the product, not a brochure site.",
     category: "Product Engineering",
   },
 ];

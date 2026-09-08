@@ -269,9 +269,9 @@ const LandingPage = ({ page }) => {
             <div className="flex flex-col md:w-8/12 lg:w-9/12">
               <div className="md:px-[2.5rem]">
                 <p className="md:text-lg text-white font-semibold">
-                  At Monk11 AI, we deliver tailored solutions across industries—
+                  At Monk11 AI, we deliver tailored solutions across industries:
                   from Healthcare and Real Estate to FinTech, Manufacturing, and
-                  Renewable Energy—with precision and measurable impact.
+                  Renewable Energy, with precision and measurable impact.
                 </p>
                 <Quote
                   className="size-10 fill-white/20 self-end mt-3"
