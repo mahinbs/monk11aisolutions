@@ -1,225 +1,120 @@
-import React, { lazy, useContext } from "react";
-import banner from "../assets/images/contactus-banner.jpg";
-import { Mail, MapPin, PhoneCall } from "lucide-react";
-import { companyDetails } from "../data/constant";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import { useForm } from "react-hook-form";
-import { SpinnerContext } from "../components/SpinnerContext";
-import { sendContactEmail } from "../utils/sendContactEmail";
-
-const MapComponent = lazy(() => import("../components/website/MapComponent"));
+import React, { useEffect } from "react";
+import { Mail, PhoneCall } from "lucide-react";
+import { companyDetails, getWhatsAppLink } from "../data/constant";
+import AgencyButton from "../components/ui/AgencyButton";
+import ContactForm from "../components/ContactForm";
 
 const ContactUs = () => {
-  const { setSpinner } = useContext(SpinnerContext);
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    mode: "all",
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    },
-  });
+  useEffect(() => {
+    const prev = document.documentElement.style.backgroundColor;
+    document.documentElement.style.backgroundColor = "#0A0612";
+    document.body.style.backgroundColor = "#0A0612";
+    document.title = "Contact | Monk11 AI";
+    return () => {
+      document.documentElement.style.backgroundColor = prev;
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
 
-  // handle form submit click
-  const handleFormSubmit = async (values) => {
-    setSpinner(true);
-
-    var emailBody = "Name: " + values.name + "\n\n";
-    emailBody += "Email: " + values.email + "\n\n";
-    emailBody += "Phone: " + values.phone + "\n\n";
-    emailBody += "Message:\n" + values.message;
-
-    // Construct the request payload
-    try {
-      await sendContactEmail({
-        subject: values.subject,
-        body: emailBody,
-        replyTo: values.email,
-      });
-      toast.success("Email sent successfully");
-      reset();
-      navigate("/thank-you");
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setSpinner(false);
-    }
-  };
   return (
-    <div className="pt-[4rem]">
-      <img
-        src={banner}
-        className="w-full aspect-[5/3] md:aspect-[6/2] object-cover object-[30%_100%] md:object-top"
-        alt="Contact Us Banner"
-      />
-      <div className="bg-gradient-to-r from-[#262731] to-[#757795]">
-        <div className="wrapper py-[4rem]">
-          <div
-            data-aos="fade-up"
-            className="grid sm:grid-cols-3 gap-7 text-white"
-          >
-            <div className="flex items-start sm:justify-center gap-3">
-              <div className="w-[3.5rem] min-w-[3.5rem] flex items-center justify-center bg-gradient-to-r from-[#e5497c] to-[#495df3] rounded-full aspect-square">
-                <MapPin className="text-white" size={25} />
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Location</p>
-                <p className="max-w-xs">{companyDetails.address}</p>
-              </div>
-            </div>
-            <div className="flex items-start sm:justify-center gap-3">
-              <div className="w-[3.5rem] min-w-[3.5rem] flex items-center justify-center bg-gradient-to-r from-[#e5497c] to-[#495df3] rounded-full aspect-square">
-                <PhoneCall className="text-white" size={25} />
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Phone Number</p>
-                <Link to={`tel:+${companyDetails.phone}`}>
-                  +{companyDetails.phone}
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-start sm:justify-center gap-3">
-              <div className="w-[3.5rem] min-w-[3.5rem] flex items-center justify-center bg-gradient-to-r from-[#e5497c] to-[#495df3] rounded-full aspect-square">
-                <Mail className="text-white" size={25} />
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Contact Support</p>
-                <Link to={`mailto:${companyDetails.email}`}>
-                  {companyDetails.email}
-                </Link>
-              </div>
-            </div>
+    <div className="bg-ink text-white overflow-x-hidden">
+      <section className="relative pt-[7.25rem] pb-12 overflow-hidden">
+        <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
+        <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
+        <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
+        <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[42vh]">
+          <div className="space-y-6">
+            <p className="section-kicker">Contact</p>
+            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight max-w-3xl">
+              Let's map what to automate —{" "}
+              <span className="text-lavender">and what to build</span>
+            </h1>
           </div>
-          <div className="mt-[4rem] text-white">
-            <h2 data-aos="fade-up" className="section-heading">
-              Let's Connect With Us!
-            </h2>
-            <p data-aos="fade-up" className="max-w-5xl mt-3">
-              We’re excited to collaborate on your next initiative—whether that’s
-              AI automation for your industry, a high-performing web platform, a
-              mobile product, or an intelligent calling system. Share your goals
-              and we’ll help you build a practical roadmap with measurable
-              results.
+          <div className="space-y-5 lg:pt-10">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
+              Book a short scoping call. We'll show you which workflows should
+              run on their own, and where a dashboard, web app, native app, or
+              SaaS platform is the better investment.
             </p>
-            <form
-              onSubmit={handleSubmit(handleFormSubmit)}
-              data-aos="fade-up"
-              className="mt-10 p-5 sm:p-7 flex flex-col bg-gradient-to-r from-[#f9ece6] to-[#a4b5c5] rounded-xl"
-            >
-              <div className="grid md:grid-cols-2 gap-5">
-                <div>
-                  <input
-                    type="text"
-                    className="placeholder:text-black/80 text-black p-3 bg-white outline-none w-full rounded-md"
-                    placeholder="Full Name"
-                    {...register("name", {
-                      required: "Full name is required",
-                      validate: (val) => {
-                        if (val.trim() !== "") {
-                          return true;
-                        } else {
-                          return "Full name is required";
-                        }
-                      },
-                    })}
-                  />
-                  <small className="text-red-500">{errors.name?.message}</small>
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    className="placeholder:text-black/80 text-black p-3 bg-white outline-none w-full rounded-md"
-                    placeholder="Email Address"
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                        message: "Entered email is invalid",
-                      },
-                    })}
-                  />
-                  <small className="text-red-500">
-                    {errors.email?.message}
-                  </small>
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    className="placeholder:text-black/80 text-black p-3 bg-white outline-none w-full rounded-md"
-                    placeholder="Phone Number"
-                    {...register("phone", {
-                      required: "Phone number is required",
-                      pattern: {
-                        value: /^\+?[0-9]{10,15}$/,
-                        message: "Entered phone number is invalid",
-                      },
-                    })}
-                  />
-                  <small className="text-red-500">
-                    {errors.phone?.message}
-                  </small>
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    className="placeholder:text-black/80 text-black p-3 bg-white outline-none w-full rounded-md"
-                    placeholder="Subject"
-                    {...register("subject", {
-                      required: "Subject is required",
-                      validate: (val) => {
-                        if (val.trim() !== "") {
-                          return true;
-                        } else {
-                          return "Subject is required";
-                        }
-                      },
-                    })}
-                  />
-                  <small className="text-red-500">
-                    {errors.subject?.message}
-                  </small>
-                </div>
-                <div className="md:col-span-2">
-                  <textarea
-                    className="placeholder:text-black/80 text-black p-3 bg-white outline-none w-full rounded-md"
-                    placeholder="Message"
-                    rows="5"
-                    {...register("message", {
-                      required: "Message is required",
-                      validate: (val) => {
-                        if (val.trim() !== "") {
-                          return true;
-                        } else {
-                          return "Message is required";
-                        }
-                      },
-                    })}
-                  />
-                  <small className="text-red-500">
-                    {errors.message?.message}
-                  </small>
-                </div>
-              </div>
-              <button
-                disabled={isSubmitting}
-                className="btn rounded-full bg-white text-black hover:shadow-white/50 w-full sm:w-fit self-end mt-5"
-              >
-                Send Message
-              </button>
-            </form>
+            <AgencyButton href="#contact">Book a Call</AgencyButton>
+            <p className="text-sm text-white/55 max-w-sm">
+              Written plan after one working session. No hourly surprises.
+            </p>
           </div>
         </div>
-      </div>
-      <MapComponent />
+      </section>
+
+      <section className="pb-12">
+        <div className="wrapper grid sm:grid-cols-3 gap-4">
+          <a
+            href={`mailto:${companyDetails.email}`}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+          >
+            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+              <Mail className="w-5 h-5" />
+            </span>
+            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+              Email
+            </p>
+            <p className="text-lg font-semibold break-all">
+              {companyDetails.email}
+            </p>
+          </a>
+          <a
+            href={`tel:+${companyDetails.phone}`}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+          >
+            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+              <PhoneCall className="w-5 h-5" />
+            </span>
+            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+              Phone
+            </p>
+            <p className="text-lg font-semibold">+{companyDetails.phone}</p>
+          </a>
+          <a
+            href={getWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+          >
+            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center text-sm font-semibold">
+              WA
+            </span>
+            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+              WhatsApp
+            </p>
+            <p className="text-lg font-semibold">Chat with the team</p>
+          </a>
+        </div>
+      </section>
+
+      <section className="pb-[5rem]">
+        <div className="wrapper">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
+            <p className="section-kicker">The form</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
+              Tell us the job.{" "}
+              <span className="text-lavender">We'll map the build.</span>
+            </h2>
+            <p className="text-white/65 text-lg max-w-2xl">
+              Name, company, and what you need to ship — automation, a
+              dashboard, an app, or a platform. We'll come back with a scoping
+              call, not a generic brochure.
+            </p>
+          </div>
+          <ContactForm
+            headline={
+              <>
+                Tell us what you need{" "}
+                <span className="text-lavender">to ship.</span>
+              </>
+            }
+            id="contact"
+            variant="dark"
+          />
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,114 +1,62 @@
-import { useKeenSlider } from "keen-slider/react";
-import { useState } from "react";
 import { blogs } from "../../data/constant";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const BlogsSection = () => {
-  const [loaded, setLoaded] = useState(false);
-  const [sliderRef, instanceRef] = useKeenSlider(
-    {
-      loop: true,
-      initial: 0,
-      slides: {
-        perView: 1,
-        spacing: 15,
-      },
-      breakpoints: {
-        "(min-width: 640px)": {
-          slides: {
-            perView: 2,
-            spacing: 15,
-          },
-        },
-        "(min-width: 1024px)": {
-          slides: {
-            perView: 3,
-            spacing: 15,
-          },
-        },
-      },
-      created() {
-        setLoaded(true);
-      },
-    },
-    [
-      (slider) => {
-        let timeout;
-        let mouseOver = false;
-        function clearNextTimeout() {
-          clearTimeout(timeout);
-        }
-        function nextTimeout() {
-          clearTimeout(timeout);
-          if (mouseOver) return;
-          timeout = setTimeout(() => {
-            slider.next();
-          }, 2000);
-        }
-        slider.on("created", () => {
-          slider.container.addEventListener("mouseover", () => {
-            mouseOver = true;
-            clearNextTimeout();
-          });
-          slider.container.addEventListener("mouseout", () => {
-            mouseOver = false;
-            nextTimeout();
-          });
-          nextTimeout();
-        });
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
-      },
-    ]
-  );
+const accentTitle = (title, accent) => {
+  if (!accent || !title.includes(accent)) return title;
+  const idx = title.lastIndexOf(accent);
   return (
-    <section className="pt-[4rem] wrapper">
-      <h2 data-aos="fade-up" className="section-heading text-center capitalize">
-        Browse our latest insights
-      </h2>
-      <div data-aos="fade-up" ref={sliderRef} className="keen-slider mt-7">
-        {blogs.map((item) => (
+    <>
+      {title.slice(0, idx)}
+      <span className="text-lavender">{accent}</span>
+      {title.slice(idx + accent.length)}
+    </>
+  );
+};
+
+const BlogsSection = () => {
+  return (
+    <section className="py-[4rem] border-t border-white/10">
+      <div className="wrapper">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div className="space-y-3 max-w-2xl">
+            <p className="section-kicker">Keep reading</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              More insights{" "}
+              <span className="text-lavender">worth reading</span>
+            </h2>
+          </div>
           <Link
-            to={`/blogs/${item.id}`}
-            key={item.id}
-            className="keen-slider__slide space-y-2 p-5 rounded-xl border border-black/20 bg-white"
+            to="/blogs"
+            className="text-sm text-white/60 hover:text-white transition-colors"
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full rounded-xl"
-            />
-            <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-              {item.category}
-            </p>
-            <h6 className="text-lg font-semibold line-clamp-2">{item.title}</h6>
-            <p className="line-clamp-3 text-gray-600">{item.excerpt}</p>
+            See all articles →
           </Link>
-        ))}
-      </div>
-      {loaded && instanceRef.current && (
-        <div
-          data-aos="fade-up"
-          className="flex items-center justify-center gap-4 mt-10"
-        >
-          <button
-            onClick={() => instanceRef.current?.prev()}
-            className="bg-black/5 p-3 rounded-full hover:bg-black/10 transition-colors"
-            aria-label="Previous blog"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => instanceRef.current?.next()}
-            className="bg-black/5 p-3 rounded-full hover:bg-black/10 transition-colors"
-            aria-label="Next blog"
-          >
-            <ArrowRight className="w-5 h-5" />
-          </button>
         </div>
-      )}
+        <div className="grid md:grid-cols-3 gap-4">
+          {blogs.map((item) => (
+            <Link
+              key={item.id}
+              to={`/blogs/${item.id}`}
+              className="group rounded-2xl border border-white/10 overflow-hidden hover:border-primary/40 transition-colors bg-white/[0.03]"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full aspect-[16/10] object-cover group-hover:brightness-110 transition"
+              />
+              <div className="p-5 space-y-2">
+                <p className="text-xs tracking-[0.14em] uppercase text-lavender">
+                  {item.category}
+                </p>
+                <h3 className="text-lg font-semibold leading-snug">
+                  {accentTitle(item.title, item.accent)}
+                </h3>
+                <p className="text-sm text-white/55 line-clamp-3">{item.excerpt}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

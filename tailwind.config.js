@@ -7,6 +7,8 @@ module.exports = {
         primary: "#7821A6", // Sample Purple
         secondary: "#F4EBFF", // Sample Light Purple
         purpleColor: "#6941C6", // Sample Dark Purple
+        ink: "#0A0612",
+        lavender: "#DCC6F5",
         "light-bg": "#FAFAFA",
         "glass-border": "rgba(255, 255, 255, 0.2)",
       },

@@ -1,6 +1,7 @@
-import React, { lazy } from "react";
-import { useParams } from "react-router-dom";
+import React, { lazy, useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { blogs } from "../data/constant";
+import AgencyButton from "../components/ui/AgencyButton";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
 
@@ -8,88 +9,128 @@ const articleBodies = {
   1: [
     {
       heading: "Why automation now matters more than headcount",
-      body: "Growing teams often hit a ceiling when everyday tasks—data entry, follow-ups, status updates—consume hours that should go to strategy and customer relationships. AI automation closes that gap by handling repetitive processes with consistent accuracy.",
+      accent: "than headcount",
+      body: "Growing teams hit a ceiling when data entry, follow-ups, and status updates eat the hours that should go to closing and customer work. Automation closes that gap when it is wired to the tools you already run — CRM, calendar, inbox — with a human fallback when the flow hits an edge.",
     },
     {
-      heading: "Start with high-ROI workflows",
-      body: "The strongest results usually come from automating lead qualification, appointment scheduling, reporting, and cross-system sync. These workflows touch revenue and operations directly, so improvements show up quickly in speed, cost, and quality.",
+      heading: "Start with the jobs that move revenue",
+      accent: "move revenue",
+      body: "The strongest first builds are lead routing, appointment setting, reporting, and cross-system sync. Those workflows touch revenue and operations directly. A generic chatbot with a new skin does not.",
     },
     {
-      heading: "Design for reliability, not just novelty",
-      body: "Effective automation is measurable and maintainable. Monk11 AI builds workflows with clear ownership, monitoring, and fallbacks—so your systems keep performing as volume grows.",
+      heading: "Design for production, not a demo",
+      accent: "not a demo",
+      body: "Effective automation is logged, measurable, and maintainable. Monk11 builds workflows with ownership, monitoring, and a fallback to a person — so the system still holds when volume grows.",
     },
   ],
   2: [
     {
-      heading: "Industry context changes everything",
-      body: "A real estate lead nurture sequence looks very different from a healthcare appointment reminder or a manufacturing inventory alert. Industry-aware automation respects compliance, timing, and the language your customers expect.",
+      heading: "Industry context changes the workflow",
+      accent: "the workflow",
+      body: "A real estate nurture sequence is not a healthcare reminder, and neither is a manufacturing inventory alert. Vertical-aware automation respects timing, language, and the compliance the buyer actually cares about.",
     },
     {
       heading: "Agents that fit the job",
-      body: "We design AI agents and workflows for Real Estate, Healthcare, Manufacturing, Restaurant Management, Renewable Energy, and FinTech—connecting CRM, calendars, messaging, and reporting tools into one coherent system.",
+      accent: "fit the job",
+      body: "We design workflows for real estate, healthcare, manufacturing, restaurants, renewable energy, and fintech — connecting CRM, calendars, messaging, and reporting into one system your team can run.",
     },
     {
-      heading: "From pilot to production",
-      body: "Successful programs start with a focused pilot, prove ROI, then expand. That approach reduces risk while building internal confidence in automation as a core operating capability.",
+      heading: "From a focused first release to production",
+      accent: "to production",
+      body: "Start with one workflow or dashboard, prove it in production, then expand. That reduces risk and builds internal confidence without a twelve-month black box.",
     },
   ],
   3: [
     {
       heading: "Products and automation belong together",
-      body: "Web and mobile applications deliver the customer experience; automation keeps the backend humming. When both are designed as one ecosystem, businesses avoid brittle integrations and manual workarounds.",
+      accent: "belong together",
+      body: "Web and mobile apps are the surface people use. Automation keeps the work behind them moving. Designed as one ecosystem, you avoid brittle integrations and a spreadsheet sitting between two tools.",
     },
     {
-      heading: "Build for scale from day one",
-      body: "Whether you need a SaaS platform, customer portal, or mobile app, architecture choices early on determine how easily AI workflows can plug in later—without costly rewrites.",
+      heading: "Build for the team that logs in every day",
+      accent: "logs in every day",
+      body: "Whether you need a multi-user dashboard, a functional web app, or a SaaS platform, admin, roles, and analytics have to be in the product — not a brochure site anyone can generate in an afternoon.",
     },
     {
-      heading: "A partner across the stack",
-      body: "Monk11 AI helps you ship digital products and the intelligent workflows around them, so technology investment compounds instead of fragmenting across tools and vendors.",
+      heading: "One partner across the stack",
+      accent: "across the stack",
+      body: "Monk11 ships the product and the workflows around it — cloud, stores, handover — so the investment compounds instead of fragmenting across vendors.",
     },
   ],
 };
 
+const accentTitle = (title, accent) => {
+  if (!accent || !title.includes(accent)) return title;
+  const idx = title.lastIndexOf(accent);
+  return (
+    <>
+      {title.slice(0, idx)}
+      <span className="text-lavender">{accent}</span>
+      {title.slice(idx + accent.length)}
+    </>
+  );
+};
+
 const BlogDetails = () => {
   const { title } = useParams();
-  const blogId = Number(title) || 1;
-  const blog = blogs.find((b) => b.id === blogId) || blogs[0];
-  const sections = articleBodies[blog.id] || articleBodies[1];
+  const blogId = Number(title);
+  const blog = blogs.find((b) => b.id === blogId);
+  const sections = blog ? articleBodies[blog.id] || articleBodies[1] : [];
+
+  useEffect(() => {
+    const prev = document.documentElement.style.backgroundColor;
+    document.documentElement.style.backgroundColor = "#0A0612";
+    document.body.style.backgroundColor = "#0A0612";
+    if (blog) document.title = `${blog.title} | Monk11 AI`;
+    return () => {
+      document.documentElement.style.backgroundColor = prev;
+      document.body.style.backgroundColor = "";
+    };
+  }, [blog]);
+
+  if (!blog) return <Navigate to="/blogs" replace />;
 
   return (
-    <div className="pt-[10rem] pb-[4rem] bg-gradient-to-b from-[#f8e4de] to-[#f5f5f5]">
-      <div className="wrapper">
-        <img
-          data-aos="fade-up"
-          src={blog.image}
-          className="rounded-xl w-full aspect-video md:aspect-[16/7] object-cover"
-          alt={blog.title}
-        />
-        <p
-          data-aos="fade-up"
-          className="mt-6 text-xs font-semibold uppercase tracking-wide text-primary"
-        >
-          {blog.category}
-        </p>
-        <h1 data-aos="fade-up" className="section-heading mt-2">
-          {blog.title}
-        </h1>
-        <p data-aos="fade-up" className="mt-3 text-gray-600 max-w-3xl">
-          {blog.excerpt}
-        </p>
-        <hr data-aos="fade-up" className="border-secondary my-7" />
-        <div data-aos="fade-up" className="space-y-6 max-w-4xl">
-          {sections.map((section, index) => (
-            <div key={section.heading}>
-              <h2 className="text-xl font-semibold mb-3">
-                {index + 1}. {section.heading}
+    <div className="bg-ink text-white overflow-x-hidden">
+      <article className="relative pt-[7.25rem] pb-[4rem]">
+        <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[36rem] h-[36rem] rounded-full bg-primary/35 blur-[140px]" />
+        <div className="wrapper relative z-10 max-w-4xl">
+          <p className="section-kicker">{blog.category}</p>
+          <h1 className="text-[2.1rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mt-4">
+            {accentTitle(blog.title, blog.accent)}
+          </h1>
+          <p className="mt-5 text-white/65 text-lg max-w-2xl leading-relaxed">
+            {blog.excerpt}
+          </p>
+          <img
+            src={blog.image}
+            className="rounded-2xl w-full aspect-video md:aspect-[16/7] object-cover mt-10 border border-white/10"
+            alt={blog.title}
+          />
+          <div className="space-y-10 mt-12">
+            {sections.map((section) => (
+              <div key={section.heading}>
+                <h2 className="text-2xl font-semibold mb-3">
+                  {accentTitle(section.heading, section.accent)}
+                </h2>
+                <p className="text-white/65 leading-relaxed text-lg">
+                  {section.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-14 rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 justify-between">
+            <div className="space-y-2 max-w-xl">
+              <p className="section-kicker">Next step</p>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                Map what to automate —{" "}
+                <span className="text-lavender">and what to build</span>
               </h2>
-              <p className="mb-2 text-gray-700 leading-relaxed">
-                {section.body}
-              </p>
             </div>
-          ))}
+            <AgencyButton to="/contact">Book a Call</AgencyButton>
+          </div>
         </div>
-      </div>
+      </article>
       <BlogsSection />
     </div>
   );

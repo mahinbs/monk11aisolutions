@@ -3,6 +3,7 @@
 export const services = [
 {
     title: "AI Automation",
+    navTitle: "AI Automation",
     featured: true,
     image: require("../assets/images/ai-automation-vector.png"),
     shortDesc:
@@ -122,6 +123,7 @@ export const services = [
   },
 {
     title: "AI Calling Agency",
+    navTitle: "AI Calling",
     image: require("../assets/images/ai-calling.png"),
     shortDesc:
       "Revolutionize customer support and sales with hyper-realistic AI voice agents.",
@@ -192,6 +194,7 @@ export const services = [
   },
 {
     title: "Web Applications",
+    navTitle: "Web Apps & Dashboards",
     image: require("../assets/images/web-dev-vector.png"),
     shortDesc:
       "Transforming complex business logic into powerful, scalable, and user-centric web applications.",
@@ -269,6 +272,7 @@ export const services = [
   },
 {
     title: "Mobile Applications",
+    navTitle: "App Development",
     image: require("../assets/images/app-dev-vector.png"),
     shortDesc:
       "Native and Cross-platform mobile apps that dominate the App Store and Play Store.",
@@ -353,6 +357,7 @@ export const services = [
   },
 {
     title: "SAAS Solutions",
+    navTitle: "SaaS Platforms",
     image: require("../assets/images/saas-vector.png"),
     shortDesc:
       "End-to-end development of Software as a Service platforms, from MVP to enterprise scale.",

@@ -1,175 +1,272 @@
-import React, { lazy } from "react";
-import bannerImg from "../assets/images/aboutus-banner.webp";
-import ourValuesBg from "../assets/images/our-values-bg.jpeg";
-import { ArrowRight, Gem, MessagesSquare, PersonStanding } from "lucide-react";
-import img1 from "../assets/images/aboutus-1.png";
-import img2 from "../assets/images/aboutus-2.png";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLinkButton } from "../components/ArrowButtons";
+import {
+  ArrowUpRight,
+  Boxes,
+  LayoutDashboard,
+  PhoneCall,
+  Smartphone,
+  Workflow,
+} from "lucide-react";
+import AgencyButton from "../components/ui/AgencyButton";
+import ContactForm from "../components/ContactForm";
+import {
+  differentiators,
+  homeProcess,
+  homeServices,
+} from "../data/home";
 
-const ContactForm = lazy(() => import("../components/ContactForm"));
-const WorkProcess = lazy(() => import("../components/WorkProcess"));
-const ServicesWeProvide = lazy(() =>
-  import("../components/website/ServicesWeProvide")
-);
+const serviceIcons = [
+  Workflow,
+  PhoneCall,
+  LayoutDashboard,
+  Smartphone,
+  Boxes,
+];
 
-const AboutUs = () => {
+const beliefs = [
+  {
+    kicker: "Human where it matters",
+    title: "Remove busywork, not the person",
+    accent: "not the person",
+    desc: "Automation should take the copy-paste and the chase. Edge cases still escalate to a human, with an audit trail on every action.",
+  },
+  {
+    kicker: "Judged by production",
+    title: "Software is what it does for revenue",
+    accent: "for revenue",
+    desc: "A demo isn't a product. We ship workflows, dashboards, apps, and SaaS your team can run — not a Figma file or a staging URL.",
+  },
+  {
+    kicker: "Vertical first",
+    title: "Generic automation doesn't survive",
+    accent: "doesn't survive",
+    desc: "Real estate, healthcare, manufacturing, restaurants, renewable energy, and fintech each have different jobs. We build around those jobs.",
+  },
+];
+
+const accentTitle = (title, accent) => {
+  if (!accent || !title.includes(accent)) return title;
+  const idx = title.lastIndexOf(accent);
   return (
     <>
-      <section
-        className="min-h-screen relative flex items-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bannerImg})` }}
-      >
-        <div className="absolute inset-0 bg-black/50 z-0"></div>
-        <div className="relative z-10 h-full w-full">
-          <div
-            data-aos="fade-up"
-            className="pt-[10rem] pb-[3rem] h-full wrapper text-white z-10 flex flex-col gap-3 justify-center items-center"
-          >
-            <h1 className="heading-2 max-w-5xl text-center">
-              Building intelligent systems that help businesses work smarter.
+      {title.slice(0, idx)}
+      <span className="text-lavender">{accent}</span>
+      {title.slice(idx + accent.length)}
+    </>
+  );
+};
+
+const AboutUs = () => {
+  useEffect(() => {
+    const prev = document.documentElement.style.backgroundColor;
+    document.documentElement.style.backgroundColor = "#0A0612";
+    document.body.style.backgroundColor = "#0A0612";
+    document.title = "About | Monk11 AI";
+    return () => {
+      document.documentElement.style.backgroundColor = prev;
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
+
+  return (
+    <div className="bg-ink text-white overflow-x-hidden">
+      <section className="relative pt-[7.25rem] pb-16 overflow-hidden">
+        <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
+        <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
+        <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
+        <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[52vh]">
+          <div className="space-y-6">
+            <p className="section-kicker">About Monk11</p>
+            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight max-w-3xl">
+              Built by people who'd rather automate{" "}
+              <span className="text-lavender">than repeat themselves.</span>
             </h1>
-            <p className="max-w-5xl text-center text-[1.1rem] text-white/90">
-              Monk11 AI is a team of strategists, designers, and engineers
-              focused on AI automation, custom software, and mobile products. We
-              partner with organizations across Real Estate, Healthcare,
-              Manufacturing, Restaurant Management, Renewable Energy, FinTech,
-              Ecommerce, CRM & Sales, and other enterprise sectors to turn operational complexity into
-              scalable digital advantage.
+          </div>
+          <div className="space-y-5 lg:pt-10">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
+              Monk11 AI Solutions designs, builds, and deploys AI automation,
+              multi-user dashboards, functional web apps, native apps, and SaaS
+              — then puts them in production. One team from the first workflow
+              to cloud, App Store, and Play Store.
             </p>
-            <ArrowLinkButton to="/contact">Contact Us</ArrowLinkButton>
+            <AgencyButton href="#contact">Start a Project</AgencyButton>
+            <p className="text-sm text-white/55 max-w-sm">
+              No handoff gap. No generic chatbot with a new skin.
+            </p>
           </div>
         </div>
       </section>
-      <ServicesWeProvide />
-      <section
-        className="py-[7rem]"
-        style={{ backgroundImage: `url(${ourValuesBg})` }}
-      >
+
+      <section className="py-[4rem] border-y border-white/10">
         <div className="wrapper">
-          <h2
-            data-aos="fade-up"
-            className="section-heading text-center text-white"
-          >
-            Our Values
-          </h2>
-          <div className="grid md:grid-cols-3 gap-7 mt-7">
-            {[
-              {
-                title: "Integrity and Transparency",
-                desc: "We prioritize honesty and accountability in everything we do, ensuring open communication and trust with our clients and partners.",
-                Icon: MessagesSquare,
-              },
-              {
-                title: "Innovation and Excellence",
-                desc: "By embracing creativity and staying ahead of technology trends, we deliver cutting-edge solutions that consistently exceed expectations.",
-                Icon: PersonStanding,
-              },
-              {
-                title: "Customer-Centric Focus",
-                desc: "Your success is our mission. We understand your unique needs and provide tailored solutions that drive meaningful business growth.",
-                Icon: Gem,
-              },
-            ].map(({ title, desc, Icon }) => {
+          <div className="max-w-3xl space-y-3 mb-12">
+            <p className="section-kicker">What we believe</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              How we decide what{" "}
+              <span className="text-lavender">to build</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {beliefs.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3"
+              >
+                <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+                  {item.kicker}
+                </p>
+                <h3 className="text-xl font-semibold">
+                  {accentTitle(item.title, item.accent)}
+                </h3>
+                <p className="text-white/60 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-[5rem]">
+        <div className="wrapper">
+          <div className="max-w-3xl space-y-3 mb-12">
+            <p className="section-kicker">The difference</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              Why teams choose <span className="text-lavender">Monk11</span>
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {differentiators.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3"
+              >
+                <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+                  {item.kicker}
+                </p>
+                <h3 className="text-xl font-semibold">
+                  {accentTitle(item.title, item.accent)}
+                </h3>
+                <p className="text-white/60 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-[5rem] border-y border-white/10">
+        <div className="wrapper">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-12 items-end">
+            <div className="space-y-3">
+              <p className="section-kicker">What we do</p>
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+                Five services.{" "}
+                <span className="text-lavender">Equal weight.</span>
+              </h2>
+            </div>
+            <p className="text-white/65 text-lg max-w-xl lg:justify-self-end">
+              Automation is one line — not the brand. We also ship dashboards,
+              web apps, native apps, and SaaS, all with the same production
+              standard.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {homeServices.map((item, i) => {
+              const Icon = serviceIcons[i];
               return (
-                <div
-                  data-aos="fade-up"
-                  key={title}
-                  className="p-5 bg-white/5 backdrop-blur-sm text-white space-y-3 rounded-xl"
+                <Link
+                  key={item.title}
+                  to={item.href}
+                  className="group rounded-2xl border border-white/10 bg-white/[0.03] p-7 hover:bg-white/[0.06] hover:border-primary/40 transition-colors"
                 >
-                  <GradientIcon>
-                    <Icon stroke="url(#myGradient)" strokeWidth={1} size={45} />
-                  </GradientIcon>
-                  <h6 className="text-xl font-semibold">{title}</h6>
-                  <p>{desc}</p>
-                </div>
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-semibold mt-6">
+                    {accentTitle(item.title, item.accent)}
+                  </h3>
+                  <p className="text-white/65 mt-3 leading-relaxed">{item.desc}</p>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
-      <section className="pt-[4rem] wrapper">
-        <div
-          data-aos="fade-up"
-          className="max-w-5xl mx-auto rounded-2xl overflow-hidden grid md:grid-cols-2"
-        >
-          <div className="overflow-hidden relative">
-            <img
-              src={img1}
-              className="h-full w-full object-cover"
-              alt="About Us"
-            />
-            <div className="aspect-square w-[14rem] sm:w-[16rem] flex flex-col justify-between bg-gradient-to-tr p-7 from-[#CD21E9] via-[#E03D3D] to-[#FFBD12] absolute right-0 bottom-0">
-              <h4 className="text-xl font-semibold text-white">
-                Ready to Automate Your Next Workflow?
-              </h4>
-              <Link
-                to="/contact"
-                className="font-medium text-[.9rem] flex items-center gap-2 mt-5 w-fit text-white hover:text-primary transition-colors duration-200"
-              >
-                Contact Us <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
+
+      <section className="py-[5rem]">
+        <div className="wrapper">
+          <div className="max-w-3xl space-y-3 mb-12">
+            <p className="section-kicker">Process</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              How we design,{" "}
+              <span className="text-lavender">build, and deploy</span>
+            </h2>
           </div>
-          <div className="">
-            <div className="grid sm:grid-cols-2 h-fit relative">
-              <img
-                src={img2}
-                className="hidden sm:block h-full w-full object-cover"
-                alt="About Us"
-              />
-              <div className="py-[3rem] px-7 sm:aspect-square flex flex-col justify-between bg-gradient-to-tr sm:p-7 from-[#992FED] to-[#2F80ED]">
-                <h4 className="text-xl font-semibold text-white">
-                  AI Automation for Industries That Demand Precision
-                </h4>
-                <Link
-                  to="/services/AI Automation"
-                  className="font-medium text-[.9rem] flex items-center gap-2 mt-5 w-fit text-white hover:text-primary transition-colors duration-200"
-                >
-                  Explore Services <ArrowRight className="w-5 h-5" />
-                </Link>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {homeProcess.map((item) => (
+              <div
+                key={item.step}
+                className="rounded-2xl border border-white/10 p-6 space-y-4"
+              >
+                <p className="text-3xl font-bold text-lavender">{item.step}</p>
+                <h3 className="text-xl font-semibold">
+                  {accentTitle(item.title, item.accent)}
+                </h3>
+                <p className="text-white/60 leading-relaxed">{item.desc}</p>
               </div>
-            </div>
-            <div className="p-7 h-full text-white bg-[#131426] flex flex-col gap-3">
-              <p className="border-b border-dotted border-white/20 pb-3">
-                Why AI Automation Is Becoming Essential for Mid-Market Teams
-              </p>
-              <p className="border-b border-dotted border-white/20 pb-3">
-                Building Reliable Workflows Across CRM, ERP, and Support Tools
-              </p>
-              <p className="border-b border-dotted border-white/20 pb-3">
-                How Industry-Specific Agents Improve Speed and Accuracy
-              </p>
-              <div className="mt-7 self-end">
-                <Link
-                  to="/blogs"
-                  className="font-medium capitalize text-[.9rem] flex items-center gap-2 w-fit text-white hover:text-primary transition-colors duration-200"
-                >
-                  Read more in our blogs <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-      <section className="pt-[4rem]">
-        <WorkProcess />
+
+      <section className="wrapper py-[3rem]">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16">
+          <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] w-64 h-64 rounded-full bg-[#FFC200]/20 blur-3xl" />
+          <div className="relative z-10 grid md:grid-cols-[1.4fr_auto] gap-8 items-center">
+            <div className="space-y-3">
+              <p className="section-kicker text-white/80">Let's work together</p>
+              <h2 className="text-3xl md:text-4xl font-bold max-w-2xl">
+                If you'd rather ship than{" "}
+                <span className="text-lavender">repeat the same week,</span>{" "}
+                talk to us.
+              </h2>
+            </div>
+            <AgencyButton href="#contact">Book a Call</AgencyButton>
+          </div>
+        </div>
       </section>
-      <ContactForm />
-    </>
+
+      <section className="pb-[5rem] pt-[3rem]">
+        <div className="wrapper">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
+            <p className="section-kicker">Let's work together</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
+              Let's map what to automate —{" "}
+              <span className="text-lavender">and what to build</span>
+            </h2>
+            <p className="text-white/65 text-lg max-w-2xl">
+              Book a short scoping call. You'll leave with a written plan — not
+              a pitch deck.
+            </p>
+          </div>
+          <ContactForm
+            headline={
+              <>
+                Tell us what you need{" "}
+                <span className="text-lavender">to ship.</span>
+              </>
+            }
+            id="contact"
+            variant="dark"
+          />
+        </div>
+      </section>
+    </div>
   );
 };
 
 export default AboutUs;
-
-const GradientIcon = ({ children }) => (
-  <svg width="48" height="48">
-    <defs>
-      <linearGradient id="myGradient" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stopColor="#9935E8" />
-        <stop offset="100%" stopColor="#F8B000" />
-      </linearGradient>
-    </defs>
-    {children}
-  </svg>
-);

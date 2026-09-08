@@ -89,16 +89,14 @@ function App() {
                 </>
               }
             />
-            <Route path="/services">
-              <Route
-                path=":name"
-                element={
-                  <>
-                    <Header /> <ServiceDetails /> <Footer />
-                  </>
-                }
-              />
-            </Route>
+            <Route
+              path="/services/:name"
+              element={
+                <>
+                  <Header /> <ServiceDetails /> <Footer />
+                </>
+              }
+            />
 
             {/* Blogs */}
             <Route
@@ -109,16 +107,14 @@ function App() {
                 </>
               }
             />
-            <Route path="/blogs">
-              <Route
-                path=":title"
-                element={
-                  <>
-                    <Header /> <BlogDetails /> <Footer />
-                  </>
-                }
-              />
-            </Route>
+            <Route
+              path="/blogs/:title"
+              element={
+                <>
+                  <Header /> <BlogDetails /> <Footer />
+                </>
+              }
+            />
 
             {/* Landing pages */}
             <Route

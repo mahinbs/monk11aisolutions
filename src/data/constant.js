@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
 import logo from "../assets/logo/monk11-logo.jpeg";
+import logoDark from "../assets/logo/logo-dark.png";
 
-export { logo };
+export { logo, logoDark };
 
 // company
 export const companyDetails = {
@@ -199,6 +200,7 @@ export const blogs = [
     id: 1,
     image: require("../assets/images/blogs/1.png"),
     title: "How AI Automation Cuts Operating Costs Without Cutting Quality",
+    accent: "Without Cutting Quality",
     excerpt:
       "Discover practical automation plays that free your team from repetitive work while improving accuracy and customer response times.",
     category: "AI Automation",
@@ -207,6 +209,7 @@ export const blogs = [
     id: 2,
     image: require("../assets/images/blogs/2.png"),
     title: "Building Industry-Ready AI Workflows for Real Estate & Healthcare",
+    accent: "for Real Estate & Healthcare",
     excerpt:
       "From lead nurturing to appointment scheduling—see how sector-specific AI agents create measurable ROI in weeks, not months.",
     category: "Industries",
@@ -215,6 +218,7 @@ export const blogs = [
     id: 3,
     image: require("../assets/images/blogs/3.png"),
     title: "Web & Mobile Products That Scale with Your Automation Stack",
+    accent: "That Scale with Your Automation Stack",
     excerpt:
       "Why modern SaaS and mobile platforms should be designed as part of an intelligent operations ecosystem—not as isolated tools.",
     category: "Product Engineering",

@@ -1,389 +1,514 @@
-import React, { lazy } from "react";
-import BannerVideo from "../components/BannerVideo";
-import { ArrowRight, Bot, Sparkles, Workflow } from "lucide-react";
-import { ReactComponent as icon1 } from "../assets/svg/services/Web Development.svg";
-import { ReactComponent as icon2 } from "../assets/svg/services/App Development.svg";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import howWeBuildCover from "../assets/images/how-we-build.jpeg";
-import whyWorkWithUs1 from "../assets/images/whyworkwithus1.png";
-import whyWorkWithUs2 from "../assets/images/whyworkwithus2.png";
-import whyWorkWithUs3 from "../assets/images/whyworkwithus3.png";
-import whyWorkWithUs4 from "../assets/images/whyworkwithus4.png";
-import { ArrowLinkButton } from "../components/ArrowButtons";
-import { industries } from "../data/constant";
+import {
+  ArrowUpRight,
+  Boxes,
+  Check,
+  ChevronDown,
+  LayoutDashboard,
+  PhoneCall,
+  Smartphone,
+  Workflow,
+} from "lucide-react";
+import AgencyButton from "../components/ui/AgencyButton";
+import ContactForm from "../components/ContactForm";
+import { blogs } from "../data/constant";
+import {
+  comparisonRows,
+  differentiators,
+  homeFaqs,
+  homeHero,
+  homeProcess,
+  homeServices,
+  outcomeStrip,
+  trustPills,
+  trustStack,
+  verticalCards,
+} from "../data/home";
+import work1 from "../assets/images/aboutus-banner.webp";
+import work2 from "../assets/images/how-we-build.jpeg";
+import work3 from "../assets/images/our-values-bg.jpeg";
+import work4 from "../assets/images/contactus-banner.jpg";
 
-const ContactForm = lazy(() => import("../components/ContactForm"));
-const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
-const ServicesWeProvide = lazy(() =>
-  import("../components/website/ServicesWeProvide")
-);
+const workImages = [work1, work2, work3, work4];
 
-const bannerServices = [
-  {
-    id: 1,
-    title: "AI Automation",
-    icon: Workflow,
-    isLucide: true,
-    desc: "Automate sales, operations, and customer journeys across Real Estate, Healthcare, Manufacturing, Restaurants, Ecommerce, CRM & Sales, and FinTech.",
-    landingPageLink: "/services/AI Automation",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Web Development",
-    icon: icon1,
-    desc: "Scalable, conversion-focused websites and web applications engineered for performance and growth.",
-    landingPageLink: "/web-development",
-  },
-  {
-    id: 3,
-    title: "App Development",
-    icon: icon2,
-    desc: "Native and cross-platform mobile apps that deliver seamless experiences on iOS and Android.",
-    landingPageLink: "/app-development",
-  },
+const serviceIcons = [
+  Workflow,
+  PhoneCall,
+  LayoutDashboard,
+  Smartphone,
+  Boxes,
 ];
 
-const Home = () => {
+const accentTitle = (title, accent) => {
+  if (!accent || !title.includes(accent)) return title;
+  const idx = title.lastIndexOf(accent);
   return (
     <>
-      <section className="relative min-h-screen bg-black/50">
-        <div className="pt-[12rem] pb-[5rem]">
-          <div className="wrapper flex flex-col gap-7 justify-center h-full">
-            <div
-              data-aos="fade-up"
-              className="flex items-center text-start self-start text-white px-3 py-2 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm"
-            >
-              <Sparkles className="inline mr-2 w-4 h-4" />{" "}
-              <span>AI Automation · Web · Mobile</span>
-            </div>
-            <h1 data-aos="fade-up" className="heading !text-white max-w-5xl">
-              <span className="gradient-text">Monk11 AI</span>
-              <br />
-              <span className="text-white">
-                Intelligent Automation for Modern Enterprises
-              </span>
-            </h1>
-            <p
-              data-aos="fade-up"
-              className="text-white/85 text-lg max-w-2xl leading-relaxed"
-            >
-              We help businesses eliminate repetitive work, scale operations,
-              and deliver better customer experiences with AI automation, custom
-              software, and mobile products.
-            </p>
-            <div data-aos="fade-up" className="flex flex-wrap gap-3">
-              <ArrowLinkButton to="/services/AI Automation">
-                Explore AI Automation
-              </ArrowLinkButton>
-              <Link
-                to="/contact"
-                className="secondary-btn !bg-white/10 !text-white !border-white/30 hover:!bg-white/20"
-              >
-                Talk to an Expert
-              </Link>
-            </div>
-            <div
-              data-aos="fade-up"
-              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mt-5"
-            >
-              {bannerServices.map((item) => (
-                <div
-                  key={item.id}
-                  className={`p-5 rounded-xl backdrop-blur-md text-white space-y-4 transition-all duration-300 ${
-                    item.featured
-                      ? "bg-primary/80 lg:hover:bg-primary ring-2 ring-[#FFC200]/60 sm:col-span-2 lg:col-span-1"
-                      : "bg-primary/60 lg:hover:bg-primary"
-                  }`}
-                >
-                  {item.featured && (
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#FFC200]">
-                      <Bot className="w-3.5 h-3.5" /> Featured Service
-                    </span>
-                  )}
-                  <p className="text-xl font-medium">{item.title}</p>
-                  <p className="min-h-[5rem] text-white/90">{item.desc}</p>
-                  <div className="flex justify-between items-center gap-5">
-                    {item.isLucide ? (
-                      <item.icon className="w-12 h-12 text-white" />
-                    ) : (
-                      <item.icon className="w-14 h-14 fill-white" />
-                    )}
-                    <Link
-                      to={item.landingPageLink}
-                      className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition-colors"
-                      aria-label={`Learn more about ${item.title}`}
-                    >
-                      <ArrowRight className="w-6 h-6" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <BannerVideo />
-      </section>
-
-      {/* AI Automation highlight */}
-      <section className="py-[4rem] bg-gradient-to-br from-[#1a0b24] via-[#2d1245] to-[#1a0b24] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,#7821A6,transparent_40%),radial-gradient(circle_at_80%_70%,#FFC20033,transparent_35%)]" />
-        <div className="wrapper relative z-10 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
-          <div className="space-y-5" data-aos="fade-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-sm">
-              <Workflow className="w-4 h-4 text-[#FFC200]" />
-              Flagship Capability
-            </div>
-            <h2 className="section-heading !text-white">
-              AI Automation Services That Drive Real ROI
-            </h2>
-            <p className="text-white/80 text-lg leading-relaxed max-w-xl">
-              From lead qualification to operations reporting, we design
-              intelligent workflows that reduce manual effort, accelerate
-              response times, and scale with your business—across industries and
-              enterprise teams.
-            </p>
-            <ul className="space-y-3 text-white/85">
-              {[
-                "End-to-end workflow automation across CRM, ERP, and communication tools",
-                "Industry-specific agents for sales, support, and internal ops",
-                "Measurable gains in speed, accuracy, and cost efficiency",
-              ].map((point) => (
-                <li key={point} className="flex gap-3 items-start">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-[#FFC200] shrink-0" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="pt-2">
-              <ArrowLinkButton to="/services/AI Automation">
-                View AI Automation
-              </ArrowLinkButton>
-            </div>
-          </div>
-          <div
-            data-aos="fade-up"
-            className="grid grid-cols-2 gap-3 sm:gap-4"
-          >
-            {industries.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 space-y-2 hover:bg-white/10 transition-colors"
-                >
-                  <Icon className="w-6 h-6 text-[#FFC200]" />
-                  <p className="font-semibold text-sm">{item.title}</p>
-                  <p className="text-xs text-white/65 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <ServicesWeProvide />
-
-      <section className="py-[4rem] bg-[#F7F7F9]">
-        <div className="wrapper space-y-3">
-          <h2 data-aos="fade-up" className="section-heading text-center">
-            Industries We Serve
-          </h2>
-          <p data-aos="fade-up" className="text-center max-w-3xl mx-auto text-gray-600">
-            Purpose-built AI automation and software solutions for Real Estate,
-            Healthcare, Manufacturing, Restaurant Management, Renewable Energy,
-            FinTech, Ecommerce, CRM & Sales, and other enterprise sectors.
-          </p>
-          <div className="pt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {industries.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <div
-                  data-aos="fade-up"
-                  key={item.title}
-                  className="text-center p-5 bg-white rounded-xl space-y-3 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <IconComponent className="w-8 h-8 mx-auto text-primary" />
-                  <p className="font-medium text-[.9rem]">{item.title}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="pt-[4rem]">
-        <h2 data-aos="fade-up" className="wrapper section-heading text-center">
-          How Monk11 AI helps you deliver better results
-        </h2>
-        <div
-          data-aos="fade-up"
-          className="wrapper grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 lg:gap-[3rem] mt-10"
-        >
-          {[
-            {
-              title: "Collaborative Partnerships",
-              desc: "We work closely with your team to align on vision, priorities, and outcomes that matter.",
-              styles: "bg-[#7C42DA] lg:rotate-[-18deg] lg:translate-y-[8rem]",
-            },
-            {
-              title: "Agility and Adaptability",
-              desc: "Flexible delivery that keeps pace with changing requirements and market opportunities.",
-              styles: "bg-[#F8B000] lg:rotate-[-10deg] lg:translate-y-[3rem]",
-            },
-            {
-              title: "Commitment to Quality",
-              desc: "From strategy to launch, we engineer solutions built for reliability and longevity.",
-              styles: "bg-[#B94391]",
-            },
-            {
-              title: "Customer Satisfaction",
-              desc: "Clear communication and measurable results—so every engagement creates lasting value.",
-              styles: "bg-[#D1B9F7] lg:rotate-[10deg] lg:translate-y-[3rem]",
-            },
-            {
-              title: "Transparency and Accountability",
-              desc: "Regular updates, honest timelines, and ownership from kickoff through ongoing support.",
-              styles:
-                "bg-[#E85535] col-span-2 md:col-span-1 w-1/2 mx-auto md:w-full lg:rotate-[18deg] lg:translate-y-[8rem]",
-            },
-          ].map((item) => (
-            <div
-              className={`p-5 ${item.styles} h-full w-full flex items-center hover:rotate-[180deg] group text-center rounded-xl transition-all duration-300`}
-              key={item.title}
-            >
-              <div className="space-y-3 group-hover:scale-y-[-1] group-hover:scale-x-[-1] transition-all duration-300">
-                <p className="md:text-lg font-bold leading-tight">
-                  {item.title}
-                </p>
-                <p className="text-[.9rem]">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="wrapper pt-[4rem] lg:mt-[9rem]">
-        <div
-          data-aos="fade-up"
-          className="relative min-h-[40vh] rounded-xl overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-black/40 md:bg-black/20 z-[-1]"></div>
-          <img
-            loading="lazy"
-            src={howWeBuildCover}
-            alt="How Monk11 AI builds solutions"
-            className="w-full h-full object-cover absolute inset-0 z-[-2]"
-          />
-          <div className="p-10 text-white text-start space-y-3">
-            <h3 className="text-2xl font-semibold">How we build</h3>
-            <p className="max-w-sm">
-              We prioritize your success, understand your unique workflows, and
-              deliver tailored AI and software solutions that drive growth.
-            </p>
-            <div className="pt-7">
-              <ArrowLinkButton to="/contact">Let's Chat</ArrowLinkButton>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="pt-[4rem] wrapper space-y-3">
-        <h2
-          data-aos="fade-up"
-          className="section-heading text-center md:mb-[2rem]"
-        >
-          Why Work With Us?
-        </h2>
-        <div className="flex flex-col gap-5">
-          <div
-            data-aos="fade-up"
-            className="bg-[#6B308C] min-h-[50vh] relative p-5 flex flex-col-reverse md:flex-row items-center gap-4 rounded-xl overflow-hidden"
-          >
-            <div className="flex flex-col md:w-8/12 lg:w-9/12">
-              <div className="md:px-[2.5rem]">
-                <p className="md:text-lg text-white font-semibold">
-                  Our team combines strategic thinking, technical depth, and a
-                  client-first approach to turn operational challenges into
-                  automated, scalable systems that deliver lasting results.
-                </p>
-              </div>
-            </div>
-            <img
-              src={whyWorkWithUs1}
-              alt=""
-              className="md:absolute right-0 top-1/2 md:-translate-y-1/2 max-h-[16rem] md:max-h-[25rem] object-contain"
-            />
-          </div>
-
-          <div
-            data-aos="fade-up"
-            className="bg-[#FE7624] min-h-[50vh] relative p-5 flex flex-col-reverse md:flex-row items-center gap-4 rounded-xl overflow-hidden"
-          >
-            <div className="flex flex-col md:w-8/12 lg:w-9/12">
-              <div className="md:px-[2.5rem]">
-                <p className="md:text-lg text-white font-semibold">
-                  At Monk11 AI, we deliver excellence across AI automation, AI
-                  calling, web applications, mobile apps, and SaaS platforms—
-                  with solutions tailored to your industry and growth stage.
-                </p>
-              </div>
-            </div>
-            <img
-              src={whyWorkWithUs2}
-              alt=""
-              className="md:absolute right-0 bottom-0 max-h-[16rem] md:max-h-[24rem] object-contain"
-            />
-          </div>
-
-          <div
-            data-aos="fade-up"
-            className="bg-[#F45C7B] min-h-[50vh] relative p-5 flex flex-col-reverse md:flex-row items-center gap-4 rounded-xl overflow-hidden"
-          >
-            <div className="flex flex-col md:w-8/12 lg:w-9/12">
-              <div className="md:px-[2.5rem]">
-                <p className="md:text-lg text-white font-semibold">
-                  Transform how your business operates with robust digital
-                  products and intelligent automation—from high-performing
-                  websites and apps to workflows that run around the clock.
-                </p>
-              </div>
-            </div>
-            <img
-              src={whyWorkWithUs3}
-              alt=""
-              className="md:absolute right-0 bottom-0 max-h-[16rem] md:max-h-[22rem] object-contain"
-            />
-          </div>
-
-          <div
-            data-aos="fade-up"
-            className="bg-[#507FD7] min-h-[50vh] relative p-5 flex flex-col-reverse md:flex-row items-center gap-4 rounded-xl overflow-hidden"
-          >
-            <div className="flex flex-col md:w-8/12 lg:w-9/12">
-              <div className="md:px-[2.5rem]">
-                <p className="md:text-lg text-white font-semibold">
-                  We partner with organizations across Real Estate, Healthcare,
-                  Manufacturing, Hospitality, Renewable Energy, FinTech, and
-                  broader enterprise sectors—delivering precision where it
-                  matters most.
-                </p>
-              </div>
-            </div>
-            <img
-              src={whyWorkWithUs4}
-              alt=""
-              className="md:absolute right-0 bottom-0 max-h-[16rem] md:max-h-[22rem] object-contain"
-            />
-          </div>
-        </div>
-      </section>
-      <BlogsSection />
-      <ContactForm />
+      {title.slice(0, idx)}
+      <span className="text-lavender">{accent}</span>
+      {title.slice(idx + accent.length)}
     </>
   );
 };
+
+const Home = () => {
+  useEffect(() => {
+    const prev = document.documentElement.style.backgroundColor;
+    document.documentElement.style.backgroundColor = "#0A0612";
+    document.body.style.backgroundColor = "#0A0612";
+    return () => {
+      document.documentElement.style.backgroundColor = prev;
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
+
+  return (
+    <div className="bg-ink text-white overflow-x-hidden">
+      <Hero />
+      <WorkPreview />
+      <TrustBar />
+      <Services />
+      <WhyMonk11 />
+      <MidCta />
+      <Process />
+      <Outcomes />
+      <Compare />
+      <Insights />
+      <Faq />
+      <FinalCta />
+    </div>
+  );
+};
+
+const Hero = () => (
+  <section className="relative pt-[7.25rem] pb-6 overflow-hidden">
+    <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
+    <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
+    <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
+    <div className="pointer-events-none absolute right-[8%] top-[22%] w-[22rem] h-[22rem] rounded-full border border-white/10" />
+
+    <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[52vh]">
+      <div className="space-y-6">
+        <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/80">
+          <span className="text-[#FFC200] tracking-tight">★★★★★</span>
+          <span>{homeHero.kicker}</span>
+        </div>
+        <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight max-w-3xl">
+          {homeHero.headlineBefore}{" "}
+          <span className="text-lavender">{homeHero.headlineAccent}</span>
+        </h1>
+      </div>
+      <div className="space-y-5 lg:pt-10">
+        <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-md">
+          {homeHero.subhead}
+        </p>
+        <AgencyButton to="/contact">{homeHero.primaryCta}</AgencyButton>
+        <p className="text-sm text-white/55 max-w-sm">
+          {homeHero.differentiator}
+        </p>
+        <a
+          href="#process"
+          className="inline-block text-sm text-white/45 hover:text-white transition-colors"
+        >
+          {homeHero.secondaryCta} →
+        </a>
+      </div>
+    </div>
+  </section>
+);
+
+const WorkPreview = () => (
+  <section id="work" className="wrapper pb-8 scroll-mt-28">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {verticalCards.map((card, i) => (
+        <Link
+          key={card.title}
+          to={card.href}
+          className="group relative min-h-[18rem] lg:min-h-[22rem] rounded-2xl overflow-hidden"
+        >
+          <img
+            src={workImages[i]}
+            alt={card.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-black/10" />
+          <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center">
+            <ArrowUpRight className="w-4 h-4" />
+          </span>
+          <div className="absolute bottom-0 left-0 right-0 p-5 space-y-2">
+            <span className="inline-block text-[0.65rem] tracking-[0.14em] uppercase bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
+              {card.tag}
+            </span>
+            <h3 className="text-xl font-semibold">
+              {accentTitle(card.title, card.accent)}
+            </h3>
+            <p className="text-sm text-white/70 leading-relaxed">{card.desc}</p>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </section>
+);
+
+const TrustBar = () => (
+  <section className="section-band py-12">
+    <div className="wrapper space-y-8">
+      <p className="section-kicker text-center">Built on trusted infrastructure</p>
+      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-white/45 text-sm tracking-[0.18em] uppercase">
+        {trustStack.map((name) => (
+          <span key={name}>{name}</span>
+        ))}
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {trustPills.map((item) => (
+          <div
+            key={item}
+            className="flex items-start gap-3 rounded-full border border-white/10 bg-white/[0.03] px-4 py-3"
+          >
+            <span className="mt-0.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0">
+              <Check className="w-3 h-3" strokeWidth={3} />
+            </span>
+            <p className="text-sm text-white/80 leading-snug">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Services = () => (
+  <section id="services" className="py-[5rem] scroll-mt-24">
+    <div className="wrapper">
+      <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-12 items-end">
+        <div className="space-y-3">
+          <p className="section-kicker">What we do</p>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            Automation, products, and platforms —{" "}
+            <span className="text-lavender">end to end</span>
+          </h2>
+        </div>
+        <p className="text-white/65 text-lg max-w-xl lg:justify-self-end">
+          One partner for the full lifecycle — we design, build, and deploy AI
+          workflows, multi-user dashboards, functional web apps, mobile apps, and SaaS so your team
+          gets software that actually runs in production.
+        </p>
+      </div>
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {homeServices.map((item, i) => {
+          const Icon = serviceIcons[i];
+          return (
+            <Link
+              key={item.title}
+              to={item.href}
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-7 hover:bg-white/[0.06] hover:border-primary/40 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+                  <Icon className="w-5 h-5" />
+                </span>
+                <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+                  <ArrowUpRight className="w-4 h-4" />
+                </span>
+              </div>
+              <h3 className="text-2xl font-semibold mt-6">
+                {accentTitle(item.title, item.accent)}
+              </h3>
+              <p className="text-white/65 mt-3 leading-relaxed">{item.desc}</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                {item.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="text-xs text-lavender/90 border border-white/10 rounded-full px-3 py-1"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
+
+const WhyMonk11 = () => (
+  <section className="section-band py-[4rem]">
+    <div className="wrapper">
+      <div className="max-w-3xl space-y-3 mb-12">
+        <p className="section-kicker">The difference</p>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          Why teams choose <span className="text-lavender">Monk11</span>
+        </h2>
+        <p className="text-white/65 text-lg">
+          Generic tools don't survive contact with a real operation. We build
+          for the vertical, ship to production, and keep a human in the loop
+          where it still matters.
+        </p>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {differentiators.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3"
+          >
+            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+              {item.kicker}
+            </p>
+            <h3 className="text-xl font-semibold">
+              {accentTitle(item.title, item.accent)}
+            </h3>
+            <p className="text-white/60 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const MidCta = () => (
+  <section className="wrapper py-[3rem]">
+    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16">
+      <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] w-64 h-64 rounded-full bg-[#FFC200]/20 blur-3xl" />
+      <div className="relative z-10 grid md:grid-cols-[1.4fr_auto] gap-8 items-center">
+        <div className="space-y-3">
+          <p className="section-kicker text-white/80">Ready when you are</p>
+          <h2 className="text-3xl md:text-4xl font-bold max-w-2xl">
+            Automate the busywork.{" "}
+            <span className="text-lavender">Ship the product around it.</span>
+          </h2>
+          <p className="text-white/85 max-w-xl text-lg">
+            Workflows, dashboards, web apps, native apps, and SaaS — designed,
+            built, and deployed by one team so nothing stalls between a demo
+            and production.
+          </p>
+        </div>
+        <AgencyButton to="/contact">Start a Project</AgencyButton>
+      </div>
+    </div>
+  </section>
+);
+
+const Process = () => (
+  <section id="process" className="py-[5rem] scroll-mt-24">
+    <div className="wrapper">
+      <div className="max-w-3xl space-y-3 mb-12">
+        <p className="section-kicker">Process</p>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            How we design,{" "}
+            <span className="text-lavender">build, and deploy</span>
+          </h2>
+        <p className="text-white/65 text-lg">
+          A clear process, honest timelines, and no surprises from kick-off to
+          launch.
+        </p>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {homeProcess.map((item) => (
+          <div
+            key={item.step}
+            className="rounded-2xl border border-white/10 p-6 space-y-4"
+          >
+            <p className="text-3xl font-bold text-lavender">{item.step}</p>
+            <h3 className="text-xl font-semibold">
+              {accentTitle(item.title, item.accent)}
+            </h3>
+            <p className="text-white/60 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Outcomes = () => (
+  <section className="section-band py-[4rem]">
+    <div className="wrapper">
+      <div className="max-w-3xl space-y-3 mb-12">
+        <p className="section-kicker">How we create results</p>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          Built around the jobs{" "}
+          <span className="text-lavender">that actually move revenue</span>
+        </h2>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {outcomeStrip.map((item) => (
+          <div key={item.vertical} className="space-y-3 p-1">
+            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+              {item.vertical}
+            </p>
+            <h3 className="text-xl font-semibold">
+              {accentTitle(item.title, item.accent)}
+            </h3>
+            <p className="text-white/60 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Compare = () => (
+  <section className="py-[5rem]">
+    <div className="wrapper">
+      <div className="max-w-3xl space-y-3 mb-10">
+        <p className="section-kicker">Compare</p>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          Monk11 vs <span className="text-lavender">other offerings</span>
+        </h2>
+      </div>
+      <div className="overflow-x-auto rounded-2xl border border-white/10">
+        <table className="w-full min-w-[640px] text-left">
+          <thead>
+            <tr className="border-b border-white/10 bg-white/[0.04]">
+              <th className="p-4 font-medium text-white/50 text-sm"> </th>
+              <th className="p-4 font-semibold text-lavender">Monk11</th>
+              <th className="p-4 font-medium text-white/50">Typical vendors</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map((row) => (
+              <tr key={row.label} className="border-b border-white/10 last:border-0">
+                <td className="p-4 text-sm text-white/50 align-top w-[18%]">
+                  {row.label}
+                </td>
+                <td className="p-4 text-white/90 align-top">{row.monk11}</td>
+                <td className="p-4 text-white/50 align-top">{row.typical}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+);
+
+const Insights = () => (
+  <section className="section-band py-[4rem]">
+    <div className="wrapper">
+      <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div className="space-y-3 max-w-2xl">
+          <p className="section-kicker">From the blog</p>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            Insights <span className="text-lavender">worth reading</span>
+          </h2>
+        </div>
+        <Link
+          to="/blogs"
+          className="text-sm text-white/60 hover:text-white transition-colors"
+        >
+          See all articles →
+        </Link>
+      </div>
+      <div className="grid md:grid-cols-3 gap-4">
+        {blogs.map((item) => (
+          <Link
+            key={item.id}
+            to={`/blogs/${item.id}`}
+            className="group rounded-2xl border border-white/10 overflow-hidden hover:border-primary/40 transition-colors"
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full aspect-[16/10] object-cover group-hover:brightness-110 transition"
+            />
+            <div className="p-5 space-y-2">
+              <p className="text-xs tracking-[0.14em] uppercase text-lavender">
+                {item.category}
+              </p>
+              <h3 className="text-lg font-semibold leading-snug">
+                {accentTitle(item.title, item.accent)}
+              </h3>
+              <p className="text-sm text-white/55 line-clamp-3">{item.excerpt}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Faq = () => {
+  const [open, setOpen] = useState(0);
+  return (
+    <section className="py-[5rem]">
+      <div className="wrapper grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+        <div className="space-y-5 lg:sticky lg:top-28">
+          <p className="section-kicker">FAQ</p>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            Common questions about{" "}
+            <span className="text-lavender">working with us</span>
+          </h2>
+          <p className="text-white/60">
+            Can't find what you're looking for? Book a scoping call and get
+            straight answers.
+          </p>
+          <AgencyButton to="/contact">Book a Call</AgencyButton>
+        </div>
+        <div className="divide-y divide-white/10 border-y border-white/10">
+          {homeFaqs.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={item.q}>
+                <button
+                  type="button"
+                  className="w-full flex items-start justify-between gap-4 py-5 text-left"
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="text-lg font-medium">
+                    {accentTitle(item.q, item.accent)}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 shrink-0 mt-1 transition-transform ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <p className="pb-5 text-white/60 leading-relaxed max-w-2xl">
+                    {item.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FinalCta = () => (
+  <section className="pb-[5rem]">
+    <div className="wrapper">
+      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
+        <p className="section-kicker">Let's work together</p>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
+          Let's map what to automate —{" "}
+          <span className="text-lavender">and what to build</span>
+        </h2>
+        <p className="text-white/65 text-lg max-w-2xl">
+          Book a short scoping call. We'll show you which workflows should run
+          on their own, and where a multi-user dashboard, web app, native app, or SaaS platform
+          is the better investment.
+        </p>
+      </div>
+      <div className="home-contact">
+        <ContactForm
+          headline={
+            <>
+              Tell us what you need{" "}
+              <span className="text-lavender">to ship.</span>
+            </>
+          }
+          id="contact"
+          variant="dark"
+        />
+      </div>
+    </div>
+  </section>
+);
 
 export default Home;

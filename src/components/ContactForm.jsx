@@ -7,7 +7,8 @@ import { SpinnerContext } from "./SpinnerContext";
 import { companyDetails } from "../data/constant";
 import { sendContactEmail } from "../utils/sendContactEmail";
 
-const ContactForm = ({ headline, id }) => {
+const ContactForm = ({ headline, id, variant = "default" }) => {
+  const isDark = variant === "dark";
   const { setSpinner } = useContext(SpinnerContext);
   const navigate = useNavigate();
   const {
@@ -52,16 +53,26 @@ const ContactForm = ({ headline, id }) => {
       setSpinner(false);
     }
   };
+  const fieldClass = isDark
+    ? "placeholder:text-white/40 outline-none p-2 bg-transparent border-b border-white/20 w-full text-white"
+    : "placeholder:text-white outline-none p-2 bg-transparent border-b w-full";
+
   return (
     <div
       id={id}
-      className="wrapper rounded-2xl grid md:grid-cols-2 gap-3 py-[4rem]"
+      className={`rounded-2xl grid md:grid-cols-2 gap-3 scroll-mt-28 ${
+        isDark ? "py-0" : "wrapper py-[4rem]"
+      }`}
     >
       <div
         data-aos="fade-right"
-        className="bg-purpleColor text-white p-8 sm:p-10 rounded-2xl"
+        className={`${
+          isDark
+            ? "bg-white/[0.04] border border-white/10"
+            : "bg-purpleColor"
+        } text-white p-8 sm:p-10 rounded-2xl`}
       >
-        <h3 className="section-heading !text-white">
+        <h3 className={`section-heading ${isDark ? "text-white" : "!text-white"}`}>
           {headline ? headline : "Let’s build something great together."}
         </h3>
         <form
@@ -72,7 +83,7 @@ const ContactForm = ({ headline, id }) => {
             <div className="">
               <input
                 type="text"
-                className="placeholder:text-white outline-none p-2 bg-transparent border-b w-full"
+                className={fieldClass}
                 placeholder="Full Name"
                 {...register("name", {
                   required: "Full name is required",
@@ -90,7 +101,7 @@ const ContactForm = ({ headline, id }) => {
             <div className="">
               <input
                 type="text"
-                className="placeholder:text-white outline-none p-2 bg-transparent border-b w-full"
+                className={fieldClass}
                 placeholder="Company Name (Optional)"
                 {...register("company")}
               />
@@ -99,7 +110,7 @@ const ContactForm = ({ headline, id }) => {
           <div className="">
             <input
               type="email"
-              className="placeholder:text-white outline-none p-2 bg-transparent border-b w-full"
+              className={fieldClass}
               placeholder="Email Address"
               {...register("email", {
                 required: "Email is required",
@@ -114,7 +125,7 @@ const ContactForm = ({ headline, id }) => {
           <div className="">
             <input
               type="tel"
-              className="placeholder:text-white outline-none p-2 bg-transparent border-b w-full"
+              className={fieldClass}
               placeholder="Phone Number"
               {...register("phone", {
                 required: "Phone number is required",
@@ -129,7 +140,7 @@ const ContactForm = ({ headline, id }) => {
           <div className="">
             <textarea
               type="tel"
-              className="placeholder:text-white outline-none p-2 bg-transparent border-b w-full"
+              className={fieldClass}
               placeholder="Message"
               {...register("message", {
                 required: "Message is required",
@@ -147,9 +158,24 @@ const ContactForm = ({ headline, id }) => {
           <div className="grid lg:grid-cols-2 gap-5">
             <button
               disabled={isSubmitting}
-              className="btn rounded bg-white text-black w-full hover:bg-primary hover:text-white hover:shadow-primary/20"
+              className={
+                isDark
+                  ? "agency-btn w-fit"
+                  : "btn rounded bg-white text-black w-full hover:bg-primary hover:text-white hover:shadow-primary/20"
+              }
             >
-              Send Message
+              {isDark ? (
+                <>
+                  Send Message
+                  <span className="agency-btn-icon">
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.25">
+                      <path d="M7 17L17 7M7 7h10v10" />
+                    </svg>
+                  </span>
+                </>
+              ) : (
+                "Send Message"
+              )}
             </button>
             {/* <small className="">
               By sending this form, I confirm that I have read and accepted the
