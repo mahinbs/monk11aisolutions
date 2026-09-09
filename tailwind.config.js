@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#210181", // Logo indigo
+        primary: "#E9023C", // Logo MAGENTA / MONK
         secondary: "#EEF0FF", // Cool indigo wash (MidCta accents)
         purpleColor: "#3A1AA8", // Lighter indigo (MidCta gradients)
         ink: "#0A0612",

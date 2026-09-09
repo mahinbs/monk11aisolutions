@@ -41,10 +41,10 @@ import workEnergy from "../assets/images/hero/energy.webp";
 
 const workImages = [workNeural, workVoice, workDash, workApp, workEnergy];
 const heroTiles = [
-  { src: workNeural, label: "Workflows" },
-  { src: workVoice, label: "Voice AI" },
-  { src: workDash, label: "Dashboards" },
-  { src: workApp, label: "Apps" },
+  { src: workNeural, label: "Workflows", tint: "photo-to-indigo" },
+  { src: workVoice, label: "Voice AI", tint: "photo-to-red" },
+  { src: workDash, label: "Dashboards", tint: "photo-to-red" },
+  { src: workApp, label: "Apps", tint: "photo-to-indigo" },
 ];
 
 const serviceIcons = [
@@ -55,13 +55,13 @@ const serviceIcons = [
   Boxes,
 ];
 
-const accentTitle = (title, accent) => {
+const accentTitle = (title, accent, colorClass = "text-primary") => {
   if (!accent || !title.includes(accent)) return title;
   const idx = title.lastIndexOf(accent);
   return (
     <>
       {title.slice(0, idx)}
-      <span className="text-primary">{accent}</span>
+      <span className={colorClass}>{accent}</span>
       {title.slice(idx + accent.length)}
     </>
   );
@@ -147,7 +147,7 @@ const Hero = () => (
             <img
               src={tile.src}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              className={`${tile.tint} absolute inset-0 w-full h-full object-cover`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
             <span className="absolute bottom-3 left-3 text-[0.65rem] tracking-[0.16em] uppercase text-white">
@@ -184,7 +184,7 @@ const WorkPreview = () => (
             className="photo-to-indigo absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-black/10" />
-          <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center text-white">
+          <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-brandRed flex items-center justify-center text-white">
             <ArrowUpRight className="w-4 h-4" />
           </span>
           <div className="absolute bottom-0 left-0 right-0 p-5 space-y-2 text-white">
@@ -279,7 +279,7 @@ const Services = () => (
                 </span>
               </div>
               <h3 className="text-2xl font-semibold mt-6">
-                {accentTitle(item.title, item.accent)}
+                {accentTitle(item.title, item.accent, "text-brandIndigo")}
               </h3>
               <p className="text-ink/60 mt-3 leading-relaxed">{item.desc}</p>
               <div className="flex flex-wrap gap-2 mt-5">
@@ -334,7 +334,7 @@ const WhyMonk11 = () => (
               {item.kicker}
             </p>
             <h3 className="text-xl font-semibold">
-              {accentTitle(item.title, item.accent)}
+              {accentTitle(item.title, item.accent, "text-brandIndigo")}
             </h3>
             <p className="text-ink/60 leading-relaxed">{item.desc}</p>
           </div>
@@ -387,7 +387,7 @@ const Process = () => (
             data-aos-delay={i * 80}
             className="rounded-2xl border border-black/10 bg-white p-6 space-y-4"
           >
-            <p className="text-3xl font-bold text-primary">{item.step}</p>
+            <p className="text-3xl font-bold text-brandIndigo">{item.step}</p>
             <h3 className="text-xl font-semibold">
               {accentTitle(item.title, item.accent)}
             </h3>
@@ -421,7 +421,7 @@ const Outcomes = () => (
               {item.vertical}
             </p>
             <h3 className="text-xl font-semibold">
-              {accentTitle(item.title, item.accent)}
+              {accentTitle(item.title, item.accent, "text-brandIndigo")}
             </h3>
             <p className="text-ink/60 leading-relaxed">{item.desc}</p>
           </div>
@@ -552,7 +552,7 @@ const Faq = () => {
                   aria-expanded={isOpen}
                 >
                   <span className="text-lg font-medium">
-                    {accentTitle(item.q, item.accent)}
+                    {accentTitle(item.q, item.accent, "text-brandIndigo")}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 shrink-0 mt-1 transition-transform ${

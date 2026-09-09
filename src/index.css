@@ -64,10 +64,10 @@ body {
     @apply inline-flex items-center gap-3 !bg-white !text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm tracking-wide hover:!bg-secondary transition-colors duration-300 no-underline;
   }
   .agency-btn-fill {
-    @apply inline-flex items-center gap-3 !bg-primary !text-white rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm tracking-wide hover:!bg-purpleColor transition-colors duration-300 no-underline;
+    @apply inline-flex items-center gap-3 !bg-brandIndigo !text-white rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm tracking-wide hover:!bg-purpleColor transition-colors duration-300 no-underline;
   }
   .agency-btn-fill .agency-btn-icon {
-    @apply bg-white text-primary;
+    @apply bg-white text-brandIndigo;
   }
   .agency-btn-icon {
     @apply w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shrink-0;
@@ -223,7 +223,7 @@ body {
 }
 
 .mid-cta-band .agency-btn-icon {
-  background-color: #210181;
+  background-color: #e9023c;
   color: #ffffff;
 }
 
@@ -283,6 +283,10 @@ body {
 
 .photo-to-indigo {
   filter: hue-rotate(-42deg) saturate(1.2);
+}
+
+.photo-to-red {
+  filter: hue-rotate(82deg) saturate(1.45);
 }
 
 .logo-marquee-item svg {
