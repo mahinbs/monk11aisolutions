@@ -18,7 +18,13 @@ export const AgencyButton = ({
   className = "",
   variant = "default",
 }) => {
-  const classes = `${variant === "fill" ? "agency-btn-fill" : "agency-btn"} ${className}`;
+  const variantClass =
+    variant === "fill"
+      ? "agency-btn-fill"
+      : variant === "glass"
+        ? "agency-btn-glass"
+        : "agency-btn";
+  const classes = `${variantClass} ${className}`;
 
   if (href) {
     return (

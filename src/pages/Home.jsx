@@ -99,10 +99,10 @@ const Home = () => {
 
 const Hero = () => (
   <section className="relative pt-[8.5rem] pb-10 overflow-hidden">
-    <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
-    <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
-    <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
-    <div className="pointer-events-none absolute right-[8%] top-[22%] w-[22rem] h-[22rem] rounded-full border border-white/10" />
+    <div className="pointer-events-none absolute left-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
+    <div className="pointer-events-none absolute right-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
+    <div className="pointer-events-none absolute left-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
+    <div className="pointer-events-none absolute left-[8%] top-[22%] w-[22rem] h-[22rem] rounded-full border border-white/10" />
 
     <div className="wrapper relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-16 items-start lg:items-center min-h-[52vh]">
       <div className="space-y-6" data-aos="fade-up">
@@ -173,7 +173,7 @@ const WorkPreview = () => (
           to={card.href}
           data-aos="fade-up"
           data-aos-delay={Math.min(i * 80, 240)}
-          className="group relative min-h-[18rem] lg:min-h-[22rem] rounded-2xl overflow-hidden"
+          className="group relative min-h-[18rem] lg:min-h-[22rem] rounded-2xl overflow-hidden border border-white/20"
         >
           <img
             src={workImages[i]}

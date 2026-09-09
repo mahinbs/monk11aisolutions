@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import { CodeXml, NotebookPen, Rocket } from "lucide-react";
 import logo from "../assets/logo/monk11-logo.jpeg";
-import logoDark from "../assets/logo/monk11-mark-dark.png";
-import logoOnLight from "../assets/logo/monk11-mark-light.png";
+import logoDark from "../assets/logo/monk11-logo-as-is.png";
+import logoOnLight from "../assets/logo/monk11-logo-as-is.png";
 
 export { logo, logoDark, logoOnLight };
 
