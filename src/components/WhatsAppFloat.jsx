@@ -8,7 +8,7 @@ const WhatsAppFloat = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Chat with ${companyDetails.shortName} on WhatsApp`}
-      className="fixed bottom-5 right-5 z-[60] group flex items-center gap-3"
+      className="fixed bottom-[5.5rem] right-4 z-[60] group flex items-center gap-3 lg:bottom-5 lg:right-5"
     >
       <span className="hidden sm:block opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 bg-white text-gray-800 text-sm font-medium px-3 py-2 rounded-lg shadow-lg border border-gray-100">
         Chat with us
