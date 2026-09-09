@@ -35,8 +35,9 @@ import workNeural from "../assets/images/hero/neural.webp";
 import workVoice from "../assets/images/hero/voice.webp";
 import workDash from "../assets/images/hero/dashboard.webp";
 import workApp from "../assets/images/hero/app.webp";
+import workEnergy from "../assets/images/hero/energy.webp";
 
-const workImages = [workNeural, workVoice, workDash, workApp];
+const workImages = [workNeural, workVoice, workDash, workApp, workEnergy];
 const heroTiles = [
   { src: workNeural, label: "Workflows" },
   { src: workVoice, label: "Voice AI" },
@@ -158,7 +159,14 @@ const Hero = () => (
 
 const WorkPreview = () => (
   <section id="work" className="wrapper py-[4rem] scroll-mt-28">
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="max-w-3xl space-y-3 mb-10" data-aos="fade-up">
+      <p className="section-kicker">Industries</p>
+      <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+        Building Intelligence for the{" "}
+        <span className="text-lavender">Industries of Tomorrow</span>
+      </h2>
+    </div>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {verticalCards.map((card, i) => (
         <Link
           key={card.title}
@@ -302,6 +310,14 @@ const WhyMonk11 = () => (
           vertical, ship to production, and keep a human in the loop where it
           still matters.
         </p>
+        <h3 className="text-xl md:text-2xl font-semibold pt-2">
+          Built for the way your business actually works
+        </h3>
+        <p className="text-white/65 text-lg">
+          Most businesses don't need another generic AI tool. They need
+          technology that fits their workflows, teams and goals. That's what we
+          build.
+        </p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {differentiators.map((item, i) => (
@@ -340,9 +356,7 @@ const MidCta = () => (
             <span className="text-lavender">Ship the product around it.</span>
           </h2>
           <p className="text-white/85 max-w-xl text-lg">
-            Workflows, dashboards, web apps, native apps and SaaS. Designed,
-            built and deployed by one team so nothing stalls between a demo and
-            production.
+            Automate with intelligence. Scale with confidence.
           </p>
         </div>
         <AgencyButton to="/contact">
@@ -397,7 +411,7 @@ const Outcomes = () => (
           <span className="text-lavender">that actually move revenue</span>
         </h2>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {outcomeStrip.map((item, i) => (
           <div
             key={item.vertical}
@@ -582,12 +596,14 @@ const FinalCta = () => (
       </div>
       <div className="home-contact" data-aos="fade-up" data-aos-delay="80">
         <ContactForm
+          kicker="Let's build what's next"
           headline={
             <>
-              Tell us what you need{" "}
-              <span className="text-lavender">to ship.</span>
+              Tell us what you want{" "}
+              <span className="text-lavender">to automate</span>
             </>
           }
+          intro="Share what's slowing your team down or where you want to scale. We'll help you identify the right approach whether that's AI automation, a dashboard, a web or mobile app, or a complete SaaS platform."
           id="contact"
           variant="dark"
         />

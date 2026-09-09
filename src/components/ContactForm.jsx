@@ -7,7 +7,7 @@ import { SpinnerContext } from "./SpinnerContext";
 import { companyDetails } from "../data/constant";
 import { sendContactEmail } from "../utils/sendContactEmail";
 
-const ContactForm = ({ headline, id, variant = "default" }) => {
+const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
   const isDark = variant === "dark";
   const { setSpinner } = useContext(SpinnerContext);
   const navigate = useNavigate();
@@ -70,9 +70,13 @@ const ContactForm = ({ headline, id, variant = "default" }) => {
             : "bg-purpleColor"
         } text-white p-8 sm:p-10 rounded-2xl`}
       >
+        {kicker && <p className="section-kicker mb-3">{kicker}</p>}
         <h3 className={`section-heading ${isDark ? "text-white" : "!text-white"}`}>
           {headline ? headline : "Tell us what you need to ship."}
         </h3>
+        {intro && (
+          <p className="text-white/70 mt-4 leading-relaxed">{intro}</p>
+        )}
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
           className="grid grid-cols-1 gap-4 mt-7"

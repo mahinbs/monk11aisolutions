@@ -1,8 +1,8 @@
 export const pageSeo = {
   home: {
-    title: "AI Automation for Real Estate, Healthcare and Fintech | Monk11",
+    title: "AI That Works While Your Team Focuses on Growth | Monk11",
     description:
-      "Monk11 builds AI automation, calling, dashboards and apps for teams that need software in production. Book a short scoping call.",
+      "Monk11 builds AI automation, calling, dashboards, web apps, mobile apps and SaaS for real estate, healthcare, manufacturing, restaurants, renewable energy and fintech teams. Book a short scoping call.",
     path: "/",
   },
   services: {

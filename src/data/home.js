@@ -1,9 +1,9 @@
 export const homeHero = {
   kicker: "Automation · Dashboards · Web Apps · Apps · SaaS",
-  headlineBefore: "AI automation",
-  headlineAccent: "that actually ships.",
+  headlineBefore: "AI That Works While Your Team",
+  headlineAccent: "Focuses on Growth.",
   subhead:
-    "We build AI workflows, dashboards and apps for real estate, healthcare, manufacturing and fintech teams.",
+    "AI automation, calling, and custom software built for real estate, healthcare, manufacturing, restaurants, renewable energy, and fintech teams. For measurable ROI.",
   subheadWhy:
     "Your staff stop copying data between tools. The work runs in production.",
   differentiator:
@@ -161,6 +161,13 @@ export const verticalCards = [
     tag: "SaaS + Automation",
     href: "/services/SAAS Solutions",
   },
+  {
+    title: "Renewable Energy",
+    accent: "Energy",
+    desc: "Site monitoring, field ops and compliance reporting so plants stay visible without a spreadsheet chase.",
+    tag: "Dashboards + Apps",
+    href: "/services/Web Applications",
+  },
 ];
 
 export const outcomeStrip = [
@@ -187,6 +194,12 @@ export const outcomeStrip = [
     title: "Compliance-ready products",
     accent: "products",
     desc: "SaaS and reporting workflows with access control and an audit trail, deployed on infrastructure you can run.",
+  },
+  {
+    vertical: "Renewable Energy",
+    title: "Live plant visibility",
+    accent: "visibility",
+    desc: "Asset alerts, field coordination and reporting dashboards so energy sites stay current without a weekly chase.",
   },
 ];
 
