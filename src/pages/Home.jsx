@@ -25,6 +25,8 @@ import {
   homeHero,
   homeProcess,
   homeServices,
+  midPageCta,
+  servicesCta,
   outcomeStrip,
   processBadges,
   trustIntro,
@@ -84,9 +86,10 @@ const Home = () => {
       <Hero />
       <TrustBar />
       <Services />
+      <MidCta {...servicesCta} />
       <WorkPreview />
       <WhyMonk11 />
-      <MidCta />
+      <MidCta {...midPageCta} />
       <Process />
       <Outcomes />
       <Compare />
@@ -237,7 +240,7 @@ const TrustBar = () => (
 );
 
 const Services = () => (
-  <section id="services" className="py-[5rem] scroll-mt-24">
+  <section id="services" className="pt-[5rem] pb-[2rem] scroll-mt-24">
     <div className="wrapper">
       <div
         className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-12 items-end"
@@ -271,7 +274,7 @@ const Services = () => (
                 <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
                   <Icon className="w-5 h-5" />
                 </span>
-                <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+                <span className="w-9 h-9 rounded-full border border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                   <ArrowUpRight className="w-4 h-4" />
                 </span>
               </div>
@@ -341,27 +344,22 @@ const WhyMonk11 = () => (
   </section>
 );
 
-const MidCta = () => (
+const MidCta = ({ kicker, title, accent, body }) => (
   <section className="wrapper py-[3rem]">
     <div
-      className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16"
+      className="relative overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-r from-primary to-purpleColor px-8 py-12 md:px-14 md:py-16"
       data-aos="fade-up"
     >
       <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] w-64 h-64 rounded-full bg-[#FFC200]/20 blur-3xl" />
       <div className="relative z-10 grid md:grid-cols-[1.4fr_auto] gap-8 items-center">
         <div className="space-y-3">
-          <p className="section-kicker text-white/80">Ready when you are</p>
+          <p className="section-kicker text-white/80">{kicker}</p>
           <h2 className="text-3xl md:text-4xl font-bold max-w-2xl">
-            Automate the busywork.{" "}
-            <span className="text-lavender">Ship the product around it.</span>
+            {title} <span className="text-lavender">{accent}</span>
           </h2>
-          <p className="text-white/85 max-w-xl text-lg">
-            Automate with intelligence. Scale with confidence.
-          </p>
+          <p className="text-white/85 max-w-xl text-lg">{body}</p>
         </div>
-        <AgencyButton to="/contact">
-          Book a scoping call
-        </AgencyButton>
+        <AgencyButton to="/contact">Book a scoping call</AgencyButton>
       </div>
     </div>
   </section>

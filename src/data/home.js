@@ -66,6 +66,20 @@ export const homeServices = [
   },
 ];
 
+export const servicesCta = {
+  kicker: "Ready when you are",
+  title: "Automate the busywork.",
+  accent: "Ship the product around it.",
+  body: "Automate with intelligence. Scale with confidence.",
+};
+
+export const midPageCta = {
+  kicker: "One team",
+  title: "From first workflow to",
+  accent: "cloud and app stores.",
+  body: "Automation, dashboards, apps and SaaS. No vendor handoff.",
+};
+
 export const differentiators = [
   {
     kicker: "Industry-first",

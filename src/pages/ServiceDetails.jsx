@@ -307,7 +307,7 @@ const Related = ({ related }) => (
               <h3 className="text-xl font-semibold">
                 {accentTitle(item.title, item.accent)}
               </h3>
-              <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors shrink-0">
+              <span className="w-9 h-9 rounded-full border border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                 <ArrowUpRight className="w-4 h-4" />
               </span>
             </div>
