@@ -18,7 +18,12 @@ html {
 
 :root {
   background-color: #ffffff;
-  color: #111111;
+  color: #0a0612;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0a0612;
 }
 
 @media (max-width: 1023px) {
@@ -80,10 +85,10 @@ html {
     @apply h-14 w-auto object-contain object-left;
   }
   .section-kicker {
-    @apply text-[0.7rem] tracking-[0.22em] uppercase text-lavender/80 font-medium;
+    @apply text-[0.7rem] tracking-[0.22em] uppercase text-ink/45 font-medium;
   }
   .section-band {
-    @apply bg-lavender/[0.09] border-y border-white/10;
+    @apply bg-secondary/70 border-y border-black/10;
   }
   .secondary-btn {
     @apply relative bg-white text-gray-800 border border-gray-200 rounded-full px-6 py-3 shadow-sm transition-all duration-300 hover:border-primary/50 hover:bg-gray-50 flex justify-center items-center gap-2;
@@ -129,18 +134,18 @@ html {
 .liquid-glass-nav {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.62) 48%,
-    rgba(236, 226, 255, 0.52) 100%
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.82) 48%,
+    rgba(238, 240, 255, 0.78) 100%
   );
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(33, 1, 129, 0.14);
   box-shadow:
-    0 12px 40px rgba(10, 6, 18, 0.32),
-    0 0 0 0.5px rgba(255, 255, 255, 0.28),
+    0 8px 28px rgba(10, 6, 18, 0.1),
+    0 0 0 0.5px rgba(255, 255, 255, 0.8),
     inset 0 1px 1px rgba(255, 255, 255, 0.92),
-    inset 0 -1px 1px rgba(220, 198, 245, 0.22);
+    inset 0 -1px 1px rgba(201, 206, 245, 0.22);
 }
 
 .agency-btn-glass > * {
@@ -190,31 +195,36 @@ html {
   overflow: hidden;
   background: linear-gradient(
     180deg,
-    rgba(168, 78, 224, 0.78) 0%,
-    rgba(120, 33, 166, 0.62) 100%
+    rgba(58, 26, 168, 0.78) 0%,
+    rgba(33, 1, 129, 0.62) 100%
   );
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.32);
   box-shadow:
-    0 12px 36px rgba(120, 33, 166, 0.38),
+    0 12px 36px rgba(33, 1, 129, 0.38),
     0 0 0 0.5px rgba(255, 255, 255, 0.18),
     inset 0 1px 1px rgba(255, 255, 255, 0.38),
-    inset 0 -1px 1px rgba(60, 10, 90, 0.25);
+    inset 0 -1px 1px rgba(16, 0, 70, 0.25);
 }
 
 .agency-btn-glass:hover {
   color: #ffffff;
   background: linear-gradient(
     180deg,
-    rgba(186, 98, 236, 0.84) 0%,
-    rgba(120, 33, 166, 0.7) 100%
+    rgba(72, 38, 188, 0.84) 0%,
+    rgba(33, 1, 129, 0.7) 100%
   );
 }
 
 .agency-btn-glass .agency-btn-icon {
   background: rgba(255, 255, 255, 0.96);
-  color: #7821a6;
+  color: #210181;
+}
+
+.mid-cta-band .agency-btn-icon {
+  background-color: #210181;
+  color: #ffffff;
 }
 
 .logo-marquee {
@@ -261,14 +271,18 @@ html {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(10, 6, 18, 0.55);
   white-space: nowrap;
   flex-shrink: 0;
   transition: color 0.2s ease;
 }
 
 .logo-marquee-item:hover {
-  color: #dcc6f5;
+  color: #210181;
+}
+
+.photo-to-indigo {
+  filter: hue-rotate(-42deg) saturate(1.2);
 }
 
 .logo-marquee-item svg {
@@ -281,10 +295,6 @@ html {
   font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-}
-
-.logo-marquee-item:hover {
-  color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {

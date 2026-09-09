@@ -9,8 +9,8 @@ import { pageSeo } from "../data/seo";
 const ContactUs = () => {
   useEffect(() => {
     const prev = document.documentElement.style.backgroundColor;
-    document.documentElement.style.backgroundColor = "#0A0612";
-    document.body.style.backgroundColor = "#0A0612";
+    document.documentElement.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundColor = "#ffffff";
     return () => {
       document.documentElement.style.backgroundColor = prev;
       document.body.style.backgroundColor = "";
@@ -18,19 +18,19 @@ const ContactUs = () => {
   }, []);
 
   return (
-    <div className="bg-ink text-white overflow-x-hidden">
+    <div className="bg-white text-ink overflow-x-hidden">
       <Seo {...pageSeo.contact} />
       <section className="relative pt-[8.5rem] pb-12 overflow-hidden">
-        <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/45 blur-[140px]" />
-        <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/25 blur-[120px]" />
-        <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-white/10" />
+        <div className="pointer-events-none absolute right-[-8%] top-[-10%] w-[42rem] h-[42rem] rounded-full bg-primary/15 blur-[140px]" />
+        <div className="pointer-events-none absolute left-[-10%] bottom-[-30%] w-[28rem] h-[28rem] rounded-full bg-purpleColor/10 blur-[120px]" />
+        <div className="pointer-events-none absolute right-[-4%] top-[8%] w-[34rem] h-[34rem] rounded-full border border-primary/10" />
         <div className="wrapper relative z-10 max-w-3xl min-h-[42vh] space-y-6">
           <p className="section-kicker">Contact</p>
           <h1 className="text-[2.35rem] sm:text-5xl lg:text-[4.35rem] font-bold leading-[1.05] tracking-tight">
             Book an AI automation{" "}
-            <span className="text-lavender">scoping call</span>
+            <span className="text-primary">scoping call</span>
           </h1>
-          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+          <p className="text-ink/60 text-base md:text-lg leading-relaxed max-w-xl">
             For ops and sales teams in real estate, healthcare, manufacturing
             and fintech. We'll show you which workflows should run on their own,
             and where a dashboard, web app or SaaS platform is the better
@@ -39,7 +39,7 @@ const ContactUs = () => {
           <AgencyButton href="#contact" variant="fill">
             Book a scoping call
           </AgencyButton>
-          <p className="text-sm text-white/55 max-w-sm">
+          <p className="text-sm text-ink/50 max-w-sm">
             Written plan after one working session. No hourly surprises.
           </p>
         </div>
@@ -49,12 +49,12 @@ const ContactUs = () => {
         <div className="wrapper grid sm:grid-cols-3 gap-4">
           <a
             href={`mailto:${companyDetails.email}`}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+            className="rounded-2xl border border-black/10 bg-white p-6 space-y-3 hover:border-primary/40 transition-colors"
           >
-            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+            <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
               <Mail className="w-5 h-5" />
             </span>
-            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+            <p className="text-xs tracking-[0.16em] uppercase text-brandRed">
               Email
             </p>
             <p className="text-lg font-semibold break-all">
@@ -63,12 +63,12 @@ const ContactUs = () => {
           </a>
           <a
             href={`tel:+${companyDetails.phone}`}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+            className="rounded-2xl border border-black/10 bg-white p-6 space-y-3 hover:border-primary/40 transition-colors"
           >
-            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center">
+            <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
               <PhoneCall className="w-5 h-5" />
             </span>
-            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+            <p className="text-xs tracking-[0.16em] uppercase text-brandRed">
               Phone
             </p>
             <p className="text-lg font-semibold">+{companyDetails.phone}</p>
@@ -77,12 +77,12 @@ const ContactUs = () => {
             href={getWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 space-y-3 hover:border-primary/40 transition-colors"
+            className="rounded-2xl border border-black/10 bg-white p-6 space-y-3 hover:border-primary/40 transition-colors"
           >
-            <span className="w-11 h-11 rounded-xl bg-primary/20 text-lavender flex items-center justify-center text-sm font-semibold">
+            <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-sm font-semibold">
               WA
             </span>
-            <p className="text-xs tracking-[0.16em] uppercase text-lavender">
+            <p className="text-xs tracking-[0.16em] uppercase text-brandRed">
               WhatsApp
             </p>
             <p className="text-lg font-semibold">Chat with the team</p>
@@ -92,13 +92,13 @@ const ContactUs = () => {
 
       <section className="pb-[5rem]">
         <div className="wrapper">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-12 space-y-4 mb-8">
+          <div className="rounded-3xl border border-black/10 bg-white p-8 md:p-12 space-y-4 mb-8">
             <p className="section-kicker">The form</p>
             <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
               Tell us the job.{" "}
-              <span className="text-lavender">We'll map the build.</span>
+              <span className="text-primary">We'll map the build.</span>
             </h2>
-            <p className="text-white/65 text-lg max-w-2xl">
+            <p className="text-ink/60 text-lg max-w-2xl">
               Name, email and what you need to ship: automation, a dashboard, an
               app or a platform. We'll come back with a scoping call, not a
               generic brochure.
@@ -108,7 +108,7 @@ const ContactUs = () => {
             headline={
               <>
                 Tell us what you need{" "}
-                <span className="text-lavender">to ship.</span>
+                <span className="text-primary">to ship.</span>
               </>
             }
             id="contact"

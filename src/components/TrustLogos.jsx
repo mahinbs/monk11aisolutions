@@ -42,7 +42,7 @@ const LogoRow = ({ hidden }) => (
 const TrustLogos = ({ marquee = true }) => {
   if (!marquee) {
     return (
-      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 text-white/70">
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 text-ink/55">
         {trustLogos.map((logo) => (
           <LogoItem key={logo.name} {...logo} />
         ))}

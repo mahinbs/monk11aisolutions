@@ -5,7 +5,7 @@ import Drawer from "react-modern-drawer";
 import { Divide as Hamburger } from "hamburger-react";
 import "react-modern-drawer/dist/index.css";
 import { X } from "lucide-react";
-import { getWhatsAppLink, logo } from "../../data/constant";
+import { getWhatsAppLink, logoOnLight } from "../../data/constant";
 
 const links = [
   {
@@ -45,11 +45,11 @@ const LandingHeader = () => {
         >
           <img
             loading="lazy"
-            src={logo}
+            src={logoOnLight}
             alt="Monk11 AI Solutions"
-            width="75"
-            height="75"
-            className="w-[7rem] md:w-[9rem] object-contain"
+            width="200"
+            height="56"
+            className="site-logo-island"
           />
         </Scroll>
         <div className="hidden lg:flex items-center gap-10">
@@ -109,11 +109,11 @@ const LandingHeader = () => {
       >
         <div className="mb-6 flex items-center justify-between px-[.7rem] py-[.4rem]">
           <img
-            src={logo}
+            src={logoOnLight}
             width="auto"
             height="auto"
             alt="Monk11 AI Solutions"
-            className="h-[2.5rem] object-contain"
+            className="site-logo-island h-12"
           />
           <button onClick={() => setIsOpen(false)}>
             <X size={28} />

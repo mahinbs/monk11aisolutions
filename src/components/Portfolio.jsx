@@ -37,7 +37,7 @@ const Portfolio = ({ page }) => {
                   className={`-z-10 h-full w-full object-cover group-hover:scale-110 transition-all duration-200 rounded-xl`}
                   alt={title}
                 />
-                <h3 className="text-xl z-20 absolute p-3 bottom-0 left-0 w-full bg-secondary text-center text-white">
+                <h3 className="text-xl z-20 absolute p-3 bottom-0 left-0 w-full bg-secondary text-center text-ink">
                   {title}
                 </h3>
               </div>

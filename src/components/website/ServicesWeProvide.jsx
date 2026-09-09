@@ -30,7 +30,7 @@ const ServicesWeProvide = () => {
       <Link
         data-aos="fade-up"
         to={`/services/${featured.title}`}
-        className="mt-10 group block overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#4a146d] text-white p-6 md:p-8 shadow-lg"
+        className="mt-10 group block overflow-hidden rounded-2xl bg-gradient-to-br from-brandIndigo to-purpleColor text-white p-6 md:p-8 shadow-lg"
       >
         <div className="grid md:grid-cols-[1.3fr_1fr] gap-6 items-center">
           <div className="space-y-4">

@@ -50,7 +50,7 @@ const LandingServices = ({ isWeb }) => {
               to={`/services/${item.title}`}
               className={`group relative p-1 rounded-2xl transition-all duration-500 hover:-translate-y-2 ${
                 isFeatured
-                  ? "md:col-span-2 bg-gradient-to-r from-primary to-[#4a146d]"
+                  ? "md:col-span-2 bg-gradient-to-r from-brandIndigo to-purpleColor"
                   : "bg-gradient-to-b from-white/40 to-white/10 hover:to-primary/20"
               }`}
             >

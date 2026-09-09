@@ -21,7 +21,7 @@ const LandingPage = ({ page }) => {
   const isWeb = page === "web";
 
   return (
-    <>
+    <div className="bg-white text-ink overflow-x-hidden">
       <section id="banner" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Futuristic Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-white/5 z-[1]"></div>
@@ -66,13 +66,13 @@ const LandingPage = ({ page }) => {
       </section>
 
       {/* Services Section with Glassmorphism */}
-      <section className="relative py-20 bg-gray-50 overflow-hidden">
+      <section className="relative py-20 bg-white overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute top-40 -left-20 w-72 h-72 bg-secondary/20 rounded-full blur-[80px] pointer-events-none"></div>
         <LandingServices isWeb={isWeb} />
       </section>
 
-      <section className="py-[4rem] bg-[#D8D8D8A3]">
+      <section className="py-[4rem] bg-secondary/50">
         <div className="wrapper space-y-3">
           <h2 data-aos="fade-up" className="section-heading text-center">
             Industries We Serve
@@ -291,7 +291,7 @@ const LandingPage = ({ page }) => {
       <Portfolio page={page} />
 
       <ContactForm id="contact" headline="Ready to Build the Future?" />
-    </>
+    </div>
   );
 };
 

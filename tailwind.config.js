@@ -4,11 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#7821A6", // Sample Purple
-        secondary: "#F4EBFF", // Sample Light Purple
-        purpleColor: "#6941C6", // Sample Dark Purple
+        primary: "#210181", // Logo indigo
+        secondary: "#EEF0FF", // Cool indigo wash (MidCta accents)
+        purpleColor: "#3A1AA8", // Lighter indigo (MidCta gradients)
         ink: "#0A0612",
-        lavender: "#DCC6F5",
+        lavender: "#C9CEF5",
+        brandIndigo: "#210181", // Logo indigo
+        brandRed: "#E9023C",
         "light-bg": "#FAFAFA",
         "glass-border": "rgba(255, 255, 255, 0.2)",
       },

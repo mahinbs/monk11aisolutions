@@ -22,7 +22,7 @@ const WorkProcess = () => {
           {workingProcess.map((item, i) => (
             <div
               key={item.title}
-              className="py-5 transition-all duration-700 space-y-3 border-t border-white/30"
+              className="py-5 transition-all duration-700 space-y-3 border-t border-black/10"
             >
               <button
                 onClick={() => setCurrentIdx(i)}
@@ -35,7 +35,7 @@ const WorkProcess = () => {
                 <ArrowDown
                   className={`${
                     currentIdx === i && "rotate-180"
-                  } text-white min-w-5 w-5 h-5`}
+                  } text-ink min-w-5 w-5 h-5`}
                 />
               </button>
               {currentIdx === i && <p>{item.description}</p>}

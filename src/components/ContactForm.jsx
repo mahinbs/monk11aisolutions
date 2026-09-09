@@ -8,7 +8,7 @@ import { companyDetails } from "../data/constant";
 import { sendContactEmail } from "../utils/sendContactEmail";
 
 const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
-  const isDark = variant === "dark";
+  const isPanel = variant === "dark" || variant === "light";
   const { setSpinner } = useContext(SpinnerContext);
   const navigate = useNavigate();
   const {
@@ -51,31 +51,41 @@ const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
       setSpinner(false);
     }
   };
-  const fieldClass = isDark
-    ? "placeholder:text-white/40 outline-none p-2 bg-transparent border-b border-white/20 w-full text-white"
-    : "placeholder:text-white outline-none p-2 bg-transparent border-b w-full";
+  const fieldClass = isPanel
+    ? "placeholder:text-ink/35 outline-none p-2 bg-transparent border-b border-black/15 w-full text-ink"
+    : "placeholder:text-white/70 outline-none p-2 bg-transparent border-b border-white/30 w-full text-white";
 
   return (
     <div
       id={id}
       className={`rounded-2xl grid md:grid-cols-2 gap-3 scroll-mt-28 ${
-        isDark ? "py-0" : "wrapper py-[4rem]"
+        isPanel ? "py-0" : "wrapper py-[4rem]"
       }`}
     >
       <div
         data-aos="fade-right"
         className={`${
-          isDark
-            ? "bg-white/[0.04] border border-white/10"
-            : "bg-purpleColor"
-        } text-white p-8 sm:p-10 rounded-2xl`}
+          isPanel
+            ? "bg-white border border-black/10 text-ink"
+            : "bg-purpleColor text-white"
+        } p-8 sm:p-10 rounded-2xl`}
       >
-        {kicker && <p className="section-kicker mb-3">{kicker}</p>}
-        <h3 className={`section-heading ${isDark ? "text-white" : "!text-white"}`}>
+        {kicker && (
+          <p className={`section-kicker mb-3 ${isPanel ? "" : "!text-white/80"}`}>
+            {kicker}
+          </p>
+        )}
+        <h3 className={`section-heading ${isPanel ? "text-ink" : "!text-white"}`}>
           {headline ? headline : "Tell us what you need to ship."}
         </h3>
         {intro && (
-          <p className="text-white/70 mt-4 leading-relaxed">{intro}</p>
+          <p
+            className={`mt-4 leading-relaxed ${
+              isPanel ? "text-ink/60" : "text-white/70"
+            }`}
+          >
+            {intro}
+          </p>
         )}
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
@@ -92,7 +102,7 @@ const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
                   val.trim() !== "" || "Full name is required",
               })}
             />
-            <small className="text-white/80">{errors.name?.message}</small>
+            <small className="text-brandRed">{errors.name?.message}</small>
           </div>
           <div>
             <input
@@ -107,7 +117,7 @@ const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
                 },
               })}
             />
-            <small className="text-primary">{errors.email?.message}</small>
+            <small className="text-brandRed">{errors.email?.message}</small>
           </div>
           <div>
             <textarea
@@ -120,7 +130,7 @@ const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
                   val.trim() !== "" || "Message is required",
               })}
             />
-            <small className="text-primary">{errors.message?.message}</small>
+            <small className="text-brandRed">{errors.message?.message}</small>
           </div>
           <div className="grid lg:grid-cols-2 gap-5">
             <div>
@@ -143,37 +153,27 @@ const ContactForm = ({ headline, id, variant = "default", kicker, intro }) => {
                     "Entered phone number is invalid",
                 })}
               />
-              <small className="text-primary">{errors.phone?.message}</small>
+              <small className="text-brandRed">{errors.phone?.message}</small>
             </div>
           </div>
           <div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className={
-                isDark
-                  ? "agency-btn-fill w-fit"
-                  : "btn rounded bg-white text-black w-full hover:bg-primary hover:text-white hover:shadow-primary/20"
-              }
+              className="agency-btn-fill w-fit"
             >
-              {isDark ? (
-                <>
-                  Send briefing
-                  <span className="agency-btn-icon">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.25"
-                    >
-                      <path d="M7 17L17 7M7 7h10v10" />
-                    </svg>
-                  </span>
-                </>
-              ) : (
-                "Send briefing"
-              )}
+              Send briefing
+              <span className="agency-btn-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.25"
+                >
+                  <path d="M7 17L17 7M7 7h10v10" />
+                </svg>
+              </span>
             </button>
           </div>
         </form>

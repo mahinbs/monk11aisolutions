@@ -20,7 +20,7 @@ const Header = () => {
   const { pathname } = useLocation();
 
   const CtaButton = () => (
-    <AgencyButton to="/contact" variant="glass">
+    <AgencyButton to="/contact" variant="fill">
       Book a scoping call
     </AgencyButton>
   );
