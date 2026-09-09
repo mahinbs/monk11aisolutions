@@ -28,13 +28,13 @@ const Header = () => {
   return (
     <>
       <div className="fixed top-0 left-0 z-50 w-full pointer-events-none pt-3 sm:pt-4">
-        <div className="wrapper flex items-center justify-center">
+        <div className="wrapper relative flex items-center justify-center">
           <div className="header-liquid pointer-events-auto">
-            <div className="liquid-glass liquid-glass-nav flex items-center gap-3 sm:gap-5 pl-2.5 pr-2 sm:pl-3 sm:pr-6 py-1.5">
+            <div className="liquid-glass liquid-glass-nav flex items-center gap-3 sm:gap-5 pl-2.5 pr-2.5 sm:pl-3 sm:pr-6 py-1.5">
               <Link
                 to="/"
-                className="cursor-pointer shrink-0 flex items-center gap-2"
-                aria-label="Homepage"
+                className="cursor-pointer shrink-0 flex items-center"
+                aria-label="Monk11 AI Solutions home"
               >
                 <img
                   loading="lazy"
@@ -44,9 +44,6 @@ const Header = () => {
                   height="56"
                   className="site-logo-island"
                 />
-                <span className="lg:hidden text-[0.72rem] tracking-[0.12em] uppercase text-black font-semibold leading-none pr-0.5 translate-y-[2px]">
-                  Homepage
-                </span>
               </Link>
               <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
                 {links.map((link) => {
@@ -68,20 +65,24 @@ const Header = () => {
                   );
                 })}
               </nav>
-              <div className="block lg:hidden">
-                <Hamburger
-                  color="#111111"
-                  size="22"
-                  toggled={isOpen}
-                  rounded
-                  toggle={setIsOpen}
-                  label="Open menu"
-                />
-              </div>
             </div>
 
             <div className="hidden lg:block shrink-0">
               <CtaButton />
+            </div>
+          </div>
+
+          <div className="lg:hidden pointer-events-auto absolute right-0 top-0 h-full aspect-square">
+            <div className="liquid-glass liquid-glass-nav w-full h-full flex items-center justify-center">
+              <Hamburger
+                color="#111111"
+                size={18}
+                toggled={isOpen}
+                rounded
+                hideOutline
+                toggle={setIsOpen}
+                label="Open menu"
+              />
             </div>
           </div>
         </div>
