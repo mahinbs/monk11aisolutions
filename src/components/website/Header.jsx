@@ -44,7 +44,7 @@ const Header = () => {
                   height="56"
                   className="site-logo-island"
                 />
-                <span className="lg:hidden text-[0.72rem] tracking-[0.12em] uppercase text-black font-semibold pr-0.5">
+                <span className="lg:hidden text-[0.72rem] tracking-[0.12em] uppercase text-black font-semibold leading-none pr-0.5 translate-y-[2px]">
                   Homepage
                 </span>
               </Link>
