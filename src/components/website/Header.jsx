@@ -27,104 +27,96 @@ const Header = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 z-50 w-full pointer-events-none pt-3 sm:pt-4">
-        <div className="wrapper relative flex items-center justify-center">
-          <div className="header-liquid pointer-events-auto">
-            <div className="liquid-glass liquid-glass-nav flex items-center gap-3 sm:gap-5 pl-2.5 pr-2.5 sm:pl-3 sm:pr-6 py-1.5">
-              <Link
-                to="/"
-                className="cursor-pointer shrink-0 flex items-center"
-                aria-label="Monk11 AI Solutions home"
-              >
-                <img
-                  loading="lazy"
-                  src={logoOnLight}
-                  alt="Monk11 AI Solutions"
-                  width="200"
-                  height="56"
-                  className="site-logo-island"
-                />
-              </Link>
-              <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
-                {links.map((link) => {
-                  const active =
-                    pathname === link.path ||
-                    (link.path !== "/" && pathname.startsWith(link.path));
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className={`text-[0.7rem] tracking-[0.14em] uppercase transition-colors ${
-                        active
-                          ? "text-primary font-semibold"
-                          : "text-black/65 hover:text-black"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })}
-              </nav>
-            </div>
-
-            <div className="hidden lg:block shrink-0">
-              <CtaButton />
-            </div>
-          </div>
-
-          <div className="lg:hidden pointer-events-auto absolute right-0 top-0 h-full aspect-square">
-            <div className="liquid-glass liquid-glass-nav w-full h-full flex items-center justify-center">
-              <Hamburger
-                color="#111111"
-                size={18}
-                toggled={isOpen}
-                rounded
-                hideOutline
-                toggle={setIsOpen}
-                label="Open menu"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="pointer-events-auto">
-          <Drawer
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            direction="right"
-            className="z-10 p-2"
+      <div className="fixed top-0 left-0 z-50 w-full bg-white border-b border-black/10">
+        <div className="flex wrapper items-center gap-8 justify-between">
+          <Link
+            to="/"
+            className="cursor-pointer shrink-0 flex items-center"
+            aria-label="Monk11 AI Solutions home"
           >
-            <div className="mb-6 flex items-center justify-between px-[.7rem] py-[.4rem]">
-              <Link to="/" onClick={() => setIsOpen(false)}>
-                <img
-                  src={logoOnLight}
-                  width="auto"
-                  height="auto"
-                  alt="Monk11 AI Solutions"
-                  className="site-logo-island h-12"
-                />
-              </Link>
-              <button type="button" onClick={() => setIsOpen(false)} aria-label="Close menu">
-                <X size={28} />
-              </button>
-            </div>
-            <div className="py-4 px-7 flex flex-col gap-4 text-black">
-              {links.map((link) => (
+            <img
+              loading="lazy"
+              src={logoOnLight}
+              alt="Monk11 AI Solutions"
+              width="200"
+              height="88"
+              className="site-logo-on-light"
+            />
+          </Link>
+          <nav className="hidden lg:flex items-center gap-8">
+            {links.map((link) => {
+              const active =
+                pathname === link.path ||
+                (link.path !== "/" && pathname.startsWith(link.path));
+              return (
                 <Link
-                  onClick={() => setIsOpen(false)}
                   key={link.name}
                   to={link.path}
-                  className="text-2xl font-medium"
+                  className={`text-[0.7rem] tracking-[0.14em] uppercase transition-colors ${
+                    active
+                      ? "text-primary font-semibold"
+                      : "text-black/65 hover:text-black"
+                  }`}
                 >
                   {link.name}
                 </Link>
-              ))}
-              <AgencyButton to="/contact" className="mt-4 w-fit" variant="fill">
-                Book a scoping call
-              </AgencyButton>
-            </div>
-          </Drawer>
+              );
+            })}
+            <CtaButton />
+          </nav>
+          <div className="lg:hidden shrink-0">
+            <Hamburger
+              color="#111111"
+              size={22}
+              toggled={isOpen}
+              rounded
+              hideOutline
+              toggle={setIsOpen}
+              label="Open menu"
+            />
+          </div>
         </div>
+
+        <Drawer
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          direction="right"
+          className="z-10 p-2"
+        >
+          <div className="mb-6 flex items-center justify-between px-[.7rem] py-[.4rem]">
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              <img
+                src={logoOnLight}
+                width="auto"
+                height="auto"
+                alt="Monk11 AI Solutions"
+                className="site-logo-on-light h-12"
+              />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+            >
+              <X size={28} />
+            </button>
+          </div>
+          <div className="py-4 px-7 flex flex-col gap-4 text-black">
+            {links.map((link) => (
+              <Link
+                onClick={() => setIsOpen(false)}
+                key={link.name}
+                to={link.path}
+                className="text-2xl font-medium"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <AgencyButton to="/contact" className="mt-4 w-fit" variant="fill">
+              Book a scoping call
+            </AgencyButton>
+          </div>
+        </Drawer>
       </div>
 
       {!isOpen && (
